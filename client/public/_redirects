@@ -1,0 +1,4 @@
+# SPA fallback: serve index.html for client-side routes.
+# /api/* is handled by Pages Functions (functions/api/*), which take
+# precedence over this rule, so the API still works.
+/*    /index.html   200

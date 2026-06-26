@@ -1,0 +1,7 @@
+name = "fyro-website"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "dist/public"
+
+# Secrets/vars (GOOGLE_SA_EMAIL, GOOGLE_SA_PRIVATE_KEY, CALENDAR_ID) are set in
+# the Cloudflare Pages dashboard (Settings → Environment variables) or via
+# `wrangler pages secret put`. Do NOT commit them here.
