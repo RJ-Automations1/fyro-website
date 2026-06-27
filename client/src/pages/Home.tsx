@@ -485,9 +485,9 @@ export default function Home() {
             {/* 3 bullets */}
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 40px", display: "flex", flexDirection: "column", gap: 10 }}>
               {[
-                "More leads. Every call, text, and form — captured and followed up automatically.",
-                "Less manual work. Automated texts, CRM updates, and scheduling — done for you.",
-                "Better operations. Custom-built systems that fit how your company actually runs.",
+                "More leads — every call, text, and form followed up automatically.",
+                "Less busywork — texts, CRM updates, and scheduling handled for you.",
+                "Better operations — systems built around how your company runs.",
               ].map((item, i) => (
                 <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                   <span style={{ color: "#ef4444", fontSize: 16, marginTop: 2, flexShrink: 0 }}>→</span>
@@ -575,19 +575,19 @@ export default function Home() {
               {
                 icon: "lead",
                 title: "Leads fall through the cracks.",
-                body: "A new lead comes in on Saturday at 6pm. Nobody sees it until Monday. By then, they've already hired someone else. Manual follow-up is costing you jobs.",
+                body: "A lead comes in Saturday night. Nobody sees it till Monday — and they've already hired someone else.",
                 fix: "Fyro builds an automated lead capture and follow-up agent that captures, qualifies, and responds to every lead automatically.",
               },
               {
                 icon: "manual",
                 title: "Your team is stuck doing manual work.",
-                body: "Texting customers, updating job statuses, sending reminders, chasing invoices — your best people are spending hours on tasks a system should handle.",
+                body: "Texts, job updates, reminders, chasing invoices — your best people lose hours to work a system should handle.",
                 fix: "Fyro automates your outbound texts, job updates, and follow-ups so your team focuses on the work that actually pays.",
               },
               {
                 icon: "crm",
                 title: "No system. Just spreadsheets.",
-                body: "Customer history, job notes, follow-up reminders — it's all in someone's head or a spreadsheet that nobody updates. That's not a business, that's a liability.",
+                body: "Customer history and follow-ups live in someone's head or a stale spreadsheet. That's not a system — it's a liability.",
                 fix: "Fyro builds a custom CRM wired into how your team actually works.",
               },
             ].map((card, i) => (
