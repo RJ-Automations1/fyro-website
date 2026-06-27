@@ -1,28 +1,37 @@
-# Deploying the Fyro website to Cloudflare Pages
+# Deploying the Fyro website to Render
 
-This site is a **Vite + React** front end with a small **Cloudflare Pages
-Functions** backend (`functions/api/*`) that powers the "book a discovery call"
-feature on the Contact page.
+This site is a **Vite + React** front end served by a small **Node/Express**
+web service (`server/index.ts`) that also powers the "book a discovery call"
+feature on the Contact page. On Render it runs as a single **Web Service**.
 
-- Build command: `pnpm build`
-- Build output directory: `dist/public`
-- Functions directory: `functions/` (auto-detected by Cloudflare)
-- Node version: 20 or newer
+- Build command: `corepack enable && pnpm install && pnpm build`
+- Start command: `pnpm start`
+- Output: `dist/public` (static site) + `dist/index.js` (server)
+- Node version: 20+
+
+A `render.yaml` Blueprint is included, so Render can configure everything
+automatically.
 
 ---
 
-## 1. Connect the GitHub repo to Cloudflare Pages (auto-deploy)
+## 1. Deploy from GitHub (auto-deploy)
 
-1. Push this project to GitHub (see the project README / the steps your
-   assistant gave you).
-2. In the Cloudflare dashboard go to **Workers & Pages → Create → Pages →
-   Connect to Git**.
-3. Pick the `fyro-website` repository.
-4. Set the build settings:
-   - **Framework preset:** None / Vite
-   - **Build command:** `pnpm build`
-   - **Build output directory:** `dist/public`
-5. Click **Save and Deploy**. Every push to the main branch now redeploys.
+1. Push this project to GitHub (your assistant set this up).
+2. Go to <https://dashboard.render.com> → **New → Blueprint**.
+3. Connect your GitHub account and pick the `fyro-website` repo.
+4. Render reads `render.yaml` and proposes a **fyro-website** web service —
+   click **Apply**.
+5. First build takes a few minutes. When it's live you'll get a URL like
+   `https://fyro-website.onrender.com`. Every push to the main branch
+   redeploys automatically.
+
+> Prefer to set it up by hand instead of the Blueprint? **New → Web Service →**
+> connect the repo, then set Build = `corepack enable && pnpm install && pnpm build`,
+> Start = `pnpm start`, and add the env vars from section 2.
+
+> Note on the free plan: the service sleeps after inactivity, so the first
+> visit after idle can take ~30–60s to wake. Upgrade to a paid instance to keep
+> it always on.
 
 ---
 
@@ -35,61 +44,57 @@ It authenticates with a **Google service account**.
 1. Go to <https://console.cloud.google.com> → create (or pick) a project.
 2. **APIs & Services → Library** → enable **Google Calendar API**.
 3. **APIs & Services → Credentials → Create credentials → Service account**.
-4. After creating it, open the service account → **Keys → Add key → JSON**.
-   Download the JSON file. You'll need two values from it:
-   - `client_email`  → this is `GOOGLE_SA_EMAIL`
-   - `private_key`   → this is `GOOGLE_SA_PRIVATE_KEY`
+4. Open the service account → **Keys → Add key → JSON**. Download it. You need:
+   - `client_email`  → `GOOGLE_SA_EMAIL`
+   - `private_key`   → `GOOGLE_SA_PRIVATE_KEY`
 
 ### b. Share your calendar with the service account
-1. In Google Calendar, find the calendar you want bookings on
-   (your "Fyro Appointments" calendar).
+1. In Google Calendar, open your "Fyro Appointments" calendar.
 2. **Settings → Share with specific people → Add people** → paste the service
-   account's `client_email`.
-3. Permission: **Make changes to events**.
-4. Copy the calendar's **Calendar ID** (Settings → Integrate calendar).
-   The existing Fyro calendar ID is:
+   account's `client_email`. Permission: **Make changes to events**.
+3. The existing Fyro calendar ID is:
    `7414ffcb65a68324c1a0b0925008135a4d0de99d98a1e8df572ea6ec2da134a7@group.calendar.google.com`
+   (or copy a new one from Settings → Integrate calendar).
 
-### c. Add the secrets in Cloudflare Pages
-Cloudflare dashboard → your Pages project → **Settings → Environment variables
-→ Production** (add the same to Preview if you want previews to work). Add:
+### c. Add the env vars in Render
+Render dashboard → your service → **Environment** → add:
 
-| Name | Value |
+| Key | Value |
 |---|---|
-| `GOOGLE_SA_EMAIL` | the service account `client_email` |
-| `GOOGLE_SA_PRIVATE_KEY` | the full `private_key` (keep the `\n` characters as-is) |
+| `GOOGLE_SA_EMAIL` | service account `client_email` |
+| `GOOGLE_SA_PRIVATE_KEY` | the full `private_key` (paste with `\n` characters intact) |
 | `CALENDAR_ID` | the calendar ID above |
-| `ET_OFFSET_HOURS` | `-4` in summer (EDT), `-5` in winter (EST) — optional |
+| `ET_OFFSET_HOURS` | `-4` in summer (EDT) / `-5` in winter (EST) |
 
-Mark `GOOGLE_SA_PRIVATE_KEY` as **encrypted/secret**. Redeploy after saving.
+Save — Render redeploys automatically.
 
-> If you'd rather not set this up, the rest of the site works without it — only
-> the Contact page's live time-slot picker needs these variables.
+> The site runs fine without these; only the Contact page's live time-slot
+> picker needs them.
 
 ---
 
 ## 3. Replace the placeholder photos
 
-The photos in `client/public/manus-storage/` are gray placeholders (the
-originals were stuck on Manus). Drop your real photos in with the **same
-filenames** — see `client/public/manus-storage/README-ASSETS.md`. Commit and
-push; Cloudflare redeploys automatically.
+Photos in `client/public/manus-storage/` are gray placeholders (the originals
+were stuck on Manus). Drop your real photos in with the **same filenames** —
+see `client/public/manus-storage/README-ASSETS.md`. Commit + push; Render
+redeploys.
 
 ---
 
 ## 4. Custom domain (fyroagents.com)
 
-In the Pages project → **Custom domains → Set up a domain** → enter
-`fyroagents.com`. If the domain's DNS is already on Cloudflare, it's one click.
-Otherwise follow the prompts to point DNS at Cloudflare.
+Render service → **Settings → Custom Domains → Add Custom Domain** → enter
+`fyroagents.com` and follow the DNS instructions Render gives you (a CNAME or
+A record at your domain registrar).
 
 ---
 
 ## ⚠️ Security note
 The original Manus export contained live API keys and a database password in
-`.project-config.json` (now deleted). You should rotate/regenerate the old
-**Google Calendar API key**, **Manus API key**, **JWT secret**, and **database
-password** in case the export was shared. The new site does not use any of them.
+`.project-config.json` (now deleted). Rotate/regenerate the old **Google
+Calendar API key**, **Manus API key**, **JWT secret**, and **database
+password** in case the export was shared. The new site uses none of them.
 
 ---
 
@@ -97,8 +102,7 @@ password** in case the export was shared. The new site does not use any of them.
 
 ```bash
 pnpm install
-pnpm build          # production build into dist/public
-pnpm preview        # serve the built site + functions locally (wrangler)
-# or, front-end only with hot reload:
-pnpm dev
+pnpm dev       # Vite (port 3000) + Express API (port 3001), hot reload
+# or test the real production build locally:
+pnpm preview   # builds, then serves on http://localhost:3000
 ```

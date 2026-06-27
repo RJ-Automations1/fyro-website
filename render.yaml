@@ -1,0 +1,26 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# A single Node web service that serves the built site and the booking API.
+services:
+  - type: web
+    name: fyro-website
+    runtime: node
+    plan: free
+    buildCommand: corepack enable && pnpm install && pnpm build
+    startCommand: pnpm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20.18.0"
+      - key: NODE_ENV
+        value: production
+      # Booking (Google Calendar). Set these in the Render dashboard — leave
+      # them blank here so they aren't committed. The site runs without them;
+      # only the Contact page's live time-slot picker needs them.
+      - key: GOOGLE_SA_EMAIL
+        sync: false
+      - key: GOOGLE_SA_PRIVATE_KEY
+        sync: false
+      - key: CALENDAR_ID
+        sync: false
+      - key: ET_OFFSET_HOURS
+        value: "-4"

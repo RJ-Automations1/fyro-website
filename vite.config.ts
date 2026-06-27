@@ -24,9 +24,9 @@ export default defineConfig({
     strictPort: false,
     host: true,
     proxy: {
-      // Local dev: forward booking API calls to wrangler pages dev (functions)
+      // Local dev: forward booking API calls to the Express server.
       "/api": {
-        target: "http://localhost:8788",
+        target: "http://localhost:3001",
         changeOrigin: true,
       },
     },

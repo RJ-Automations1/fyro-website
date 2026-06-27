@@ -1,16 +1,11 @@
-// Shared Google Calendar helpers for Cloudflare Pages Functions.
-// Auth uses a Google service account (RS256 JWT signed with Web Crypto),
-// which works in the Workers runtime with no Node dependencies.
+// Google Calendar helpers (Node 20+ has global crypto.subtle, fetch, btoa/atob).
+// Auth uses a Google service account (RS256 JWT signed with Web Crypto).
 
-export interface Env {
-  // Service account credentials (set as Cloudflare Pages secrets)
-  GOOGLE_SA_EMAIL: string; // service account email
-  GOOGLE_SA_PRIVATE_KEY: string; // PEM, with literal \n or real newlines
-  // Target calendar to read availability from and write bookings to.
-  // Share this calendar with GOOGLE_SA_EMAIL ("Make changes to events").
-  CALENDAR_ID: string;
-  // Optional: timezone offset hours for slot generation (default -4 EDT).
-  ET_OFFSET_HOURS?: string;
+export interface GoogleEnv {
+  GOOGLE_SA_EMAIL?: string; // service account email
+  GOOGLE_SA_PRIVATE_KEY?: string; // PEM, with literal \n or real newlines
+  CALENDAR_ID?: string; // calendar shared with the service account
+  ET_OFFSET_HOURS?: string; // optional, default -4 (EDT)
 }
 
 function base64url(input: ArrayBuffer | string): string {
@@ -21,7 +16,7 @@ function base64url(input: ArrayBuffer | string): string {
     bytes = new Uint8Array(input);
   }
   let str = "";
-  for (const b of bytes) str += String.fromCharCode(b);
+  for (let i = 0; i < bytes.length; i++) str += String.fromCharCode(bytes[i]);
   return btoa(str).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
@@ -38,14 +33,11 @@ function pemToArrayBuffer(pem: string): ArrayBuffer {
   return buf;
 }
 
-// Cache the access token across requests in the same isolate.
 let cachedToken: { token: string; exp: number } | null = null;
 
-export async function getAccessToken(env: Env, scope: string): Promise<string> {
+export async function getAccessToken(env: GoogleEnv, scope: string): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
-  if (cachedToken && cachedToken.exp - 60 > now) {
-    return cachedToken.token;
-  }
+  if (cachedToken && cachedToken.exp - 60 > now) return cachedToken.token;
 
   const header = { alg: "RS256", typ: "JWT" };
   const claim = {
@@ -55,23 +47,20 @@ export async function getAccessToken(env: Env, scope: string): Promise<string> {
     iat: now,
     exp: now + 3600,
   };
-
   const signingInput = `${base64url(JSON.stringify(header))}.${base64url(JSON.stringify(claim))}`;
 
   const key = await crypto.subtle.importKey(
     "pkcs8",
-    pemToArrayBuffer(env.GOOGLE_SA_PRIVATE_KEY),
+    pemToArrayBuffer(env.GOOGLE_SA_PRIVATE_KEY || ""),
     { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
     false,
     ["sign"],
   );
-
   const signature = await crypto.subtle.sign(
     "RSASSA-PKCS1-v1_5",
     key,
     new TextEncoder().encode(signingInput),
   );
-
   const jwt = `${signingInput}.${base64url(signature)}`;
 
   const res = await fetch("https://oauth2.googleapis.com/token", {
@@ -82,10 +71,7 @@ export async function getAccessToken(env: Env, scope: string): Promise<string> {
       assertion: jwt,
     }),
   });
-
-  if (!res.ok) {
-    throw new Error(`Google token error: ${res.status} ${await res.text()}`);
-  }
+  if (!res.ok) throw new Error(`Google token error: ${res.status} ${await res.text()}`);
 
   const data = (await res.json()) as { access_token: string; expires_in: number };
   cachedToken = { token: data.access_token, exp: now + data.expires_in };
@@ -109,19 +95,8 @@ export function generateSlotTimes(dateStr: string, offsetHours: number): Slot[] 
       );
       const endDate = new Date(startDate.getTime() + 30 * 60 * 1000);
       const label12 = `${hour > 12 ? hour - 12 : hour}:${String(min).padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
-      slots.push({
-        label: label12,
-        startISO: startDate.toISOString(),
-        endISO: endDate.toISOString(),
-      });
+      slots.push({ label: label12, startISO: startDate.toISOString(), endISO: endDate.toISOString() });
     }
   }
   return slots;
-}
-
-export function jsonResponse(body: unknown, status = 200): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json" },
-  });
 }
