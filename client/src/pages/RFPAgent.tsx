@@ -304,7 +304,7 @@ export default function RFPAgent() {
               </h3>
             </div>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", flexShrink: 0 }}>
-              Book a Free 15-Minute Discovery Call <ArrowRight size={15} />
+              Book a Free Demo <ArrowRight size={15} />
             </Link>
           </div>
         </div>

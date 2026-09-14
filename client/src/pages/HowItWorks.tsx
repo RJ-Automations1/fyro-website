@@ -114,7 +114,7 @@ export default function HowItWorks() {
           </p>
           <div className="fade-up" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a Free 15-Minute Discovery Call
+              Book a Free Demo
               <ArrowRight size={15} />
             </Link>
             <Link href="/services" className="fyro-btn-outline">
@@ -308,7 +308,7 @@ export default function HowItWorks() {
               for your specific operation.
             </p>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a Free 15-Minute Discovery Call
+              Book a Free Demo
               <ArrowRight size={15} />
             </Link>
           </div>

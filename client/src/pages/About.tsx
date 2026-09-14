@@ -1,8 +1,8 @@
 /*
  * FYRO ABOUT PAGE
- * About the company, not the person: what Fyro is, why it exists, who it
- * serves, how it works, FAQ. The founder gets one card here that links to
- * /founder, where RJ's name, photos, and speaking credentials live.
+ * The company, with the founder up front: hero pairs Fyro's pitch with RJ's
+ * photo, then Meet the Founder, then why Fyro exists, who it serves, principles,
+ * FAQ. The full founder story and speaking photos live on /founder.
  */
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
@@ -59,13 +59,13 @@ const FAQS = [
   },
   {
     q: "How do I get started?",
-    a: "Book a free 15-minute discovery call. We'll walk through your operation, identify the highest-leverage AI opportunities, and tell you exactly what we'd build — no commitment required.",
+    a: "Book a free 15-minute demo. We'll walk through your operation, identify the highest-leverage AI opportunities, and tell you exactly what we'd build — no commitment required.",
   },
 ];
 
 const h2Style = {
   fontFamily: "'Inter', sans-serif",
-  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+  fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
   fontWeight: 800,
   color: "var(--fyro-near-black)",
   letterSpacing: "-0.025em",
@@ -74,7 +74,7 @@ const h2Style = {
 
 const bodyText = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "0.95rem",
+  fontSize: "1.1rem",
   color: "var(--fyro-gray-mid)",
   lineHeight: 1.8,
 };
@@ -110,51 +110,126 @@ export default function About() {
       {/* ── HERO ── */}
       <section style={{ paddingTop: 64, background: "var(--fyro-bg)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 80% 30%, rgba(248,121,4,0.10) 0%, transparent 60%)" }} />
-        <div style={{ ...sectionStyle, padding: "5rem 2.5rem 4.5rem", position: "relative" }}>
-          <div className="fade-up" style={{ marginBottom: "1.75rem" }}>
-            <span className="fyro-category-pill">About Fyro</span>
+        <div id="about-hero" style={{ ...sectionStyle, padding: "4.5rem 2.5rem 4.5rem", position: "relative", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "3.5rem", alignItems: "center" }}>
+          <div>
+            <div className="fade-up" style={{ marginBottom: "1.75rem" }}>
+              <span className="fyro-category-pill">About Fyro</span>
+            </div>
+
+            <h1
+              className="fade-up"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "clamp(2.5rem, 5vw, 4.25rem)",
+                fontWeight: 800,
+                color: "var(--fyro-near-black)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.05,
+                marginBottom: "1.5rem",
+              }}
+            >
+              An AI consulting firm that{" "}
+              <span style={{ color: "var(--fyro-orange)" }}>builds, not advises.</span>
+            </h1>
+
+            <p className="fade-up" style={{ ...bodyText, fontSize: "1.25rem", lineHeight: 1.65, maxWidth: 560, marginBottom: "2rem" }}>
+              Fyro builds custom AI agents, CRMs, and workflows for service companies and
+              government contractors — the systems your team actually runs on.
+            </p>
+
+            <div className="fade-up" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+              <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "1rem", padding: "0.9rem 1.9rem" }}>
+                Book a Free Demo
+                <ArrowRight size={16} />
+              </Link>
+              <Link href="/founder" className="fyro-btn-outline" style={{ fontSize: "1rem", padding: "0.9rem 1.6rem" }}>
+                Meet the founder
+              </Link>
+            </div>
           </div>
 
-          <h1
-            className="fade-up"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
-              fontWeight: 800,
-              color: "var(--fyro-near-black)",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              maxWidth: 860,
-              marginBottom: "1.5rem",
-            }}
-          >
-            An AI consulting firm that{" "}
-            <span style={{ color: "var(--fyro-orange)" }}>builds, not advises.</span>
-          </h1>
+          {/* Founder up front, per the owner: a buyer meets the person building their systems. */}
+          <Link href="/founder" className="fade-up" style={{ textDecoration: "none", display: "block" }}>
+            <figure style={{ margin: 0, position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid var(--fyro-border)", boxShadow: "0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(248,121,4,0.10)", aspectRatio: "4/5", maxHeight: 560 }}>
+              <img
+                src="/manus-storage/rj_speaking_4_10cefbdc.jpeg"
+                alt="Robert Robinson Jr., founder and owner of Fyro"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+              />
+              <figcaption style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "4rem 1.5rem 1.4rem", background: "linear-gradient(transparent, rgba(0,0,0,0.88))" }}>
+                <span className="fyro-section-label">Founder &amp; Owner</span>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.6rem", fontWeight: 800, color: "#fff", marginTop: "0.3rem", letterSpacing: "-0.02em" }}>
+                  Robert Robinson Jr.
+                </p>
+              </figcaption>
+            </figure>
+          </Link>
+        </div>
+        <style>{`
+          @media (max-width: 900px) {
+            #about-hero { grid-template-columns: 1fr !important; padding: 3.5rem 1.25rem !important; }
+            #about-hero figure { max-height: 480px !important; }
+          }
+        `}</style>
+      </section>
 
-          <p className="fade-up" style={{ ...bodyText, fontSize: "1.1rem", maxWidth: 600, marginBottom: "2rem" }}>
-            Fyro designs and deploys custom AI agents and internal software for
-            service-based companies — the systems your team actually runs on, built
-            around how your operation already works.
-          </p>
-
-          <div className="fade-up" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a 15-minute call
-              <ArrowRight size={15} />
-            </Link>
-            <Link href="/building" className="fyro-btn-outline">
-              See what we&rsquo;re building
-            </Link>
+      {/* ── MEET THE FOUNDER ── */}
+      <section style={{ padding: "6rem 0", background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
+        <div style={sectionStyle}>
+          <div className="fade-up" id="meet-grid" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: "4rem", alignItems: "start" }}>
+            <div>
+              <div style={{ marginBottom: "0.75rem" }}>
+                <span className="fyro-section-label">Meet the founder</span>
+              </div>
+              <h2 style={{ ...h2Style, marginBottom: "1.5rem" }}>
+                The person behind every Fyro build — from first call to live system.
+              </h2>
+              <div style={{ display: "flex", gap: "1.75rem", flexWrap: "wrap" }}>
+                {[
+                  { place: "IBM New York", sub: "Featured speaker" },
+                  { place: "Morehouse College", sub: "DreamMakers Summit 2026" },
+                  { place: "AfroTech 2025", sub: "Houston · Selected & featured" },
+                ].map((c) => (
+                  <div key={c.place} style={{ borderLeft: "2px solid var(--fyro-orange)", paddingLeft: "0.85rem" }}>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 700, color: "var(--fyro-near-black)" }}>{c.place}</p>
+                    <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.72rem", letterSpacing: "0.06em", color: "var(--fyro-gray-light)", marginTop: 3 }}>{c.sub}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p style={{ ...bodyText, marginBottom: "1.25rem" }}>
+                RJ started Fyro after seeing the same thing again and again: companies knew they
+                needed AI, but bought tools that didn&rsquo;t fit and ran pilots that never shipped.
+              </p>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.75rem", display: "grid", gap: "0.8rem" }}>
+                {[
+                  "Sits down with your team to learn how the business really runs",
+                  "Designs the agents, CRM, and workflows around that",
+                  "Stays with it until the system is live and working",
+                ].map((b) => (
+                  <li key={b} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", fontSize: "1.1rem", color: "var(--fyro-gray-dark)", lineHeight: 1.55 }}>
+                    <span style={{ color: "var(--fyro-orange)", fontWeight: 800 }}>→</span> {b}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/founder" className="fyro-link" style={{ fontSize: "1rem" }}>
+                Read RJ&rsquo;s story <ArrowRight size={15} />
+              </Link>
+            </div>
           </div>
         </div>
+        <style>{`
+          @media (max-width: 900px) {
+            #meet-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          }
+        `}</style>
       </section>
 
       {/* ── WHY FYRO EXISTS ── */}
       <section style={{ background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="fade-up" id="story-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
-            {/* The mark stands where the founder photo used to. */}
             <div
               style={{
                 minHeight: 440,
@@ -241,7 +316,7 @@ export default function About() {
             Four principles. Every engagement.
           </h2>
           <p className="fade-up" style={{ ...bodyText, maxWidth: 480, marginBottom: "3.5rem" }}>
-            These show up in every discovery call, every architecture decision, and every
+            These show up in every demo, every architecture decision, and every
             deployment. If a recommendation doesn&rsquo;t pass all four, it doesn&rsquo;t ship.
           </p>
 
@@ -251,7 +326,7 @@ export default function About() {
                 <h3
                   style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "1rem",
+                    fontSize: "1.2rem",
                     fontWeight: 700,
                     color: "var(--fyro-near-black)",
                     letterSpacing: "-0.01em",
@@ -260,7 +335,7 @@ export default function About() {
                 >
                   {p.title}
                 </h3>
-                <p style={{ ...bodyText, fontSize: "0.875rem", lineHeight: 1.75 }}>{p.body}</p>
+                <p style={{ ...bodyText, fontSize: "1rem", lineHeight: 1.7 }}>{p.body}</p>
               </div>
             ))}
           </div>
@@ -271,54 +346,6 @@ export default function About() {
           }
           @media (max-width: 560px) {
             #principles-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
-      </section>
-
-      {/* ── FOUNDER CARD ── one link out; the person has a page of their own. */}
-      <section style={{ padding: "5rem 0", background: "var(--fyro-bg)", borderTop: "1px solid var(--fyro-border)" }}>
-        <div style={sectionStyle}>
-          <Link href="/founder" style={{ textDecoration: "none", display: "block" }} className="fade-up">
-            <div
-              id="founder-card"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "120px 1fr auto",
-                gap: "2rem",
-                alignItems: "center",
-                padding: "1.75rem",
-                background: "var(--fyro-panel)",
-                border: "1px solid var(--fyro-border)",
-                borderRadius: 8,
-              }}
-            >
-              <div style={{ width: 120, height: 120, borderRadius: 6, overflow: "hidden" }}>
-                <img
-                  src="/manus-storage/rj_speaking_4_10cefbdc.jpeg"
-                  alt="Robert Robinson Jr., founder of Fyro"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
-                />
-              </div>
-              <div>
-                <span className="fyro-section-label">Meet the founder</span>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.35rem", fontWeight: 700, color: "var(--fyro-near-black)", margin: "0.4rem 0 0.35rem" }}>
-                  Robert Robinson Jr.
-                </p>
-                <p style={{ ...bodyText, fontSize: "0.9rem", lineHeight: 1.6 }}>
-                  Founder &amp; owner. Speaker at IBM New York, Morehouse College, and AfroTech 2025.
-                </p>
-              </div>
-              <span className="fyro-link" style={{ whiteSpace: "nowrap" }}>
-                Read the story <ArrowRight size={15} />
-              </span>
-            </div>
-          </Link>
-        </div>
-        <style>{`
-          @media (max-width: 640px) {
-            #founder-card { grid-template-columns: 80px 1fr !important; gap: 1.25rem !important; }
-            #founder-card > div:first-child { width: 80px !important; height: 80px !important; }
-            #founder-card > span { grid-column: 1 / -1; }
           }
         `}</style>
       </section>

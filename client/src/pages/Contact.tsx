@@ -1,6 +1,6 @@
 /**
  * FYRO CONTACT PAGE
- * 15-minute free discovery call intake form
+ * 15-minute free demo intake form
  * Left: form fields  |  Right: calendar slot picker → books directly to Google Calendar
  */
 import { useEffect, useState, useCallback } from "react";
@@ -174,7 +174,7 @@ function BookingSidebar({
       <div style={{ padding: "0.9rem 1.5rem", borderBottom: "1px solid var(--fyro-border)", display: "flex", alignItems: "center", gap: "0.5rem", background: "var(--fyro-bg)" }}>
         <Clock size={13} color="var(--fyro-gray-mid)" />
         <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "var(--fyro-gray-mid)" }}>
-          15-minute free discovery call · Eastern Time
+          15-minute free demo · Eastern Time
         </span>
       </div>
 
@@ -371,7 +371,7 @@ export default function Contact() {
       <section style={{ paddingTop: 64, background: "var(--fyro-bg)" }}>
         <div style={{ ...sectionStyle, padding: "5rem 2.5rem 4rem" }}>
           <div className="fade-up" style={{ marginBottom: "1.75rem" }}>
-            <span className="fyro-category-pill">Book a Free 15-Minute Discovery Call</span>
+            <span className="fyro-category-pill">Book a Free Demo</span>
           </div>
           <h1
             className="fade-up"
@@ -470,7 +470,7 @@ export default function Contact() {
                     margin: "0 auto 0.5rem",
                   }}
                 >
-                  Your 15-minute discovery call has been added to our calendar.
+                  Your 15-minute free demo has been added to our calendar.
                   {selectedSlot && (
                     <><br /><strong>{selectedSlot.label} · {selectedSlot.date}</strong></>
                   )}
@@ -669,7 +669,7 @@ export default function Contact() {
                       </>
                     ) : (
                       <>
-                        Book my discovery call
+                        Book my free demo
                         <ArrowRight size={15} />
                       </>
                     )}
@@ -727,7 +727,7 @@ export default function Contact() {
                   {[
                     { step: "01", title: "Pick a time & submit", body: "Select an open slot and fill in your details. Takes 60 seconds." },
                     { step: "02", title: "Instant calendar invite", body: "Your call is booked directly on our calendar — no waiting." },
-                    { step: "03", title: "Discovery call", body: "We talk through your business, your team, and your goals." },
+                    { step: "03", title: "Free demo", body: "We talk through your business, your team, and your goals." },
                     { step: "04", title: "Custom proposal", body: "If it's a fit, we walk you through exactly what we'd build." },
                   ].map((s) => (
                     <div key={s.step} style={{ display: "flex", gap: "0.85rem" }}>

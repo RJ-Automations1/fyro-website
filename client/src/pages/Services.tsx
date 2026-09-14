@@ -30,6 +30,34 @@ export default function Services() {
 
   const services = [
     {
+      tag: "FOR ANY BUSINESS THAT LIVES ON LEADS",
+      title: "Speed-to-Lead Call Agent",
+      sub: "Every new lead gets a phone call in seconds — not hours.",
+      body: "The moment someone fills out a form, clicks an ad, or requests a quote, an AI voice agent calls them back. It qualifies them with your questions, answers the basics, and books the appointment straight onto your calendar — nights and weekends included. The lead talks to you before they talk to your competitor.",
+      capabilities: [
+        "Instant call-back on every new web, ad, or form lead",
+        "Natural-voice qualification using your questions",
+        "Books appointments directly on your calendar",
+        "Logs the call, notes, and next step in your CRM",
+        "Text follow-up if the lead doesn't pick up",
+      ],
+      client: null,
+    },
+    {
+      tag: "FOR TEAMS OUTGROWING SPREADSHEETS",
+      title: "Custom CRMs",
+      sub: "A CRM built around how your team actually works.",
+      body: "Off-the-shelf CRMs make you change your process to fit their software. We build the CRM around your process instead — your pipeline stages, your fields, your job types — with agents that create follow-ups, reminders, and work orders on their own. Fyro has built CRMs that generate inspection schedules and work orders automatically.",
+      capabilities: [
+        "Pipeline, stages, and fields designed for your business",
+        "Automatic follow-ups, reminders, and work orders",
+        "Full customer and job history in one place",
+        "Connected to calls, texts, email, and invoicing",
+        "Agents that propose actions for your approval",
+      ],
+      client: null,
+    },
+    {
       tag: "FOR GOVERNMENT CONTRACTORS & SERVICE FIRMS",
       title: "RFP Response Agent",
       sub: "Cut RFP response time from days to hours.",
@@ -45,15 +73,15 @@ export default function Services() {
     },
     {
       tag: "FOR FIRMS WHOSE GROWTH DEPENDS ON THROUGHPUT",
-      title: "Workflow Automation",
-      sub: "Replace manual processes with intelligent automations that run 24/7.",
+      title: "Custom Workflows",
+      sub: "The busywork around the job, done automatically — 24/7.",
       body: "We map your most time-consuming manual workflows — client intake, reporting, follow-up, scheduling, document processing — and replace them with intelligent automations integrated directly into your existing tools. No new software to learn. No process overhaul. Just the same work, done automatically.",
       capabilities: [
         "Client intake and onboarding automation",
         "Automated reporting and data aggregation",
         "Follow-up and communication sequences",
         "Document generation and routing",
-        "CRM and project management integration",
+        "State portal and regulatory filings",
       ],
       client: null,
     },
@@ -124,16 +152,16 @@ export default function Services() {
               marginBottom: "1.25rem",
             }}
           >
-            Custom AI systems for service companies.
+            AI agents, CRMs, and workflows for service companies.
           </h1>
           <p
             className="fade-up"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "1.05rem",
+              fontSize: "1.25rem",
               color: "var(--fyro-gray-mid)",
-              lineHeight: 1.75,
-              maxWidth: 520,
+              lineHeight: 1.65,
+              maxWidth: 600,
               marginBottom: "2rem",
             }}
           >
@@ -142,7 +170,7 @@ export default function Services() {
           </p>
           <div className="fade-up">
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a Free 15-Minute Discovery Call
+              Book a Free Demo
               <ArrowRight size={15} />
             </Link>
           </div>
@@ -179,7 +207,7 @@ export default function Services() {
                   className="fade-up"
                   style={{
                     fontFamily: "'Inter', sans-serif",
-                    fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                    fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
                     fontWeight: 800,
                     color: "var(--fyro-near-black)",
                     letterSpacing: "-0.025em",
@@ -192,7 +220,7 @@ export default function Services() {
                   className="fade-up"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "1rem",
+                    fontSize: "1.25rem",
                     fontWeight: 600,
                     color: "var(--fyro-orange)",
                     marginBottom: "1.25rem",
@@ -204,9 +232,9 @@ export default function Services() {
                   className="fade-up"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.95rem",
+                    fontSize: "1.1rem",
                     color: "var(--fyro-gray-mid)",
-                    lineHeight: 1.8,
+                    lineHeight: 1.75,
                     marginBottom: "2rem",
                   }}
                 >
@@ -288,7 +316,7 @@ export default function Services() {
                       <span
                         style={{
                           fontFamily: "'DM Sans', sans-serif",
-                          fontSize: "0.9rem",
+                          fontSize: "1.08rem",
                           color: "var(--fyro-near-black)",
                           lineHeight: 1.6,
                         }}
@@ -319,7 +347,7 @@ export default function Services() {
             <h2
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
                 fontWeight: 800,
                 color: "var(--fyro-near-black)",
                 letterSpacing: "-0.025em",
@@ -338,11 +366,11 @@ export default function Services() {
                 marginBottom: "2rem",
               }}
             >
-              Book a Free 15-Minute Discovery Call. We'll walk through your workflows and tell you
+              Book a free demo. We'll walk through your workflows and tell you
               exactly what we'd build — and what it would do for your business.
             </p>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a Free 15-Minute Discovery Call
+              Book a Free Demo
               <ArrowRight size={15} />
             </Link>
           </div>

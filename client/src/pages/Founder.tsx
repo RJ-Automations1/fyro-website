@@ -115,7 +115,7 @@ export default function Founder() {
 
               <div className="fade-up" style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
                 <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                  Book a discovery call
+                  Book a Free Demo
                   <ArrowRight size={15} />
                 </Link>
                 <a href="https://www.linkedin.com/company/143087532/" target="_blank" rel="noopener noreferrer" className="fyro-link">

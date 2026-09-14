@@ -86,7 +86,7 @@ export default function Navbar() {
           {/* CTA */}
           <div className="hidden md:block">
             <Link href="/contact" className="fyro-btn-primary" style={{ fontSize: "0.8rem", padding: "0.6rem 1.4rem" }}>
-              Book a walkthrough
+              Book a Free Demo
             </Link>
           </div>
 
@@ -141,7 +141,7 @@ export default function Navbar() {
               className="fyro-btn-primary"
               style={{ marginTop: "1.25rem", textAlign: "center" }}
             >
-              Book a walkthrough
+              Book a Free Demo
             </Link>
           </div>
         </div>

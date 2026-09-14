@@ -467,7 +467,7 @@ export default function Article() {
               READY TO BUILD?
             </div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#fff", lineHeight: 1.4, maxWidth: 360 }}>
-              Book a Free 15-Minute Discovery Call and we'll show you what this looks like for your operation.
+              Book a free demo and we'll show you what this looks like for your operation.
             </p>
           </div>
           <Link href="/contact">
@@ -480,7 +480,7 @@ export default function Article() {
                 fontFamily: "'DM Sans', sans-serif",
               }}
             >
-              Book a Free 15-Minute Discovery Call <ArrowRight size={14} />
+              Book a Free Demo <ArrowRight size={14} />
             </span>
           </Link>
         </div>

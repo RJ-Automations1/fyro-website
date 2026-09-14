@@ -245,7 +245,7 @@ export default function Building() {
             Book a free 15-minute call. We&rsquo;ll walk through your operation and tell you exactly what we&rsquo;d build.
           </p>
           <Link href="/contact" className="fyro-btn-primary">
-            Book a Free 15-Minute Discovery Call →
+            Book a Free Demo →
           </Link>
         </div>
       </section>
