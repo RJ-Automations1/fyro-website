@@ -163,57 +163,6 @@ async function startServer() {
     }
   });
 
-  // ── Newsletter subscribe ──────────────────────────────────────────────────
-  // Stored in a Resend audience, because that is where sending will happen when
-  // the list is worth sending to. If Resend is not configured the address is
-  // logged at error level rather than silently dropped — a subscriber that only
-  // exists in a log is recoverable; one that vanished is not.
-  app.post("/api/subscribe", async (req, res) => {
-    const raw = typeof req.body?.email === "string" ? req.body.email.trim().toLowerCase() : "";
-
-    // Deliberately permissive but bounded. Real validation is the confirmation
-    // email; this only rejects what is obviously not an address.
-    if (!raw || raw.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(raw)) {
-      res.status(400).json({ error: "Enter a valid email address." });
-      return;
-    }
-
-    const key = process.env.RESEND_API_KEY;
-    const audience = process.env.RESEND_AUDIENCE_ID;
-
-    if (!key || !audience) {
-      console.error(
-        `[subscribe] NOT CONFIGURED — set RESEND_API_KEY and RESEND_AUDIENCE_ID. ` +
-          `Subscriber recoverable from this log only: ${raw}`,
-      );
-      res.json({ ok: true, message: "You're on the list." });
-      return;
-    }
-
-    try {
-      const r = await fetch(`https://api.resend.com/audiences/${audience}/contacts`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ email: raw, unsubscribed: false }),
-        signal: AbortSignal.timeout(10_000),
-      });
-
-      if (!r.ok) {
-        const body = await r.text().catch(() => "");
-        // Log the address alongside the failure so it is never lost to a 500.
-        console.error(`[subscribe] resend ${r.status} for ${raw}: ${body}`);
-        res.status(502).json({ error: "That didn't go through. Try again in a moment." });
-        return;
-      }
-
-      console.log(`[subscribe] added ${raw}`);
-      res.json({ ok: true, message: "You're on the list." });
-    } catch (err) {
-      console.error(`[subscribe] error for ${raw}`, err);
-      res.status(500).json({ error: "That didn't go through. Try again in a moment." });
-    }
-  });
-
   // ── Static site + SPA fallback ──────────────────────────────────────────────
   const staticPath =
     process.env.NODE_ENV === "production"

@@ -24,9 +24,3 @@ services:
         sync: false
       - key: ET_OFFSET_HOURS
         value: "-4"
-      # Newsletter list (Resend). Without these the subscribe form still accepts
-      # addresses but they only survive in the service logs — set them.
-      - key: RESEND_API_KEY
-        sync: false
-      - key: RESEND_AUDIENCE_ID
-        sync: false

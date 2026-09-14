@@ -8,7 +8,8 @@
  *
  * Insights is for thinking. This page is for evidence.
  */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SystemGraphic from "@/components/SystemGraphic";
@@ -46,107 +47,6 @@ function StatusChip({ status }: { status: WorkItem["status"] }) {
       />
       {live ? "Live" : "In build"}
     </span>
-  );
-}
-
-function SubscribeForm() {
-  const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
-  const [message, setMessage] = useState("");
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    if (state === "sending") return;
-    setState("sending");
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok) {
-        setState("done");
-        setMessage(data.message ?? "You're on the list.");
-      } else {
-        setState("error");
-        setMessage(data.error ?? "That didn't go through. Try again.");
-      }
-    } catch {
-      setState("error");
-      setMessage("That didn't go through. Try again.");
-    }
-  }
-
-  if (state === "done") {
-    return (
-      <p
-        role="status"
-        style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: 15,
-          color: "var(--fyro-near-black)",
-          borderLeft: "3px solid var(--fyro-orange)",
-          paddingLeft: 14,
-        }}
-      >
-        {message}
-      </p>
-    );
-  }
-
-  return (
-    <form onSubmit={submit} style={{ maxWidth: 460 }}>
-      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-        <label htmlFor="subscribe-email" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>
-          Email address
-        </label>
-        <input
-          id="subscribe-email"
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@company.com"
-          style={{
-            flex: "1 1 220px",
-            background: "var(--fyro-bg)",
-            border: "1px solid var(--fyro-border)",
-            borderRadius: 3,
-            padding: "12px 14px",
-            fontSize: 15,
-            fontFamily: "'DM Sans', sans-serif",
-            color: "var(--fyro-near-black)",
-          }}
-        />
-        <button
-          type="submit"
-          disabled={state === "sending"}
-          style={{
-            background: "var(--fyro-orange)",
-            color: "#fff",
-            border: "none",
-            borderRadius: 3,
-            padding: "12px 24px",
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: state === "sending" ? "wait" : "pointer",
-            opacity: state === "sending" ? 0.7 : 1,
-            whiteSpace: "nowrap",
-          }}
-        >
-          {state === "sending" ? "Adding…" : "Get the build log"}
-        </button>
-      </div>
-      {state === "error" && (
-        <p role="alert" style={{ marginTop: 10, fontSize: 13, color: "var(--fyro-orange)", fontFamily: "'DM Sans', sans-serif" }}>
-          {message}
-        </p>
-      )}
-      <p style={{ marginTop: 12, fontSize: 12.5, color: "var(--fyro-gray-light)", fontFamily: "'DM Sans', sans-serif" }}>
-        What we shipped and what broke. No pitch, unsubscribe in one click.
-      </p>
-    </form>
   );
 }
 
@@ -325,48 +225,28 @@ export default function Building() {
         </div>
       </section>
 
-      {/* ── SUBSCRIBE ── */}
-      <section style={{ background: "var(--fyro-bg)", padding: "5rem 0" }}>
+      {/* ── BOOK A CALL ── */}
+      <section style={{ background: "var(--fyro-bg)", padding: "5rem 0", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={section}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }} className="sub-grid">
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
-                <span style={{ width: 32, height: 1, background: "var(--fyro-orange)", display: "inline-block" }} />
-                <span
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: 11,
-                    letterSpacing: "0.15em",
-                    color: "var(--fyro-orange)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  The build log
-                </span>
-              </div>
-              <h2
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
-                  fontWeight: 800,
-                  color: "#fff",
-                  letterSpacing: "-0.025em",
-                  lineHeight: 1.15,
-                  marginBottom: 14,
-                }}
-              >
-                Get an update when we ship something.
-              </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 460 }}>
-                Short notes on what went live, what it replaced, and what broke on the way.
-                Written for people who run service businesses, not for a mailing list.
-              </p>
-            </div>
-
-            <div style={{ background: "var(--fyro-bg)", padding: "2rem" }}>
-              <SubscribeForm />
-            </div>
-          </div>
+          <h2
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+              fontWeight: 800,
+              color: "#fff",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.15,
+              marginBottom: 14,
+            }}
+          >
+            Want one of these running in your business?
+          </h2>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 460, marginBottom: 28 }}>
+            Book a free 15-minute call. We&rsquo;ll walk through your operation and tell you exactly what we&rsquo;d build.
+          </p>
+          <Link href="/contact" className="fyro-btn-primary">
+            Book a Free 15-Minute Discovery Call →
+          </Link>
         </div>
       </section>
 
@@ -375,7 +255,6 @@ export default function Building() {
       <style>{`
         @media (max-width: 900px) {
           .build-grid { grid-template-columns: 1fr !important; }
-          .sub-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
         }
       `}</style>
     </div>
