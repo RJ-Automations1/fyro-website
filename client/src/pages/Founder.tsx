@@ -118,8 +118,8 @@ export default function Founder() {
                   Book a discovery call
                   <ArrowRight size={15} />
                 </Link>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="fyro-link">
-                  LinkedIn <ArrowUpRight size={14} />
+                <a href="https://www.linkedin.com/company/143087532/" target="_blank" rel="noopener noreferrer" className="fyro-link">
+                  Fyro on LinkedIn <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>

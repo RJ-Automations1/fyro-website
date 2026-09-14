@@ -59,6 +59,22 @@ export default function Footer() {
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://www.linkedin.com/company/143087532/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "0.85rem",
+              color: "var(--fyro-gray-mid)",
+              textDecoration: "none",
+              transition: "color 0.18s ease",
+            }}
+            onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--fyro-near-black)")}
+            onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--fyro-gray-mid)")}
+          >
+            LinkedIn
+          </a>
         </nav>
 
         {/* Copyright */}
