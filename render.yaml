@@ -24,3 +24,11 @@ services:
         sync: false
       - key: ET_OFFSET_HOURS
         value: "-4"
+      # AI chat assistant (/api/chat). Set the key in the Render dashboard.
+      # Without it the chat widget shows a friendly error and the rest of the
+      # site works normally.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      # Optional model override; defaults to claude-sonnet-5 when unset.
+      - key: ANTHROPIC_MODEL
+        sync: false

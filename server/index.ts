@@ -3,6 +3,7 @@ import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
 import { generateSlotTimes, getAccessToken, type GoogleEnv } from "./google.js";
+import { createChatRouteHandler } from "./chat.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,154 +15,273 @@ function offsetHours(): number {
   return env.ET_OFFSET_HOURS ? Number(env.ET_OFFSET_HOURS) : -4;
 }
 
-function calendarConfigured(): boolean {
+export function calendarConfigured(): boolean {
   return Boolean(env.GOOGLE_SA_EMAIL && env.GOOGLE_SA_PRIVATE_KEY && env.CALENDAR_ID);
+}
+
+// ── Shared booking logic ─────────────────────────────────────────────────────
+// Used by both the HTTP routes (Contact page) and the chat assistant's tools.
+
+/** An error carrying the HTTP status + client-safe message the routes return. */
+export class BookingError extends Error {
+  constructor(
+    public status: number,
+    message: string,
+  ) {
+    super(message);
+    this.name = "BookingError";
+  }
+}
+
+export interface AvailabilitySlot {
+  label: string;
+  startISO: string;
+  available: boolean;
+}
+
+export interface AvailabilityResult {
+  date: string;
+  slots: AvailabilitySlot[];
+}
+
+/** YYYY-MM-DD of an instant, in ET (using the configured fixed offset). */
+function etDateOf(ms: number): string {
+  return new Date(ms + offsetHours() * 3600_000).toISOString().slice(0, 10);
+}
+
+export async function getAvailability(date: string): Promise<AvailabilityResult> {
+  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    throw new BookingError(400, "Invalid date. Use YYYY-MM-DD format.");
+  }
+  if (!calendarConfigured()) {
+    throw new BookingError(500, "Calendar not configured.");
+  }
+
+  const slots = generateSlotTimes(date, offsetHours());
+  if (slots.length === 0) return { date, slots: [] };
+  const timeMin = slots[0].startISO;
+  const timeMax = slots[slots.length - 1].endISO;
+
+  let busy: { start: string; end: string }[];
+  try {
+    const token = await getAccessToken(env, CAL_SCOPE);
+    const gcalRes = await fetch("https://www.googleapis.com/calendar/v3/freeBusy", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ timeMin, timeMax, items: [{ id: env.CALENDAR_ID }] }),
+    });
+    if (!gcalRes.ok) {
+      console.error("[availability] Calendar API error", await gcalRes.text());
+      throw new BookingError(502, "Calendar API error.");
+    }
+    const gcalData = (await gcalRes.json()) as {
+      calendars: Record<string, { busy: { start: string; end: string }[] }>;
+    };
+    busy = gcalData.calendars[env.CALENDAR_ID!]?.busy ?? [];
+  } catch (err) {
+    if (err instanceof BookingError) throw err;
+    console.error("[availability] error", err);
+    throw new BookingError(500, "Internal server error.");
+  }
+
+  return {
+    date,
+    slots: slots.map((slot) => {
+      const s = new Date(slot.startISO).getTime();
+      const e = new Date(slot.endISO).getTime();
+      const isBusy = busy.some((b) => {
+        const bs = new Date(b.start).getTime();
+        const be = new Date(b.end).getTime();
+        return s < be && e > bs;
+      });
+      return { label: slot.label, startISO: slot.startISO, available: !isBusy };
+    }),
+  };
+}
+
+export interface BookingInput {
+  name?: string;
+  email?: string;
+  phone?: string;
+  company?: string;
+  industry?: string;
+  companySize?: string;
+  slotStartISO?: string;
+  slotLabel?: string;
+  slotDate?: string;
+  source?: "website" | "chat";
+}
+
+export interface BookingResult {
+  startISO: string;
+  endISO: string;
+  date: string; // YYYY-MM-DD, ET
+  label: string; // e.g. "2:30 PM" (ET)
+  invited: boolean; // false if the attendee invite had to be dropped
+}
+
+export async function createBooking(input: BookingInput): Promise<BookingResult> {
+  const name = input.name?.trim();
+  const email = input.email?.trim();
+  const slotStartISO = input.slotStartISO?.trim();
+  const { phone, company, industry, companySize } = input;
+
+  if (!name || !email || !slotStartISO) {
+    throw new BookingError(400, "Missing required fields: name, email, slotStartISO");
+  }
+  if (!calendarConfigured()) {
+    throw new BookingError(500, "Calendar not configured.");
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    throw new BookingError(400, "Invalid email address.");
+  }
+
+  const startMs = new Date(slotStartISO).getTime();
+  if (Number.isNaN(startMs)) {
+    throw new BookingError(400, "Invalid slotStartISO.");
+  }
+  if (startMs <= Date.now()) {
+    throw new BookingError(400, "That time has already passed. Please pick a future time.");
+  }
+  const date = etDateOf(startMs);
+  const weekday = new Date(`${date}T12:00:00Z`).getUTCDay();
+  if (weekday === 0 || weekday === 6) {
+    throw new BookingError(400, "Demos are available Monday through Friday.");
+  }
+  const matched = generateSlotTimes(date, offsetHours()).find(
+    (s) => new Date(s.startISO).getTime() === startMs,
+  );
+  if (!matched) {
+    throw new BookingError(400, "Please pick one of the available time slots (9 AM–5 PM ET).");
+  }
+
+  const label = input.slotLabel || matched.label;
+  const startISO = new Date(startMs).toISOString();
+  const endISO = new Date(startMs + 15 * 60 * 1000).toISOString();
+
+  const summary = `Fyro Free Demo — ${name}${company ? ` (${company})` : ""}`;
+  const description = [
+    `15-Minute Free Demo booked via fyroagents.com`,
+    ...(input.source === "chat" ? [`Booked via: website chat`] : []),
+    ``,
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Phone: ${phone || "Not provided"}`,
+    `Company: ${company || "Not provided"}`,
+    `Industry: ${industry || "Not provided"}`,
+    `Team Size: ${companySize || "Not provided"}`,
+    ``,
+    `Booked slot: ${input.slotDate || date} ${label} ET`,
+  ].join("\n");
+
+  const event: Record<string, unknown> = {
+    summary,
+    description,
+    start: { dateTime: startISO },
+    end: { dateTime: endISO },
+    reminders: { useDefault: false, overrides: [{ method: "popup", minutes: 15 }] },
+  };
+
+  try {
+    const token = await getAccessToken(env, CAL_SCOPE);
+    const insert = (withAttendee: boolean) => {
+      const payload = withAttendee ? { ...event, attendees: [{ email }] } : event;
+      const sendUpdates = withAttendee ? "all" : "none";
+      return fetch(
+        `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(env.CALENDAR_ID!)}/events?sendUpdates=${sendUpdates}`,
+        {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        },
+      );
+    };
+
+    // Try inviting the booker; fall back to no-attendee if the service account
+    // isn't allowed to invite (no domain-wide delegation).
+    let invited = true;
+    let result = await insert(true);
+    if (!result.ok) {
+      const errText = await result.text();
+      if (errText.includes("attendee") || result.status === 403) {
+        invited = false;
+        result = await insert(false);
+      } else {
+        console.error("[book] insert error", result.status, errText);
+        throw new BookingError(502, "Could not create the booking. Please try again.");
+      }
+    }
+    if (!result.ok) {
+      console.error("[book] insert error (retry)", result.status, await result.text());
+      throw new BookingError(502, "Could not create the booking. Please try again.");
+    }
+
+    return { startISO, endISO, date, label, invited };
+  } catch (err) {
+    if (err instanceof BookingError) throw err;
+    console.error("[book] error", err);
+    throw new BookingError(500, "Internal server error.");
+  }
+}
+
+function sendBookingError(res: express.Response, err: unknown) {
+  if (err instanceof BookingError) {
+    res.status(err.status).json({ error: err.message });
+  } else {
+    console.error("[booking] unexpected error", err);
+    res.status(500).json({ error: "Internal server error." });
+  }
 }
 
 async function startServer() {
   const app = express();
+  // Render sits behind a proxy; trust it so req.ip is the visitor's address
+  // (used by the chat rate limiter).
+  app.set("trust proxy", 1);
   app.use(express.json());
   const server = createServer(app);
 
   // ── Availability ──────────────────────────────────────────────────────────
   app.get("/api/availability", async (req, res) => {
     const { date } = req.query as { date?: string };
-    if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-      res.status(400).json({ error: "Invalid date. Use YYYY-MM-DD format." });
-      return;
-    }
-    if (!calendarConfigured()) {
-      res.status(500).json({ error: "Calendar not configured." });
-      return;
-    }
-
-    const slots = generateSlotTimes(date, offsetHours());
-    if (slots.length === 0) {
-      res.json({ date, slots: [] });
-      return;
-    }
-    const timeMin = slots[0].startISO;
-    const timeMax = slots[slots.length - 1].endISO;
-
     try {
-      const token = await getAccessToken(env, CAL_SCOPE);
-      const gcalRes = await fetch("https://www.googleapis.com/calendar/v3/freeBusy", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ timeMin, timeMax, items: [{ id: env.CALENDAR_ID }] }),
-      });
-      if (!gcalRes.ok) {
-        console.error("[availability] Calendar API error", await gcalRes.text());
-        res.status(502).json({ error: "Calendar API error." });
-        return;
-      }
-      const gcalData = (await gcalRes.json()) as {
-        calendars: Record<string, { busy: { start: string; end: string }[] }>;
-      };
-      const busy = gcalData.calendars[env.CALENDAR_ID!]?.busy ?? [];
-      const result = slots.map((slot) => {
-        const s = new Date(slot.startISO).getTime();
-        const e = new Date(slot.endISO).getTime();
-        const isBusy = busy.some((b) => {
-          const bs = new Date(b.start).getTime();
-          const be = new Date(b.end).getTime();
-          return s < be && e > bs;
-        });
-        return { label: slot.label, startISO: slot.startISO, available: !isBusy };
-      });
-      res.json({ date, slots: result });
+      res.json(await getAvailability(date ?? ""));
     } catch (err) {
-      console.error("[availability] error", err);
-      res.status(500).json({ error: "Internal server error." });
+      sendBookingError(res, err);
     }
   });
 
   // ── Booking ───────────────────────────────────────────────────────────────
   app.post("/api/book", async (req, res) => {
-    const { name, email, phone, company, industry, companySize, slotStartISO, slotLabel, slotDate } =
-      req.body as Record<string, string | undefined>;
-
-    if (!name || !email || !slotStartISO) {
-      res.status(400).json({ error: "Missing required fields: name, email, slotStartISO" });
-      return;
-    }
-    if (!calendarConfigured()) {
-      res.status(500).json({ error: "Calendar not configured." });
-      return;
-    }
-
-    const startMs = new Date(slotStartISO).getTime();
-    if (Number.isNaN(startMs)) {
-      res.status(400).json({ error: "Invalid slotStartISO." });
-      return;
-    }
-    const endISO = new Date(startMs + 15 * 60 * 1000).toISOString();
-
-    const summary = `Fyro Discovery Call — ${name}${company ? ` (${company})` : ""}`;
-    const description = [
-      `15-Minute Discovery Call booked via fyroagents.com`,
-      ``,
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone || "Not provided"}`,
-      `Company: ${company || "Not provided"}`,
-      `Industry: ${industry || "Not provided"}`,
-      `Team Size: ${companySize || "Not provided"}`,
-      ``,
-      `Booked slot: ${slotLabel || slotDate} ET`,
-    ].join("\n");
-
-    const event: Record<string, unknown> = {
-      summary,
-      description,
-      start: { dateTime: slotStartISO },
-      end: { dateTime: endISO },
-      reminders: { useDefault: false, overrides: [{ method: "popup", minutes: 15 }] },
-    };
-
+    const body = (req.body ?? {}) as Record<string, unknown>;
+    const str = (k: string) => (typeof body[k] === "string" ? (body[k] as string) : undefined);
     try {
-      const token = await getAccessToken(env, CAL_SCOPE);
-      const insert = (withAttendee: boolean) => {
-        const payload = withAttendee ? { ...event, attendees: [{ email }] } : event;
-        const sendUpdates = withAttendee ? "all" : "none";
-        return fetch(
-          `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(env.CALENDAR_ID!)}/events?sendUpdates=${sendUpdates}`,
-          {
-            method: "POST",
-            headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          },
-        );
-      };
-
-      // Try inviting the booker; fall back to no-attendee if the service account
-      // isn't allowed to invite (no domain-wide delegation).
-      let result = await insert(true);
-      if (!result.ok) {
-        const errText = await result.text();
-        if (errText.includes("attendee") || result.status === 403) {
-          result = await insert(false);
-        } else {
-          console.error("[book] insert error", result.status, errText);
-          res.status(502).json({ error: "Could not create the booking. Please try again." });
-          return;
-        }
-      }
-      if (!result.ok) {
-        console.error("[book] insert error (retry)", result.status, await result.text());
-        res.status(502).json({ error: "Could not create the booking. Please try again." });
-        return;
-      }
-
+      await createBooking({
+        name: str("name"),
+        email: str("email"),
+        phone: str("phone"),
+        company: str("company"),
+        industry: str("industry"),
+        companySize: str("companySize"),
+        slotStartISO: str("slotStartISO"),
+        slotLabel: str("slotLabel"),
+        slotDate: str("slotDate"),
+        source: "website",
+      });
       res.json({
         success: true,
         message: "Booking confirmed. You'll receive a calendar invite shortly.",
       });
     } catch (err) {
-      console.error("[book] error", err);
-      res.status(500).json({ error: "Internal server error." });
+      sendBookingError(res, err);
     }
   });
+
+  // ── AI chat assistant ─────────────────────────────────────────────────────
+  app.post(
+    "/api/chat",
+    createChatRouteHandler({ getAvailability, createBooking, calendarConfigured, BookingError }),
+  );
 
   // ── Static site + SPA fallback ──────────────────────────────────────────────
   const staticPath =
