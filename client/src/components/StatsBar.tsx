@@ -55,8 +55,8 @@ export default function StatsBar() {
       ref={ref}
       style={{
         background: "#F8F7F5",
-        borderTop: "1px solid #EBEBEB",
-        borderBottom: "1px solid #EBEBEB",
+        borderTop: "1px solid var(--fyro-border)",
+        borderBottom: "1px solid var(--fyro-border)",
         padding: "4.5rem 0",
       }}
     >
@@ -82,7 +82,7 @@ export default function StatsBar() {
                 style={{
                   fontSize: "clamp(2.75rem, 4vw, 4rem)",
                   fontWeight: 700,
-                  color: "#C8102E",
+                  color: "var(--fyro-orange)",
                   lineHeight: 1,
                   marginBottom: "0.65rem",
                 }}
@@ -93,7 +93,7 @@ export default function StatsBar() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.8rem",
-                  color: "#5C5C5C",
+                  color: "var(--fyro-gray-mid)",
                   lineHeight: 1.6,
                   maxWidth: 190,
                   margin: "0 auto",

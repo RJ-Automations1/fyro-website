@@ -196,10 +196,10 @@ export default function Speaking() {
                       style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
                     />
                   ) : (
-                    <div style={{ width: "100%", height: "100%", minHeight: 280, background: "#0D0D0D", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.25rem", padding: "2.5rem", textAlign: "center" as const }}>
-                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.18em", color: "#C8102E", textTransform: "uppercase" as const }}>AfroTech 2025 · Houston</div>
+                    <div style={{ width: "100%", height: "100%", minHeight: 280, background: "var(--fyro-bg)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.25rem", padding: "2.5rem", textAlign: "center" as const }}>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.18em", color: "var(--fyro-orange)", textTransform: "uppercase" as const }}>AfroTech 2025 · Houston</div>
                       <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", fontWeight: 800, color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.02em" }}>Selected. Competed. Featured.</div>
-                      <div style={{ width: 40, height: 2, background: "#C8102E" }} />
+                      <div style={{ width: 40, height: 2, background: "var(--fyro-orange)" }} />
                     </div>
                   )}
                 </div>

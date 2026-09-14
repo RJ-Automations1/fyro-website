@@ -164,7 +164,7 @@ export default function HowItWorks() {
                       fontSize: "0.65rem",
                       fontWeight: 700,
                       letterSpacing: "0.15em",
-                      color: "var(--fyro-red)",
+                      color: "var(--fyro-orange)",
                       textTransform: "uppercase",
                     }}
                   >
@@ -202,7 +202,7 @@ export default function HowItWorks() {
               <div className="fade-up">
                 <div
                   style={{
-                    background: "var(--fyro-white)",
+                    background: "var(--fyro-panel)",
                     border: "1px solid var(--fyro-border)",
                     borderRadius: "8px",
                     padding: "2rem",
@@ -233,7 +233,7 @@ export default function HowItWorks() {
                   </p>
                   <div
                     style={{
-                      background: "var(--fyro-near-black)",
+                      background: "var(--fyro-panel)",
                       borderRadius: "6px",
                       padding: "1rem 1.25rem",
                       display: "flex",
@@ -246,7 +246,7 @@ export default function HowItWorks() {
                         width: 6,
                         height: 6,
                         borderRadius: "50%",
-                        background: "var(--fyro-red)",
+                        background: "var(--fyro-orange)",
                         flexShrink: 0,
                         marginTop: "0.35rem",
                       }}

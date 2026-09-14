@@ -7,12 +7,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
+import FyroLogo from "./FyroLogo";
 
 const navLinks = [
   { label: "Services", href: "/services" },
   { label: "How It Works", href: "/how-it-works" },
+  { label: "Building", href: "/building" },
   { label: "About", href: "/about" },
-  { label: "Speaking", href: "/speaking" },
   { label: "Insights", href: "/insights" },
 ];
 
@@ -54,18 +55,7 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "1.25rem",
-                fontWeight: 800,
-                color: "var(--fyro-near-black)",
-                letterSpacing: "-0.03em",
-              }}
-            >
-              Fyro
-              <span style={{ color: "var(--fyro-red)" }}>.</span>
-            </span>
+            <FyroLogo variant="nav" height={24} />
           </Link>
 
           {/* Desktop Nav */}

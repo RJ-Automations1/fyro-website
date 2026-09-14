@@ -66,7 +66,7 @@ export default function ContactSection() {
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
-    background: "#111114",
+    background: "var(--fyro-bg-section)",
     border: "1px solid rgba(255,255,255,0.1)",
     borderRadius: "4px",
     padding: "0.75rem 1rem",
@@ -92,7 +92,7 @@ export default function ContactSection() {
     <section
       id="contact"
       style={{
-        background: "#0A0A0C",
+        background: "var(--fyro-bg)",
         padding: "7rem 0",
         borderTop: "1px solid rgba(255,255,255,0.05)",
       }}
@@ -116,7 +116,7 @@ export default function ContactSection() {
               }}
             >
               Let's Build Something{" "}
-              <span style={{ color: "#E03030" }}>That Works</span>
+              <span style={{ color: "var(--fyro-orange)" }}>That Works</span>
             </h2>
             <p
               style={{
@@ -144,7 +144,7 @@ export default function ContactSection() {
                 <div key={i} className="flex items-start gap-3">
                   <CheckCircle
                     size={16}
-                    color="#E03030"
+                    color="#F87904"
                     style={{ flexShrink: 0, marginTop: "2px" }}
                   />
                   <span
@@ -165,7 +165,7 @@ export default function ContactSection() {
             <div
               className="mt-8 p-5"
               style={{
-                background: "#1A1A1F",
+                background: "var(--fyro-panel)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 borderRadius: "6px",
               }}
@@ -173,7 +173,7 @@ export default function ContactSection() {
               <p
                 style={{
                   fontSize: "0.68rem",
-                  color: "#E03030",
+                  color: "var(--fyro-orange)",
                   fontFamily: "'Space Mono', monospace",
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
@@ -192,7 +192,7 @@ export default function ContactSection() {
                 Prefer to reach out directly? Email us at{" "}
                 <a
                   href="mailto:hello@fyro.ai"
-                  style={{ color: "#E03030", textDecoration: "none" }}
+                  style={{ color: "var(--fyro-orange)", textDecoration: "none" }}
                 >
                   hello@fyro.ai
                 </a>
@@ -206,8 +206,8 @@ export default function ContactSection() {
               <div
                 className="flex flex-col items-center justify-center text-center"
                 style={{
-                  background: "#1A1A1F",
-                  border: "1px solid rgba(224,48,48,0.3)",
+                  background: "var(--fyro-panel)",
+                  border: "1px solid rgba(248,121,4,0.3)",
                   borderRadius: "8px",
                   padding: "4rem 2rem",
                   minHeight: "400px",
@@ -218,15 +218,15 @@ export default function ContactSection() {
                     width: "64px",
                     height: "64px",
                     borderRadius: "50%",
-                    background: "rgba(224,48,48,0.15)",
-                    border: "1px solid rgba(224,48,48,0.4)",
+                    background: "rgba(248,121,4,0.15)",
+                    border: "1px solid rgba(248,121,4,0.4)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     marginBottom: "1.5rem",
                   }}
                 >
-                  <CheckCircle size={28} color="#E03030" />
+                  <CheckCircle size={28} color="#F87904" />
                 </div>
                 <h3
                   className="font-display mb-3"
@@ -252,7 +252,7 @@ export default function ContactSection() {
               <form
                 onSubmit={handleSubmit}
                 style={{
-                  background: "#1A1A1F",
+                  background: "var(--fyro-panel)",
                   border: "1px solid rgba(255,255,255,0.07)",
                   borderRadius: "8px",
                   padding: "2.5rem",
@@ -270,7 +270,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="John Smith"
                       style={inputStyle}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                     />
                   </div>
@@ -284,7 +284,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="john@company.com"
                       style={inputStyle}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                     />
                   </div>
@@ -300,7 +300,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="+1 (555) 000-0000"
                       style={inputStyle}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                     />
                   </div>
@@ -314,7 +314,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="Your Company"
                       style={inputStyle}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                     />
                   </div>
@@ -329,12 +329,12 @@ export default function ContactSection() {
                       value={form.industry}
                       onChange={handleChange}
                       style={{ ...inputStyle, appearance: "none" }}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                     >
                       <option value="" disabled>Select your industry</option>
                       {industries.map((ind) => (
-                        <option key={ind} value={ind} style={{ background: "#111114" }}>
+                        <option key={ind} value={ind} style={{ background: "var(--fyro-bg-section)" }}>
                           {ind}
                         </option>
                       ))}
@@ -349,7 +349,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="e.g. 10–50 employees"
                       style={inputStyle}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                     />
                   </div>
@@ -365,7 +365,7 @@ export default function ContactSection() {
                     placeholder="Describe the bottlenecks, manual processes, or growth blockers you're dealing with..."
                     rows={3}
                     style={{ ...inputStyle, resize: "vertical", minHeight: "90px" }}
-                    onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                    onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                   />
                 </div>
@@ -379,7 +379,7 @@ export default function ContactSection() {
                     placeholder="What would change in your business if this problem was solved?"
                     rows={2}
                     style={{ ...inputStyle, resize: "vertical", minHeight: "70px" }}
-                    onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                    onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                   />
                 </div>
@@ -392,12 +392,12 @@ export default function ContactSection() {
                       value={form.budget}
                       onChange={handleChange}
                       style={{ ...inputStyle, appearance: "none" }}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                     >
                       <option value="" disabled>Select a range</option>
                       {budgetRanges.map((b) => (
-                        <option key={b} value={b} style={{ background: "#111114" }}>
+                        <option key={b} value={b} style={{ background: "var(--fyro-bg-section)" }}>
                           {b}
                         </option>
                       ))}
@@ -410,12 +410,12 @@ export default function ContactSection() {
                       value={form.timeline}
                       onChange={handleChange}
                       style={{ ...inputStyle, appearance: "none" }}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(224,48,48,0.5)")}
+                      onFocus={(e) => (e.target.style.borderColor = "rgba(248,121,4,0.5)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
                     >
                       <option value="" disabled>Select a timeline</option>
                       {timelines.map((t) => (
-                        <option key={t} value={t} style={{ background: "#111114" }}>
+                        <option key={t} value={t} style={{ background: "var(--fyro-bg-section)" }}>
                           {t}
                         </option>
                       ))}

@@ -162,13 +162,13 @@ export default function RFPAgent() {
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "var(--fyro-gray-mid)", lineHeight: 1.75, maxWidth: 600, marginBottom: "1.5rem" }}>
             Six stations. Eight minutes from discovery to submission-ready proposal — with a human approval gate at the go/no-go decision.
           </p>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "var(--fyro-white)", border: "1px solid var(--fyro-border)", borderRadius: "999px", padding: "0.5rem 1rem", fontFamily: "'DM Mono', monospace" }}>
-            <Clock size={12} style={{ color: "var(--fyro-red)" }} />
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "var(--fyro-panel)", border: "1px solid var(--fyro-border)", borderRadius: "999px", padding: "0.5rem 1rem", fontFamily: "'DM Mono', monospace" }}>
+            <Clock size={12} style={{ color: "var(--fyro-orange)" }} />
             <span style={{ fontSize: "0.65rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.08em" }}>
               TOTAL RUNTIME: <strong style={{ color: "var(--fyro-near-black)" }}>8 MINUTES 04 SECONDS</strong>
             </span>
             <span style={{ fontSize: "0.65rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.06em", marginLeft: "0.5rem" }}>
-              vs. <strong style={{ color: "var(--fyro-red)" }}>3 WEEKS MANUAL</strong>
+              vs. <strong style={{ color: "var(--fyro-orange)" }}>3 WEEKS MANUAL</strong>
             </span>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function RFPAgent() {
               <button key={s.id} onClick={() => handleGoTo(i)}
                 style={{ display: "flex", alignItems: "center", gap: "0.45rem", padding: "0.4rem 0.9rem", borderRadius: "999px", border: `1px solid ${i === activeIdx ? "var(--fyro-near-black)" : "var(--fyro-border)"}`, background: i === activeIdx ? "var(--fyro-near-black)" : "transparent", color: i === activeIdx ? "#fff" : "var(--fyro-gray-mid)", fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.1em", cursor: "pointer", transition: "all 0.2s ease" }}
               >
-                <span style={{ width: 6, height: 6, borderRadius: "50%", background: i === activeIdx ? "#fff" : i < activeIdx ? "var(--fyro-red)" : "var(--fyro-border)", flexShrink: 0, transition: "background 0.2s ease" }} />
+                <span style={{ width: 6, height: 6, borderRadius: "50%", background: i === activeIdx ? "#fff" : i < activeIdx ? "var(--fyro-orange)" : "var(--fyro-border)", flexShrink: 0, transition: "background 0.2s ease" }} />
                 {s.phase}
               </button>
             ))}
@@ -201,7 +201,7 @@ export default function RFPAgent() {
 
             {/* LEFT: Copy */}
             <div key={`left-${animKey}`} style={{ animation: "slide-in-left 0.4s cubic-bezier(0.23,1,0.32,1)" }}>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "var(--fyro-red)", textTransform: "uppercase", marginBottom: "1.25rem" }}>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "var(--fyro-orange)", textTransform: "uppercase", marginBottom: "1.25rem" }}>
                 STATION {station.id} / {station.phase}
               </div>
               <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 800, color: "var(--fyro-near-black)", letterSpacing: "-0.025em", lineHeight: 1.1, marginBottom: "1.25rem" }}>
@@ -216,8 +216,8 @@ export default function RFPAgent() {
                   <span style={{ fontSize: "0.6rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.04em" }}>— Agent pauses until decision is made</span>
                 </div>
               )}
-              <div style={{ background: "var(--fyro-near-black)", borderRadius: "8px", padding: "1rem 1.25rem", display: "flex", alignItems: "flex-start", gap: "0.6rem", marginBottom: "2.5rem" }}>
-                <CheckCircle2 size={14} style={{ color: "var(--fyro-red)", flexShrink: 0, marginTop: "0.1rem" }} />
+              <div style={{ background: "var(--fyro-panel)", borderRadius: "8px", padding: "1rem 1.25rem", display: "flex", alignItems: "flex-start", gap: "0.6rem", marginBottom: "2.5rem" }}>
+                <CheckCircle2 size={14} style={{ color: "var(--fyro-orange)", flexShrink: 0, marginTop: "0.1rem" }} />
                 <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.7rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{station.highlight}</span>
               </div>
               <div style={{ display: "flex", gap: "0.75rem" }}>
@@ -240,7 +240,7 @@ export default function RFPAgent() {
 
             {/* RIGHT: Agent UI Card */}
             <div key={`right-${animKey}`} style={{ animation: "slide-in-right 0.4s cubic-bezier(0.23,1,0.32,1)" }}>
-              <div style={{ background: "#fff", border: "1px solid #E8E8E4", borderRadius: "12px", padding: "1.75rem", boxShadow: "0 4px 32px rgba(0,0,0,0.06)", fontFamily: "'DM Mono', monospace" }}>
+              <div style={{ background: "var(--fyro-bg)", border: "1px solid var(--fyro-border)", borderRadius: "12px", padding: "1.75rem", boxShadow: "0 4px 32px rgba(0,0,0,0.06)", fontFamily: "'DM Mono', monospace" }}>
                 {/* Card header */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
@@ -248,9 +248,9 @@ export default function RFPAgent() {
                       <span style={{ width: 5, height: 5, borderRadius: "50%", background: station.statusColor, display: "inline-block", animation: "rfp-dot-pulse 1.5s infinite" }} />
                       {station.status}
                     </span>
-                    <span style={{ fontSize: "0.65rem", color: "#9A9A9A" }}>RFP Agent · <strong style={{ color: "#0D0D0D" }}>Station {station.id}</strong></span>
+                    <span style={{ fontSize: "0.65rem", color: "var(--fyro-gray-light)" }}>RFP Agent · <strong style={{ color: "var(--fyro-near-black)" }}>Station {station.id}</strong></span>
                   </div>
-                  <span style={{ fontSize: "0.6rem", color: "#9A9A9A", letterSpacing: "0.04em" }}>{station.time}</span>
+                  <span style={{ fontSize: "0.6rem", color: "var(--fyro-gray-light)", letterSpacing: "0.04em" }}>{station.time}</span>
                 </div>
 
                 {/* Pipeline nodes */}
@@ -260,7 +260,7 @@ export default function RFPAgent() {
                     const isPast = i < activeIdx;
                     return (
                       <div key={label} style={{ display: "flex", alignItems: "center", flex: i < NODE_LABELS.length - 1 ? 1 : "none" }}>
-                        <div style={{ width: 34, height: 34, borderRadius: "50%", border: `2px solid ${isActive ? "#C8102E" : isPast ? "#0D0D0D" : "#E8E8E4"}`, background: isActive ? "#C8102E" : isPast ? "#0D0D0D" : "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.45rem", fontWeight: 700, color: isActive || isPast ? "#fff" : "#C0C0BC", letterSpacing: "0.03em", flexShrink: 0, transition: "all 0.4s ease", boxShadow: isActive ? "0 0 0 4px rgba(200,16,46,0.12)" : "none" }}>
+                        <div style={{ width: 34, height: 34, borderRadius: "50%", border: `2px solid ${isActive ? "var(--fyro-orange)" : isPast ? "#0D0D0D" : "#E8E8E4"}`, background: isActive ? "var(--fyro-orange)" : isPast ? "#0D0D0D" : "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.45rem", fontWeight: 700, color: isActive || isPast ? "#fff" : "#C0C0BC", letterSpacing: "0.03em", flexShrink: 0, transition: "all 0.4s ease", boxShadow: isActive ? "0 0 0 4px rgba(248,121,4,0.12)" : "none" }}>
                           {label}
                         </div>
                         {i < NODE_LABELS.length - 1 && (
@@ -275,8 +275,8 @@ export default function RFPAgent() {
                 <div style={{ borderTop: "1px solid #F0F0EC", paddingTop: "1.25rem", marginBottom: "1rem" }}>
                   {station.fields.map((field) => (
                     <div key={field.label} style={{ display: "flex", gap: "1rem", padding: "0.55rem 0", borderBottom: "1px solid #F8F8F6" }}>
-                      <span style={{ fontSize: "0.55rem", color: "#9A9A9A", letterSpacing: "0.12em", textTransform: "uppercase", minWidth: 110, flexShrink: 0, paddingTop: "0.1rem" }}>{field.label}</span>
-                      <span style={{ fontSize: "0.68rem", color: "#0D0D0D", lineHeight: 1.5 }}>{field.value}</span>
+                      <span style={{ fontSize: "0.55rem", color: "var(--fyro-gray-light)", letterSpacing: "0.12em", textTransform: "uppercase", minWidth: 110, flexShrink: 0, paddingTop: "0.1rem" }}>{field.label}</span>
+                      <span style={{ fontSize: "0.68rem", color: "var(--fyro-near-black)", lineHeight: 1.5 }}>{field.value}</span>
                     </div>
                   ))}
                 </div>
@@ -287,8 +287,8 @@ export default function RFPAgent() {
                     <div style={{ height: "100%", width: `${progress}%`, background: station.statusColor, borderRadius: 2, transition: paused ? "none" : "width 0.05s linear" }} />
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", marginTop: "0.5rem" }}>
-                    <span style={{ fontSize: "0.55rem", color: "#9A9A9A", letterSpacing: "0.08em" }}>{station.stepLabel}</span>
-                    <span style={{ fontSize: "0.55rem", color: "#9A9A9A", letterSpacing: "0.04em" }}>{station.time}</span>
+                    <span style={{ fontSize: "0.55rem", color: "var(--fyro-gray-light)", letterSpacing: "0.08em" }}>{station.stepLabel}</span>
+                    <span style={{ fontSize: "0.55rem", color: "var(--fyro-gray-light)", letterSpacing: "0.04em" }}>{station.time}</span>
                   </div>
                 </div>
               </div>
@@ -298,7 +298,7 @@ export default function RFPAgent() {
           {/* CTA */}
           <div style={{ borderTop: "1px solid var(--fyro-border)", marginTop: "5rem", paddingTop: "4rem", paddingBottom: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "2rem" }}>
             <div>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "var(--fyro-red)", marginBottom: "0.75rem" }}>WANT THIS FOR YOUR COMPANY?</div>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "var(--fyro-orange)", marginBottom: "0.75rem" }}>WANT THIS FOR YOUR COMPANY?</div>
               <h3 style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 800, color: "var(--fyro-near-black)", letterSpacing: "-0.025em", maxWidth: 520 }}>
                 We build this for government contractors and service firms. Book a call to see what it looks like for your operation.
               </h3>

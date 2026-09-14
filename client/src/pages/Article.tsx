@@ -195,7 +195,7 @@ export default function Article() {
             Article not found
           </h1>
           <Link href="/insights">
-            <span style={{ color: "var(--fyro-red)", fontFamily: "'DM Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.08em", cursor: "pointer" }}>
+            <span style={{ color: "var(--fyro-orange)", fontFamily: "'DM Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.08em", cursor: "pointer" }}>
               ← Back to Insights
             </span>
           </Link>
@@ -233,7 +233,7 @@ export default function Article() {
           <span
             style={{
               fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", fontWeight: 700,
-              letterSpacing: "0.12em", color: "var(--fyro-red)",
+              letterSpacing: "0.12em", color: "var(--fyro-orange)",
             }}
           >
             {article.category}
@@ -268,7 +268,7 @@ export default function Article() {
             fontSize: "1.15rem",
             color: "var(--fyro-gray-mid)",
             lineHeight: 1.7,
-            borderLeft: "3px solid var(--fyro-red)",
+            borderLeft: "3px solid var(--fyro-orange)",
             paddingLeft: "1.25rem",
             marginBottom: "3rem",
           }}
@@ -339,7 +339,7 @@ export default function Article() {
               <blockquote
                 key={i}
                 style={{
-                  borderLeft: "3px solid var(--fyro-red)",
+                  borderLeft: "3px solid var(--fyro-orange)",
                   paddingLeft: "1.5rem",
                   margin: "2.5rem 0",
                   fontFamily: "'DM Sans', sans-serif",
@@ -392,7 +392,7 @@ export default function Article() {
               width: 44,
               height: 44,
               borderRadius: "50%",
-              background: "var(--fyro-near-black)",
+              background: "var(--fyro-panel)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -403,7 +403,9 @@ export default function Article() {
           </div>
           <div>
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", fontWeight: 700, color: "var(--fyro-near-black)" }}>
-              Written by RJ — Founder, Fyro
+              Written by{" "}
+              <Link href="/founder" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>RJ</Link>
+              {" "}— Founder, Fyro
             </div>
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "var(--fyro-gray-light)", marginTop: "0.15rem" }}>
               AI consultant for service companies. Featured speaker at IBM New York and Morehouse College DreamMakers Summit.
@@ -417,7 +419,7 @@ export default function Article() {
             style={{
               marginTop: "4rem",
               padding: "2rem",
-              background: "#fff",
+              background: "var(--fyro-bg)",
               border: "1px solid var(--fyro-border)",
               borderRadius: "8px",
             }}
@@ -440,7 +442,7 @@ export default function Article() {
                 >
                   {nextArticle.title}
                 </h3>
-                <ArrowRight size={18} color="var(--fyro-red)" style={{ flexShrink: 0, marginLeft: "1rem" }} />
+                <ArrowRight size={18} color="var(--fyro-orange)" style={{ flexShrink: 0, marginLeft: "1rem" }} />
               </div>
             </Link>
           </div>
@@ -451,7 +453,7 @@ export default function Article() {
           style={{
             marginTop: "3rem",
             padding: "2.5rem",
-            background: "var(--fyro-near-black)",
+            background: "var(--fyro-panel)",
             borderRadius: "8px",
             display: "flex",
             justifyContent: "space-between",
@@ -472,7 +474,7 @@ export default function Article() {
             <span
               style={{
                 display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                background: "var(--fyro-red)", color: "#fff",
+                background: "var(--fyro-orange)", color: "#fff",
                 padding: "0.875rem 1.75rem", borderRadius: "6px",
                 fontSize: "0.875rem", fontWeight: 600, cursor: "pointer",
                 fontFamily: "'DM Sans', sans-serif",

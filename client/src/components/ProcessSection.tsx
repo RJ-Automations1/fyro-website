@@ -53,7 +53,7 @@ export default function ProcessSection() {
       id="process"
       ref={sectionRef}
       style={{
-        background: "#111114",
+        background: "var(--fyro-bg-section)",
         padding: "7rem 0",
         borderTop: "1px solid rgba(255,255,255,0.05)",
       }}
@@ -79,7 +79,7 @@ export default function ProcessSection() {
               >
                 A Consulting Process Built
                 <br />
-                for <span style={{ color: "#E03030" }}>Real Results</span>
+                for <span style={{ color: "var(--fyro-orange)" }}>Real Results</span>
               </h2>
             </div>
 
@@ -106,8 +106,8 @@ export default function ProcessSection() {
                       width: "2.4rem",
                       height: "2.4rem",
                       borderRadius: "50%",
-                      background: "#0A0A0C",
-                      border: "1px solid rgba(224,48,48,0.5)",
+                      background: "var(--fyro-bg)",
+                      border: "1px solid rgba(248,121,4,0.5)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -117,7 +117,7 @@ export default function ProcessSection() {
                     <span
                       style={{
                         fontSize: "0.7rem",
-                        color: "#E03030",
+                        color: "var(--fyro-orange)",
                         fontFamily: "'Space Mono', monospace",
                         fontWeight: 700,
                       }}
@@ -154,14 +154,14 @@ export default function ProcessSection() {
                           width: "5px",
                           height: "5px",
                           borderRadius: "50%",
-                          background: "#E03030",
+                          background: "var(--fyro-orange)",
                           flexShrink: 0,
                         }}
                       />
                       <span
                         style={{
                           fontSize: "0.75rem",
-                          color: "#E03030",
+                          color: "var(--fyro-orange)",
                           fontFamily: "'Space Mono', monospace",
                           letterSpacing: "0.05em",
                         }}
@@ -182,7 +182,7 @@ export default function ProcessSection() {
               style={{
                 borderRadius: "8px",
                 border: "1px solid rgba(255,255,255,0.07)",
-                background: "#0A0A0C",
+                background: "var(--fyro-bg)",
               }}
             >
               <img
@@ -211,7 +211,7 @@ export default function ProcessSection() {
                 <p
                   style={{
                     fontSize: "0.75rem",
-                    color: "#E03030",
+                    color: "var(--fyro-orange)",
                     fontFamily: "'Space Mono', monospace",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
@@ -236,7 +236,7 @@ export default function ProcessSection() {
             <div
               className="mt-5 p-6"
               style={{
-                background: "#1A1A1F",
+                background: "var(--fyro-panel)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 borderRadius: "6px",
               }}
@@ -244,7 +244,7 @@ export default function ProcessSection() {
               <p
                 style={{
                   fontSize: "0.78rem",
-                  color: "#E03030",
+                  color: "var(--fyro-orange)",
                   fontFamily: "'Space Mono', monospace",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",

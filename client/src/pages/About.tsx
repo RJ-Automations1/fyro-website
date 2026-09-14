@@ -1,12 +1,83 @@
 /*
- * FYRO ABOUT PAGE — Hendricks.ai-inspired
- * Same structure: pill label, bold name headline, bio, photo, story, experience, principles, FAQ
+ * FYRO ABOUT PAGE
+ * About the company, not the person: what Fyro is, why it exists, who it
+ * serves, how it works, FAQ. The founder gets one card here that links to
+ * /founder, where RJ's name, photos, and speaking credentials live.
  */
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FyroLogo from "@/components/FyroLogo";
+
+const INDUSTRIES = [
+  "Government Contracting",
+  "Fire Safety",
+  "Mold & Odor Remediation",
+  "HVAC & Trade Companies",
+  "Professional Services",
+  "Consulting Firms",
+  "Technology Companies",
+];
+
+const PRINCIPLES = [
+  {
+    title: "Results over hype.",
+    body: "The AI industry is noise. Every engagement is measured by operational outcomes — time saved, revenue impact, decision velocity. If a system doesn't produce measurable results, it doesn't ship.",
+  },
+  {
+    title: "Custom over generic.",
+    body: "Off-the-shelf AI tools solve generic problems. Fyro builds systems designed specifically for your business — your data, your workflows, your team. Generic doesn't compound.",
+  },
+  {
+    title: "Systems over tasks.",
+    body: "Anyone can automate a single workflow. Fyro builds interconnected AI systems that compound performance across your entire operation — not just one corner of it.",
+  },
+  {
+    title: "Deployment over pilots.",
+    body: "We don't run experiments. Every engagement is designed to reach live operational deployment — not to generate a report about what might be possible.",
+  },
+];
+
+const FAQS = [
+  {
+    q: "What does Fyro do?",
+    a: "Fyro embeds directly into your business, learns your workflows and goals, then builds custom AI agents and automations designed specifically for your company. We don't sell software — we build systems.",
+  },
+  {
+    q: "What industries does Fyro serve?",
+    a: "Fyro serves service-based companies across a wide range of industries — including government contracting, fire safety, mold & odor remediation, HVAC and trade companies, professional services, consulting firms, and technology companies. If your company has repetitive workflows and a team that's stretched thin, Fyro can help.",
+  },
+  {
+    q: "What is the RFP Response Agent?",
+    a: "The RFP Response Agent is a custom AI system built for government contractors and service firms that respond to RFPs. It reads incoming RFPs, extracts key requirements, and drafts compliant, tailored responses — cutting response time from days to hours.",
+  },
+  {
+    q: "Who founded Fyro?",
+    a: "Fyro was founded by Robert Robinson Jr. (RJ), an AI consultant and custom agent architect who has spoken at IBM New York and Morehouse College's DreamMakers Summit.",
+  },
+  {
+    q: "How do I get started?",
+    a: "Book a free 15-minute discovery call. We'll walk through your operation, identify the highest-leverage AI opportunities, and tell you exactly what we'd build — no commitment required.",
+  },
+];
+
+const h2Style = {
+  fontFamily: "'Inter', sans-serif",
+  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+  fontWeight: 800,
+  color: "var(--fyro-near-black)",
+  letterSpacing: "-0.025em",
+  lineHeight: 1.15,
+};
+
+const bodyText = {
+  fontFamily: "'DM Sans', sans-serif",
+  fontSize: "0.95rem",
+  color: "var(--fyro-gray-mid)",
+  lineHeight: 1.8,
+};
 
 export default function About() {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -37,147 +108,85 @@ export default function About() {
       <Navbar />
 
       {/* ── HERO ── */}
-      <section style={{ paddingTop: 64, background: "var(--fyro-bg)" }}>
-        <div style={{ ...sectionStyle, padding: "5rem 2.5rem 4rem" }}>
-          {/* Pill */}
+      <section style={{ paddingTop: 64, background: "var(--fyro-bg)", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 80% 30%, rgba(248,121,4,0.10) 0%, transparent 60%)" }} />
+        <div style={{ ...sectionStyle, padding: "5rem 2.5rem 4.5rem", position: "relative" }}>
           <div className="fade-up" style={{ marginBottom: "1.75rem" }}>
-            <span className="fyro-category-pill">About</span>
+            <span className="fyro-category-pill">About Fyro</span>
           </div>
 
-          {/* Name headline */}
           <h1
             className="fade-up"
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(2.5rem, 6vw, 5rem)",
+              fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
               fontWeight: 800,
               color: "var(--fyro-near-black)",
               letterSpacing: "-0.03em",
               lineHeight: 1.05,
-              marginBottom: "1.25rem",
+              maxWidth: 860,
+              marginBottom: "1.5rem",
             }}
           >
-            Robert Robinson{" "}
-            <span style={{ color: "var(--fyro-red)" }}>Jr.</span>
+            An AI consulting firm that{" "}
+            <span style={{ color: "var(--fyro-orange)" }}>builds, not advises.</span>
           </h1>
 
-          {/* Bio */}
-          <p
-            className="fade-up"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "1.05rem",
-              color: "var(--fyro-gray-mid)",
-              lineHeight: 1.75,
-              maxWidth: 560,
-              marginBottom: "2rem",
-            }}
-          >
-            Founder of Fyro. AI consultant and custom agent architect for service-based
-            companies. Featured speaker at IBM New York and Morehouse College's 2026
-            DreamMakers Summit.
+          <p className="fade-up" style={{ ...bodyText, fontSize: "1.1rem", maxWidth: 600, marginBottom: "2rem" }}>
+            Fyro designs and deploys custom AI agents and internal software for
+            service-based companies — the systems your team actually runs on, built
+            around how your operation already works.
           </p>
 
-          {/* CTAs */}
           <div className="fade-up" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a 20-minute call
+              Book a 15-minute call
               <ArrowRight size={15} />
             </Link>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="fyro-link"
-              style={{ alignSelf: "center" }}
-            >
-              LinkedIn <ArrowUpRight size={14} />
-            </a>
+            <Link href="/building" className="fyro-btn-outline">
+              See what we&rsquo;re building
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── STORY SPLIT ── */}
+      {/* ── WHY FYRO EXISTS ── */}
       <section style={{ background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div
-            className="fade-up"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 0,
-            }}
-            id="story-grid"
-          >
-            {/* Photo */}
-            <div style={{ overflow: "hidden", maxHeight: 600 }}>
-              <img
-                src="/manus-storage/rj_speaking_4_10cefbdc.jpeg"
-                alt="Robert Robinson Jr. at Morehouse DreamMakers Summit"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center top",
-                  display: "block",
-                }}
-              />
+          <div className="fade-up" id="story-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+            {/* The mark stands where the founder photo used to. */}
+            <div
+              style={{
+                minHeight: 440,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "radial-gradient(circle at 50% 45%, rgba(248,121,4,0.14) 0%, var(--fyro-black) 70%)",
+                borderRight: "1px solid var(--fyro-border)",
+              }}
+            >
+              <FyroLogo variant="lockup" height={230} />
             </div>
 
-            {/* Story text */}
             <div style={{ padding: "4rem 3.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
               <div style={{ marginBottom: "0.75rem" }}>
-                <span className="fyro-section-label">The story</span>
+                <span className="fyro-section-label">Why Fyro exists</span>
               </div>
-              <h2
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                  fontWeight: 800,
-                  color: "var(--fyro-near-black)",
-                  letterSpacing: "-0.025em",
-                  lineHeight: 1.15,
-                  marginBottom: "1.5rem",
-                }}
-              >
-                From understanding businesses to building the AI that runs them.
+              <h2 style={{ ...h2Style, marginBottom: "1.5rem" }}>
+                Most companies know they need AI. They don&rsquo;t know what to build.
               </h2>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.95rem",
-                  color: "var(--fyro-gray-mid)",
-                  lineHeight: 1.8,
-                  marginBottom: "1.25rem",
-                }}
-              >
-                RJ built Fyro around a simple observation: most companies know they need AI,
-                but they don't know what to build. They buy tools that don't fit. They run
-                pilots that don't ship. They end up with more complexity, not less.
+              <p style={{ ...bodyText, marginBottom: "1.25rem" }}>
+                They buy tools that don&rsquo;t fit. They run pilots that don&rsquo;t ship.
+                They end up with more complexity, not less.
               </p>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.95rem",
-                  color: "var(--fyro-gray-mid)",
-                  lineHeight: 1.8,
-                  marginBottom: "1.25rem",
-                }}
-              >
-                The pattern was consistent. Companies that won with AI didn't buy a product —
-                they built a system. Fyro closes that gap. RJ embeds directly into your
-                business, learns how it actually operates, and builds AI agents and
-                automations designed specifically for your workflows, your team, and your goals.
+              <p style={{ ...bodyText, marginBottom: "1.25rem" }}>
+                The companies that win with AI don&rsquo;t buy a product — they build a
+                system. Fyro closes that gap. We embed directly into your business, learn
+                how it actually operates, and build AI agents and automations designed
+                for your workflows, your team, and your goals.
               </p>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.95rem",
-                  color: "var(--fyro-gray-mid)",
-                  lineHeight: 1.8,
-                }}
-              >
-                The result isn't a demo. It's a live system that runs your operation.
+              <p style={bodyText}>
+                The result isn&rsquo;t a demo. It&rsquo;s a live system that runs your operation.
               </p>
             </div>
           </div>
@@ -185,259 +194,60 @@ export default function About() {
         <style>{`
           @media (max-width: 768px) {
             #story-grid { grid-template-columns: 1fr !important; }
+            #story-grid > div:first-child { min-height: 300px !important; border-right: none !important; }
+            #story-grid > div:first-child img { height: 170px !important; }
+            #story-grid > div:last-child { padding: 3rem 1.5rem !important; }
           }
         `}</style>
       </section>
 
-      {/* ── EXPERIENCE ── */}
-      <section
-        style={{
-          padding: "6rem 0",
-          background: "var(--fyro-bg)",
-          borderTop: "1px solid var(--fyro-border)",
-        }}
-      >
+      {/* ── WHO WE SERVE ── */}
+      <section style={{ padding: "6rem 0", background: "var(--fyro-bg)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={sectionStyle}>
-          <div className="fade-up" style={{ marginBottom: "0.75rem" }}>
-            <span className="fyro-section-label">Operating experience</span>
-          </div>
-          <h2
-            className="fade-up"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-              fontWeight: 800,
-              color: "var(--fyro-near-black)",
-              letterSpacing: "-0.025em",
-              maxWidth: 560,
-              marginBottom: "0.75rem",
-            }}
-          >
-            Where the pattern recognition comes from.
-          </h2>
-          <p
-            className="fade-up"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "0.95rem",
-              color: "var(--fyro-gray-mid)",
-              maxWidth: 500,
-              lineHeight: 1.75,
-              marginBottom: "3.5rem",
-            }}
-          >
-            Real engagements with real companies — not theory, not pilots.
-            These are the organizations where Fyro has spoken, presented, or deployed.
-          </p>
-
-          <div
-            className="fade-up"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "3rem",
-            }}
-            id="exp-grid"
-          >
-            {/* Speaking */}
+          <div className="fade-up" id="serve-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
             <div>
-              <div
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: "0.65rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.15em",
-                  color: "var(--fyro-gray-mid)",
-                  textTransform: "uppercase",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Speaking engagements
+              <div style={{ marginBottom: "0.75rem" }}>
+                <span className="fyro-section-label">Who we serve</span>
               </div>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.875rem",
-                  color: "var(--fyro-gray-mid)",
-                  lineHeight: 1.7,
-                  marginBottom: "1.25rem",
-                }}
-              >
-                Invited to speak at leading institutions on AI agent architecture and
-                custom automation for service businesses.
+              <h2 style={{ ...h2Style, maxWidth: 480, marginBottom: "1rem" }}>
+                Service companies with real work and stretched teams.
+              </h2>
+              <p style={{ ...bodyText, maxWidth: 460 }}>
+                Fyro works with service-based companies across industries — building custom
+                AI systems around each company&rsquo;s specific workflows and goals.
               </p>
-              <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-                {["IBM New York", "Morehouse College", "AfroTech 2025 · Houston"].map((org) => (
-                  <span key={org} className="fyro-pill">{org}</span>
-                ))}
-              </div>
             </div>
-
-            {/* Clients */}
-            <div>
-              <div
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: "0.65rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.15em",
-                  color: "var(--fyro-gray-mid)",
-                  textTransform: "uppercase",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Industries served
-              </div>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.875rem",
-                  color: "var(--fyro-gray-mid)",
-                  lineHeight: 1.7,
-                  marginBottom: "1.25rem",
-                }}
-              >
-                Fyro works with service-based companies across all industries — building
-                custom AI systems around each company's specific workflows and goals.
-              </p>
-              <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-                {["Government Contracting", "Fire Safety", "Mold & Odor Remediation", "HVAC & Trade Companies", "Professional Services", "Consulting Firms", "Technology Companies"].map((org) => (
-                  <span key={org} className="fyro-pill">{org}</span>
-                ))}
-              </div>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", paddingTop: "0.5rem" }}>
+              {INDUSTRIES.map((org) => (
+                <span key={org} className="fyro-pill">{org}</span>
+              ))}
             </div>
           </div>
         </div>
         <style>{`
-          @media (max-width: 640px) {
-            #exp-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
-      </section>
-
-      {/* ── PHOTO STRIP ── */}
-      <section
-        style={{
-          background: "var(--fyro-bg-section)",
-          borderTop: "1px solid var(--fyro-border)",
-          borderBottom: "1px solid var(--fyro-border)",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            gap: 0,
-            height: 280,
-          }}
-          id="photo-strip"
-        >
-          {[
-            "/manus-storage/rj_speaking_1_0561f4b4.jpeg",
-            "/manus-storage/rj_speaking_2_073b0301.jpeg",
-            "/manus-storage/rj_speaking_3_2a87d240.jpeg",
-            "/manus-storage/rj_ibm_23dcc16d.jpg",
-            "/manus-storage/IMG_4713_7c20d053.jpg",
-          ].map((src, i) => (
-            <div key={i} style={{ overflow: "hidden" }}>
-              <img
-                src={src}
-                alt={`RJ speaking engagement ${i + 1}`}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center top",
-                  display: "block",
-                  transition: "transform 0.4s ease",
-                }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.transform = "scale(1.04)")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.transform = "scale(1)")}
-              />
-            </div>
-          ))}
-        </div>
-        <style>{`
-          @media (max-width: 900px) {
-            #photo-strip { grid-template-columns: repeat(3, 1fr) !important; height: auto !important; }
-            #photo-strip > div { height: 200px; }
-          }
-          @media (max-width: 600px) {
-            #photo-strip { grid-template-columns: repeat(2, 1fr) !important; height: auto !important; }
-            #photo-strip > div { height: 180px; }
+          @media (max-width: 768px) {
+            #serve-grid { grid-template-columns: 1fr !important; }
           }
         `}</style>
       </section>
 
       {/* ── PRINCIPLES ── */}
-      <section style={{ padding: "6rem 0", background: "var(--fyro-bg)" }}>
+      <section style={{ padding: "6rem 0", background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={sectionStyle}>
           <div className="fade-up" style={{ marginBottom: "0.75rem" }}>
             <span className="fyro-section-label">Operating principles</span>
           </div>
-          <h2
-            className="fade-up"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-              fontWeight: 800,
-              color: "var(--fyro-near-black)",
-              letterSpacing: "-0.025em",
-              marginBottom: "0.5rem",
-            }}
-          >
+          <h2 className="fade-up" style={{ ...h2Style, marginBottom: "0.5rem" }}>
             Four principles. Every engagement.
           </h2>
-          <p
-            className="fade-up"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "0.95rem",
-              color: "var(--fyro-gray-mid)",
-              maxWidth: 480,
-              lineHeight: 1.75,
-              marginBottom: "3.5rem",
-            }}
-          >
+          <p className="fade-up" style={{ ...bodyText, maxWidth: 480, marginBottom: "3.5rem" }}>
             These show up in every discovery call, every architecture decision, and every
-            deployment. If a recommendation doesn't pass all four, it doesn't ship.
+            deployment. If a recommendation doesn&rsquo;t pass all four, it doesn&rsquo;t ship.
           </p>
 
-          <div
-            className="fade-up"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "2rem",
-            }}
-            id="principles-grid"
-          >
-            {[
-              {
-                title: "Results over hype.",
-                body: "The AI industry is noise. Every engagement is measured by operational outcomes — time saved, revenue impact, decision velocity. If a system doesn't produce measurable results, it doesn't ship.",
-              },
-              {
-                title: "Custom over generic.",
-                body: "Off-the-shelf AI tools solve generic problems. Fyro builds systems designed specifically for your business — your data, your workflows, your team. Generic doesn't compound.",
-              },
-              {
-                title: "Systems over tasks.",
-                body: "Anyone can automate a single workflow. Fyro builds interconnected AI systems that compound performance across your entire operation — not just one corner of it.",
-              },
-              {
-                title: "Deployment over pilots.",
-                body: "We don't run experiments. Every engagement is designed to reach live operational deployment — not to generate a report about what might be possible.",
-              },
-            ].map((p) => (
-              <div
-                key={p.title}
-                style={{
-                  paddingTop: "1.5rem",
-                  borderTop: "2px solid var(--fyro-border)",
-                }}
-              >
+          <div className="fade-up" id="principles-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem" }}>
+            {PRINCIPLES.map((p) => (
+              <div key={p.title} style={{ paddingTop: "1.5rem", borderTop: "2px solid var(--fyro-orange)" }}>
                 <h3
                   style={{
                     fontFamily: "'Inter', sans-serif",
@@ -450,16 +260,7 @@ export default function About() {
                 >
                   {p.title}
                 </h3>
-                <p
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "0.875rem",
-                    color: "var(--fyro-gray-mid)",
-                    lineHeight: 1.75,
-                  }}
-                >
-                  {p.body}
-                </p>
+                <p style={{ ...bodyText, fontSize: "0.875rem", lineHeight: 1.75 }}>{p.body}</p>
               </div>
             ))}
           </div>
@@ -474,61 +275,67 @@ export default function About() {
         `}</style>
       </section>
 
+      {/* ── FOUNDER CARD ── one link out; the person has a page of their own. */}
+      <section style={{ padding: "5rem 0", background: "var(--fyro-bg)", borderTop: "1px solid var(--fyro-border)" }}>
+        <div style={sectionStyle}>
+          <Link href="/founder" style={{ textDecoration: "none", display: "block" }} className="fade-up">
+            <div
+              id="founder-card"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "120px 1fr auto",
+                gap: "2rem",
+                alignItems: "center",
+                padding: "1.75rem",
+                background: "var(--fyro-panel)",
+                border: "1px solid var(--fyro-border)",
+                borderRadius: 8,
+              }}
+            >
+              <div style={{ width: 120, height: 120, borderRadius: 6, overflow: "hidden" }}>
+                <img
+                  src="/manus-storage/rj_speaking_4_10cefbdc.jpeg"
+                  alt="Robert Robinson Jr., founder of Fyro"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+                />
+              </div>
+              <div>
+                <span className="fyro-section-label">Meet the founder</span>
+                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.35rem", fontWeight: 700, color: "var(--fyro-near-black)", margin: "0.4rem 0 0.35rem" }}>
+                  Robert Robinson Jr.
+                </p>
+                <p style={{ ...bodyText, fontSize: "0.9rem", lineHeight: 1.6 }}>
+                  Founder &amp; owner. Speaker at IBM New York, Morehouse College, and AfroTech 2025.
+                </p>
+              </div>
+              <span className="fyro-link" style={{ whiteSpace: "nowrap" }}>
+                Read the story <ArrowRight size={15} />
+              </span>
+            </div>
+          </Link>
+        </div>
+        <style>{`
+          @media (max-width: 640px) {
+            #founder-card { grid-template-columns: 80px 1fr !important; gap: 1.25rem !important; }
+            #founder-card > div:first-child { width: 80px !important; height: 80px !important; }
+            #founder-card > span { grid-column: 1 / -1; }
+          }
+        `}</style>
+      </section>
+
       {/* ── FAQ ── */}
-      <section
-        style={{
-          padding: "6rem 0",
-          background: "var(--fyro-bg-section)",
-          borderTop: "1px solid var(--fyro-border)",
-        }}
-      >
+      <section style={{ padding: "6rem 0", background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={sectionStyle}>
           <div className="fade-up" style={{ marginBottom: "0.75rem" }}>
             <span className="fyro-section-label">FAQ</span>
           </div>
-          <h2
-            className="fade-up"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-              fontWeight: 800,
-              color: "var(--fyro-near-black)",
-              letterSpacing: "-0.025em",
-              marginBottom: "3rem",
-            }}
-          >
+          <h2 className="fade-up" style={{ ...h2Style, marginBottom: "3rem" }}>
             Frequently asked questions.
           </h2>
 
           <div className="fade-up" style={{ maxWidth: 720 }}>
-            {[
-              {
-                q: "Who is Robert Robinson Jr.?",
-                a: "Robert Robinson Jr. (RJ) is the founder of Fyro, an AI consultant and custom agent architect based in the United States. He designs and deploys custom AI agent systems for service-based companies, helping them automate workflows and scale operations.",
-              },
-              {
-                q: "What does Fyro do?",
-                a: "Fyro embeds directly into your business, learns your workflows and goals, then builds custom AI agents and automations designed specifically for your company. We don't sell software — we build systems.",
-              },
-              {
-                q: "What industries does Fyro serve?",
-                a: "Fyro serves service-based companies across a wide range of industries — including government contracting, fire safety, mold & odor remediation, HVAC and trade companies, professional services, consulting firms, and technology companies. If your company has repetitive workflows and a team that's stretched thin, Fyro can help.",
-              },
-              {
-                q: "What is the RFP Response Agent?",
-                a: "The RFP Response Agent is a custom AI system built for government contractors and service firms that respond to RFPs. It reads incoming RFPs, extracts key requirements, and drafts compliant, tailored responses — cutting response time from days to hours.",
-              },
-              {
-                q: "How do I get started?",
-                a: "Book a free 20-minute discovery call. We'll walk through your operation, identify the highest-leverage AI opportunities, and tell you exactly what we'd build — no commitment required.",
-              },
-            ].map((faq, i) => (
-              <div
-                key={i}
-                style={{
-                  borderBottom: "1px solid var(--fyro-border)",
-                }}
-              >
+            {FAQS.map((faq, i) => (
+              <div key={faq.q} style={{ borderBottom: "1px solid var(--fyro-border)" }}>
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   style={{
@@ -569,15 +376,7 @@ export default function About() {
                   </span>
                 </button>
                 {openFaq === i && (
-                  <p
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "0.9rem",
-                      color: "var(--fyro-gray-mid)",
-                      lineHeight: 1.75,
-                      paddingBottom: "1.25rem",
-                    }}
-                  >
+                  <p style={{ ...bodyText, fontSize: "0.9rem", lineHeight: 1.75, paddingBottom: "1.25rem" }}>
                     {faq.a}
                   </p>
                 )}
@@ -594,30 +393,12 @@ export default function About() {
             <div style={{ marginBottom: "0.75rem" }}>
               <span className="fyro-section-label">Book a call</span>
             </div>
-            <h2
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                fontWeight: 800,
-                color: "var(--fyro-near-black)",
-                letterSpacing: "-0.025em",
-                marginBottom: "1rem",
-              }}
-            >
+            <h2 style={{ ...h2Style, marginBottom: "1rem" }}>
               Ready to see what Fyro can build for you?
             </h2>
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "1rem",
-                color: "var(--fyro-gray-mid)",
-                lineHeight: 1.75,
-                maxWidth: 440,
-                marginBottom: "2rem",
-              }}
-            >
-              20 minutes. Walk us through your operation. We'll tell you exactly
-              what we'd build and what it would do for your business.
+            <p style={{ ...bodyText, fontSize: "1rem", lineHeight: 1.75, maxWidth: 440, marginBottom: "2rem" }}>
+              15 minutes. Walk us through your operation. We&rsquo;ll tell you exactly
+              what we&rsquo;d build and what it would do for your business.
             </p>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
               Pick a time

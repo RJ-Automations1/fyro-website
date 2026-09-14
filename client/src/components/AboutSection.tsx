@@ -30,7 +30,7 @@ export default function AboutSection() {
       id="about"
       ref={sectionRef}
       style={{
-        background: "#0A0A0C",
+        background: "var(--fyro-bg)",
         padding: "7rem 0",
         borderTop: "1px solid rgba(255,255,255,0.05)",
       }}
@@ -99,7 +99,7 @@ export default function AboutSection() {
                   left: "-1rem",
                   width: "3px",
                   height: "60%",
-                  background: "linear-gradient(to bottom, #E03030, transparent)",
+                  background: "linear-gradient(to bottom, var(--fyro-orange), transparent)",
                 }}
               />
             </div>
@@ -123,7 +123,7 @@ export default function AboutSection() {
                 }}
               >
                 Built by Someone Who{" "}
-                <span style={{ color: "#E03030" }}>Understands</span>
+                <span style={{ color: "var(--fyro-orange)" }}>Understands</span>
                 <br />
                 Your Business
               </h2>
@@ -205,7 +205,7 @@ export default function AboutSection() {
                 <div
                   key={i}
                   style={{
-                    background: "#1A1A1F",
+                    background: "var(--fyro-panel)",
                     border: "1px solid rgba(255,255,255,0.07)",
                     borderRadius: "6px",
                     padding: "14px 16px",
@@ -214,7 +214,7 @@ export default function AboutSection() {
                   <p
                     style={{
                       fontSize: "0.65rem",
-                      color: "#E03030",
+                      color: "var(--fyro-orange)",
                       fontFamily: "'Space Mono', monospace",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",

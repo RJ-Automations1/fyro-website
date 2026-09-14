@@ -84,7 +84,7 @@ export default function ServicesSection() {
       id="services"
       ref={sectionRef}
       style={{
-        background: "#0A0A0C",
+        background: "var(--fyro-bg)",
         padding: "7rem 0",
       }}
     >
@@ -106,7 +106,7 @@ export default function ServicesSection() {
             }}
           >
             AI Built Around{" "}
-            <span style={{ color: "#E03030" }}>Your Business,</span>
+            <span style={{ color: "var(--fyro-orange)" }}>Your Business,</span>
             <br />
             Not the Other Way Around.
           </h2>
@@ -137,8 +137,8 @@ export default function ServicesSection() {
                   transitionDelay: `${i * 60}ms`,
                   ...(service.featured
                     ? {
-                        border: "1px solid rgba(224,48,48,0.4)",
-                        background: "linear-gradient(135deg, #1A1A1F 0%, #1f1215 100%)",
+                        border: "1px solid rgba(248,121,4,0.4)",
+                        background: "linear-gradient(135deg, var(--fyro-panel) 0%, #2A1608 100%)",
                       }
                     : {}),
                 }}
@@ -148,17 +148,17 @@ export default function ServicesSection() {
                   <>
                     <div
                       className="absolute top-0 left-0 right-0"
-                      style={{ height: "2px", background: "#E03030" }}
+                      style={{ height: "2px", background: "var(--fyro-orange)" }}
                     />
                     <div
                       className="absolute top-4 right-4"
                       style={{
-                        background: "rgba(224,48,48,0.15)",
-                        border: "1px solid rgba(224,48,48,0.35)",
+                        background: "rgba(248,121,4,0.15)",
+                        border: "1px solid rgba(248,121,4,0.35)",
                         borderRadius: "3px",
                         padding: "3px 8px",
                         fontSize: "0.65rem",
-                        color: "#E03030",
+                        color: "var(--fyro-orange)",
                         fontFamily: "'Space Mono', monospace",
                         letterSpacing: "0.1em",
                         textTransform: "uppercase",
@@ -176,9 +176,9 @@ export default function ServicesSection() {
                     height: "44px",
                     borderRadius: "6px",
                     background: service.featured
-                      ? "rgba(224,48,48,0.15)"
+                      ? "rgba(248,121,4,0.15)"
                       : "rgba(255,255,255,0.05)",
-                    border: `1px solid ${service.featured ? "rgba(224,48,48,0.3)" : "rgba(255,255,255,0.08)"}`,
+                    border: `1px solid ${service.featured ? "rgba(248,121,4,0.3)" : "rgba(255,255,255,0.08)"}`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -187,7 +187,7 @@ export default function ServicesSection() {
                 >
                   <Icon
                     size={20}
-                    color={service.featured ? "#E03030" : "rgba(242,242,242,0.6)"}
+                    color={service.featured ? "var(--fyro-orange)" : "rgba(242,242,242,0.6)"}
                   />
                 </div>
 
@@ -197,7 +197,7 @@ export default function ServicesSection() {
                     <span
                       style={{
                         fontSize: "0.68rem",
-                        color: "#E03030",
+                        color: "var(--fyro-orange)",
                         fontFamily: "'Space Mono', monospace",
                         letterSpacing: "0.1em",
                         textTransform: "uppercase",

@@ -3,6 +3,7 @@
  * Minimal, clean. Logo + nav links + copyright on one row
  */
 import { Link } from "wouter";
+import FyroLogo from "./FyroLogo";
 
 export default function Footer() {
   return (
@@ -27,17 +28,7 @@ export default function Footer() {
       >
         {/* Logo */}
         <Link href="/" style={{ textDecoration: "none" }}>
-          <span
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "1.1rem",
-              fontWeight: 800,
-              color: "var(--fyro-near-black)",
-              letterSpacing: "-0.03em",
-            }}
-          >
-            Fyro<span style={{ color: "var(--fyro-red)" }}>.</span>
-          </span>
+          <FyroLogo variant="lockup" height={74} />
         </Link>
 
         {/* Nav links */}
@@ -45,7 +36,9 @@ export default function Footer() {
           {[
             { label: "Services", href: "/services" },
             { label: "How It Works", href: "/how-it-works" },
+            { label: "Building", href: "/building" },
             { label: "About", href: "/about" },
+            { label: "Founder", href: "/founder" },
             { label: "Speaking", href: "/speaking" },
             { label: "Insights", href: "/insights" },
             { label: "Contact", href: "/contact" },

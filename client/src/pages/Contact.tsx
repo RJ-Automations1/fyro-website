@@ -88,8 +88,8 @@ function MiniCalendar({ selected, onSelect }: { selected: Date; onSelect: (d: Da
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: "4px",
-                border: isToday ? "1px solid var(--fyro-red)" : "1px solid transparent",
-                background: isSelected ? "var(--fyro-red)" : "transparent",
+                border: isToday ? "1px solid var(--fyro-orange)" : "1px solid transparent",
+                background: isSelected ? "var(--fyro-orange)" : "transparent",
                 color: isSelected ? "#fff" : isPast || isWeekend ? "var(--fyro-gray-light)" : "var(--fyro-near-black)",
                 cursor: isPast || isWeekend ? "default" : "pointer",
                 opacity: isPast || isWeekend ? 0.35 : 1,
@@ -150,7 +150,7 @@ function BookingSidebar({
   return (
     <div
       style={{
-        background: "var(--fyro-white)",
+        background: "var(--fyro-panel)",
         border: "1px solid var(--fyro-border)",
         borderRadius: "6px",
         overflow: "hidden",
@@ -159,8 +159,8 @@ function BookingSidebar({
       {/* Header */}
       <div style={{ padding: "1.25rem 1.5rem", borderBottom: "1px solid var(--fyro-border)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-          <Calendar size={14} color="var(--fyro-red)" />
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase" as const, color: "var(--fyro-red)", fontWeight: 500 }}>
+          <Calendar size={14} color="var(--fyro-orange)" />
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase" as const, color: "var(--fyro-orange)", fontWeight: 500 }}>
             Pick a Time
           </span>
         </div>
@@ -197,7 +197,7 @@ function BookingSidebar({
         )}
 
         {error && !loading && (
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "var(--fyro-red)" }}>{error}</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "var(--fyro-orange)" }}>{error}</p>
         )}
 
         {!loading && !error && slots.length > 0 && (
@@ -224,8 +224,8 @@ function BookingSidebar({
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.78rem",
                         color: isChosen ? "#fff" : "var(--fyro-near-black)",
-                        background: isChosen ? "var(--fyro-red)" : "var(--fyro-bg)",
-                        border: isChosen ? "1px solid var(--fyro-red)" : "1px solid var(--fyro-border)",
+                        background: isChosen ? "var(--fyro-orange)" : "var(--fyro-bg)",
+                        border: isChosen ? "1px solid var(--fyro-orange)" : "1px solid var(--fyro-border)",
                         borderRadius: "4px",
                         padding: "0.3rem 0.65rem",
                         cursor: "pointer",
@@ -244,10 +244,10 @@ function BookingSidebar({
 
       {/* Selected slot confirmation */}
       {selectedSlot && (
-        <div style={{ padding: "1rem 1.5rem", borderTop: "1px solid var(--fyro-border)", background: "#f0fdf4" }}>
+        <div style={{ padding: "1rem 1.5rem", borderTop: "1px solid var(--fyro-border)", background: "rgba(34,197,94,0.10)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <CheckCircle2 size={14} color="#16a34a" />
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#15803d", fontWeight: 500 }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#4ADE80", fontWeight: 500 }}>
               {selectedSlot.label} · {selectedSlot.date}
             </span>
           </div>
@@ -260,7 +260,7 @@ function BookingSidebar({
       {/* Footer */}
       <div style={{ padding: "1rem 1.5rem", borderTop: "1px solid var(--fyro-border)", background: "var(--fyro-bg)" }}>
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "var(--fyro-gray-light)", margin: 0 }}>
-          Times shown in Eastern Time (ET). Selecting a slot books it directly on RJ's calendar.
+          Times shown in Eastern Time (ET). Selecting a slot books it directly on our calendar.
         </p>
       </div>
     </div>
@@ -342,7 +342,7 @@ export default function Contact() {
     fontFamily: "'DM Sans', sans-serif",
     fontSize: "0.9rem",
     color: "var(--fyro-near-black)",
-    background: "var(--fyro-white)",
+    background: "var(--fyro-panel)",
     border: "1px solid var(--fyro-border)",
     borderRadius: "4px",
     padding: "0.75rem 1rem",
@@ -399,7 +399,7 @@ export default function Contact() {
             }}
           >
             Pick a time that works for you, fill in a few details, and your call gets booked
-            directly on RJ's calendar — no back-and-forth, no waiting.
+            directly on our calendar — no back-and-forth, no waiting.
           </p>
         </div>
       </section>
@@ -428,7 +428,7 @@ export default function Contact() {
               <div
                 style={{
                   padding: "3.5rem",
-                  background: "var(--fyro-white)",
+                  background: "var(--fyro-panel)",
                   border: "1px solid var(--fyro-border)",
                   borderRadius: "6px",
                   textAlign: "center",
@@ -439,7 +439,7 @@ export default function Contact() {
                     width: 52,
                     height: 52,
                     borderRadius: "50%",
-                    background: "var(--fyro-red)",
+                    background: "var(--fyro-orange)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -470,7 +470,7 @@ export default function Contact() {
                     margin: "0 auto 0.5rem",
                   }}
                 >
-                  Your 15-minute discovery call has been added to RJ's calendar.
+                  Your 15-minute discovery call has been added to our calendar.
                   {selectedSlot && (
                     <><br /><strong>{selectedSlot.label} · {selectedSlot.date}</strong></>
                   )}
@@ -497,7 +497,7 @@ export default function Contact() {
                   <div
                     style={{
                       padding: "0.85rem 1.25rem",
-                      background: "#f0fdf4",
+                      background: "rgba(34,197,94,0.10)",
                       border: "1px solid #bbf7d0",
                       borderRadius: "6px",
                       display: "flex",
@@ -506,7 +506,7 @@ export default function Contact() {
                     }}
                   >
                     <CheckCircle2 size={16} color="#16a34a" />
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#15803d", fontWeight: 500 }}>
+                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#4ADE80", fontWeight: 500 }}>
                       {selectedSlot.label} · {selectedSlot.date} (ET)
                     </span>
                   </div>
@@ -634,12 +634,12 @@ export default function Contact() {
                   <div
                     style={{
                       padding: "0.85rem 1.25rem",
-                      background: "#fff1f2",
+                      background: "rgba(244,63,94,0.10)",
                       border: "1px solid #fecdd3",
                       borderRadius: "6px",
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.85rem",
-                      color: "#be123c",
+                      color: "#FB7185",
                     }}
                   >
                     {submitError}
@@ -706,7 +706,7 @@ export default function Contact() {
               {/* What happens next */}
               <div
                 style={{
-                  background: "var(--fyro-near-black)",
+                  background: "var(--fyro-panel)",
                   borderRadius: "6px",
                   padding: "1.75rem",
                 }}
@@ -716,7 +716,7 @@ export default function Contact() {
                     fontFamily: "'DM Mono', monospace",
                     fontSize: "0.65rem",
                     letterSpacing: "0.15em",
-                    color: "var(--fyro-red)",
+                    color: "var(--fyro-orange)",
                     textTransform: "uppercase",
                     marginBottom: "1.25rem",
                   }}
@@ -726,7 +726,7 @@ export default function Contact() {
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                   {[
                     { step: "01", title: "Pick a time & submit", body: "Select an open slot and fill in your details. Takes 60 seconds." },
-                    { step: "02", title: "Instant calendar invite", body: "Your call is booked directly on RJ's calendar — no waiting." },
+                    { step: "02", title: "Instant calendar invite", body: "Your call is booked directly on our calendar — no waiting." },
                     { step: "03", title: "Discovery call", body: "We talk through your business, your team, and your goals." },
                     { step: "04", title: "Custom proposal", body: "If it's a fit, we walk you through exactly what we'd build." },
                   ].map((s) => (
@@ -735,7 +735,7 @@ export default function Contact() {
                         style={{
                           fontFamily: "'DM Mono', monospace",
                           fontSize: "0.7rem",
-                          color: "var(--fyro-red)",
+                          color: "var(--fyro-orange)",
                           flexShrink: 0,
                           paddingTop: "0.1rem",
                         }}
@@ -772,7 +772,7 @@ export default function Contact() {
               {/* Direct contact info */}
               <div
                 style={{
-                  background: "var(--fyro-near-black)",
+                  background: "var(--fyro-panel)",
                   borderRadius: "6px",
                   padding: "1.5rem 1.75rem",
                 }}
@@ -782,7 +782,7 @@ export default function Contact() {
                     fontFamily: "'DM Mono', monospace",
                     fontSize: "0.65rem",
                     letterSpacing: "0.15em",
-                    color: "var(--fyro-red)",
+                    color: "var(--fyro-orange)",
                     textTransform: "uppercase",
                     marginBottom: "1rem",
                   }}
@@ -803,7 +803,7 @@ export default function Contact() {
                       fontWeight: 500,
                     }}
                   >
-                    <span style={{ color: "var(--fyro-red)", fontSize: "1rem" }}>📞</span>
+                    <span style={{ color: "var(--fyro-orange)", fontSize: "1rem" }}>📞</span>
                     (832) 269-7511
                   </a>
                   <a
@@ -819,7 +819,7 @@ export default function Contact() {
                       fontWeight: 500,
                     }}
                   >
-                    <span style={{ color: "var(--fyro-red)", fontSize: "1rem" }}>✉️</span>
+                    <span style={{ color: "var(--fyro-orange)", fontSize: "1rem" }}>✉️</span>
                     rj@fyroagents.com
                   </a>
                 </div>

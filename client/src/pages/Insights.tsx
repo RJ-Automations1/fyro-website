@@ -155,7 +155,7 @@ export default function Insights() {
                     transition: "background 0.15s ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(200,16,46,0.02)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(248,121,4,0.02)";
                     (e.currentTarget as HTMLElement).style.paddingLeft = "0.75rem";
                     (e.currentTarget as HTMLElement).style.paddingRight = "0.75rem";
                     (e.currentTarget as HTMLElement).style.marginLeft = "-0.75rem";
@@ -174,7 +174,7 @@ export default function Insights() {
                 >
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.75rem" }}>
-                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.12em", color: "var(--fyro-red)" }}>{article.category}</span>
+                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.12em", color: "var(--fyro-orange)" }}>{article.category}</span>
                       <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.06em" }}>{article.date}</span>
                       <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "var(--fyro-gray-mid)" }}>{article.read}</span>
                     </div>

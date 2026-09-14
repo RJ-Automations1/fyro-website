@@ -35,7 +35,7 @@ export default function HeroSection() {
     <section
       id="hero"
       style={{
-        background: "#fff",
+        background: "var(--fyro-bg)",
         paddingTop: 72,
         minHeight: "100vh",
         display: "flex",
@@ -52,7 +52,7 @@ export default function HeroSection() {
           right: 0,
           width: "50%",
           height: "100%",
-          background: "radial-gradient(ellipse at 80% 30%, rgba(200,16,46,0.05) 0%, transparent 65%)",
+          background: "radial-gradient(ellipse at 80% 30%, rgba(248,121,4,0.05) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -89,16 +89,16 @@ export default function HeroSection() {
                 fontSize: "clamp(3rem, 5vw, 5.25rem)",
                 fontWeight: 600,
                 lineHeight: 1.06,
-                color: "#0D0D0D",
+                color: "var(--fyro-near-black)",
                 letterSpacing: "-0.025em",
                 marginBottom: "1.75rem",
               }}
             >
               Your Business,{" "}
-              <em style={{ color: "#C8102E", fontStyle: "italic" }}>Automated.</em>
+              <em style={{ color: "var(--fyro-orange)", fontStyle: "italic" }}>Automated.</em>
               <br />
               Your Growth,{" "}
-              <em style={{ color: "#C8102E", fontStyle: "italic" }}>Accelerated.</em>
+              <em style={{ color: "var(--fyro-orange)", fontStyle: "italic" }}>Accelerated.</em>
             </h1>
 
             {/* Body */}
@@ -107,7 +107,7 @@ export default function HeroSection() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "1.05rem",
                 lineHeight: 1.8,
-                color: "#5C5C5C",
+                color: "var(--fyro-gray-mid)",
                 maxWidth: 460,
                 marginBottom: "2.5rem",
               }}
@@ -141,7 +141,7 @@ export default function HeroSection() {
                 display: "flex",
                 gap: "2.5rem",
                 paddingTop: "2rem",
-                borderTop: "1px solid #EBEBEB",
+                borderTop: "1px solid var(--fyro-border)",
                 flexWrap: "wrap",
               }}
             >
@@ -156,7 +156,7 @@ export default function HeroSection() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.8rem",
                       fontWeight: 700,
-                      color: "#0D0D0D",
+                      color: "var(--fyro-near-black)",
                     }}
                   >
                     {b.label}
@@ -165,7 +165,7 @@ export default function HeroSection() {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.75rem",
-                      color: "#9A9A9A",
+                      color: "var(--fyro-gray-light)",
                       marginTop: "0.15rem",
                     }}
                   >
@@ -226,7 +226,7 @@ export default function HeroSection() {
                   left: "1.5rem",
                   right: "1.5rem",
                   background: "rgba(255,255,255,0.96)",
-                  borderLeft: "3px solid #C8102E",
+                  borderLeft: "3px solid var(--fyro-orange)",
                   padding: "0.8rem 1.1rem",
                   borderRadius: "2px",
                 }}
@@ -238,7 +238,7 @@ export default function HeroSection() {
                     fontWeight: 500,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "#C8102E",
+                    color: "var(--fyro-orange)",
                     marginBottom: "0.25rem",
                   }}
                 >
@@ -249,7 +249,7 @@ export default function HeroSection() {
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.875rem",
                     fontWeight: 600,
-                    color: "#0D0D0D",
+                    color: "var(--fyro-near-black)",
                   }}
                 >
                   Morehouse College · Atlanta, GA
@@ -263,7 +263,7 @@ export default function HeroSection() {
                 position: "absolute",
                 top: "2rem",
                 right: "-1.25rem",
-                background: "#0D0D0D",
+                background: "var(--fyro-bg)",
                 padding: "1.25rem 1.5rem",
                 borderRadius: "3px",
                 minWidth: 155,
@@ -275,7 +275,7 @@ export default function HeroSection() {
                 style={{
                   fontSize: "2.75rem",
                   fontWeight: 700,
-                  color: "#C8102E",
+                  color: "var(--fyro-orange)",
                   lineHeight: 1,
                 }}
               >
@@ -319,7 +319,7 @@ export default function HeroSection() {
             fontSize: "0.62rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "#0D0D0D",
+            color: "var(--fyro-near-black)",
           }}
         >
           Scroll

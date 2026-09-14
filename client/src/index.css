@@ -5,7 +5,7 @@
 
 /*
  * FYRO DESIGN SYSTEM — Hendricks.ai-inspired
- * Off-white background, near-black text, red accent (#C8102E)
+ * Dark ground, white text, brand orange accent (#F87904)
  * Fonts: Inter (bold headlines), DM Sans (body), DM Mono (labels/mono)
  * Extreme whitespace, left-aligned, minimal decoration
  */
@@ -51,55 +51,98 @@
 
 :root {
   --radius: 0.375rem;
-  /* Fyro color tokens */
-  --fyro-red: #C8102E;
-  --fyro-red-dark: #A00D25;
-  --fyro-black: #0D0D0D;
-  --fyro-near-black: #1A1A1A;
-  --fyro-gray-dark: #3A3A3A;
-  --fyro-gray-mid: #6B6B6B;
-  --fyro-gray-light: #9A9A9A;
-  --fyro-border: #E2E2DC;
-  --fyro-bg: #F5F5F0;
-  --fyro-bg-section: #EEEEE8;
-  --fyro-white: #FFFFFF;
 
-  /* Tailwind CSS variable mappings */
-  --background: oklch(0.974 0.004 90);
-  --foreground: oklch(0.12 0.005 0);
-  --card: oklch(0.99 0.002 90);
-  --card-foreground: oklch(0.12 0.005 0);
-  --popover: oklch(0.99 0.002 90);
-  --popover-foreground: oklch(0.12 0.005 0);
-  --primary: oklch(0.42 0.18 20);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.94 0.005 90);
-  --secondary-foreground: oklch(0.25 0.005 0);
-  --muted: oklch(0.94 0.005 90);
-  --muted-foreground: oklch(0.5 0.01 0);
-  --accent: oklch(0.94 0.005 90);
-  --accent-foreground: oklch(0.12 0.005 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.88 0.006 90);
-  --input: oklch(0.88 0.006 90);
-  --ring: oklch(0.42 0.18 20);
-  --chart-1: oklch(0.42 0.18 20);
-  --chart-2: oklch(0.55 0.15 20);
-  --chart-3: oklch(0.65 0.12 20);
-  --chart-4: oklch(0.75 0.08 20);
-  --chart-5: oklch(0.85 0.04 20);
-  --sidebar: oklch(0.99 0.002 90);
-  --sidebar-foreground: oklch(0.12 0.005 0);
-  --sidebar-primary: oklch(0.42 0.18 20);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.94 0.005 90);
-  --sidebar-accent-foreground: oklch(0.12 0.005 0);
-  --sidebar-border: oklch(0.88 0.006 90);
-  --sidebar-ring: oklch(0.42 0.18 20);
+  /* ── FYRO BRAND ─────────────────────────────────────────────────────────
+     Dark-first, because the brand orange requires it. #F87904 on the old cream
+     ground measured 2.48:1 — below even the 3:1 floor for large text and UI.
+     On #0A0A0A the same orange is 7.29:1. The logo was drawn for a dark ground
+     and the palette follows it rather than fighting it.
+
+     Token NAMES are unchanged from the light theme on purpose: every existing
+     var(--fyro-near-black) usage means "primary text colour", so flipping the
+     values here re-themes those call sites correctly with no edit.          */
+
+  --fyro-orange: #F87904;        /* brand accent — sampled from the logo */
+  --fyro-orange-bright: #FF8A00; /* hover / active */
+  --fyro-orange-deep: #A94903;   /* the logo gradient's shadow; the only orange
+                                    that passes contrast ON light grounds     */
+
+  --fyro-black: #050505;
+  --fyro-bg: #0A0A0A;            /* page ground */
+  --fyro-bg-section: #121214;    /* alternating band */
+  --fyro-panel: #16161A;         /* cards */
+  --fyro-border: #26262B;
+
+  --fyro-white: #FFFFFF;
+  --fyro-near-black: #FFFFFF;    /* role: primary heading/text — now white */
+  --fyro-gray-dark: #D8D8D2;     /* role: strong body */
+  --fyro-gray-mid: #A8A8A2;      /* role: secondary body */
+  --fyro-gray-light: #77776F;    /* role: faint / captions */
+
+  /* Legacy aliases so any missed call site lands on brand rather than a stale
+     red. Prefer --fyro-orange in new code. */
+  --fyro-red: var(--fyro-orange);
+  --fyro-red-dark: var(--fyro-orange-bright);
+
+  /* Tailwind / shadcn mappings — dark */
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.96 0.002 90);
+  --card: oklch(0.19 0.004 285);
+  --card-foreground: oklch(0.96 0.002 90);
+  --popover: oklch(0.19 0.004 285);
+  --popover-foreground: oklch(0.96 0.002 90);
+  --primary: oklch(0.70 0.19 45);
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.24 0.004 285);
+  --secondary-foreground: oklch(0.96 0.002 90);
+  --muted: oklch(0.24 0.004 285);
+  --muted-foreground: oklch(0.68 0.008 90);
+  --accent: oklch(0.24 0.004 285);
+  --accent-foreground: oklch(0.96 0.002 90);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.27 0.004 285);
+  --input: oklch(0.27 0.004 285);
+  --ring: oklch(0.70 0.19 45);
+  --chart-1: oklch(0.70 0.19 45);
+  --chart-2: oklch(0.62 0.16 45);
+  --chart-3: oklch(0.54 0.13 45);
+  --chart-4: oklch(0.46 0.10 45);
+  --chart-5: oklch(0.38 0.07 45);
+  --sidebar: oklch(0.19 0.004 285);
+  --sidebar-foreground: oklch(0.96 0.002 90);
+  --sidebar-primary: oklch(0.70 0.19 45);
+  --sidebar-primary-foreground: oklch(0.145 0 0);
+  --sidebar-accent: oklch(0.24 0.004 285);
+  --sidebar-accent-foreground: oklch(0.96 0.002 90);
+  --sidebar-border: oklch(0.27 0.004 285);
+  --sidebar-ring: oklch(0.70 0.19 45);
 }
 
 @layer base {
+  /* Form controls. The UA default is a white box, which was invisible on the
+     old light ground and glaring on this one. Styled globally so no page has
+     to remember. */
+  input, textarea, select {
+    background-color: var(--fyro-panel);
+    color: var(--fyro-near-black);
+    border-color: var(--fyro-border);
+  }
+  input::placeholder, textarea::placeholder {
+    color: var(--fyro-gray-light);
+  }
+  input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid var(--fyro-orange);
+    outline-offset: 1px;
+  }
+  /* Chrome paints its own pale-yellow fill on autofilled inputs. */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--fyro-near-black);
+    -webkit-box-shadow: 0 0 0 1000px var(--fyro-panel) inset;
+  }
+
   * {
     @apply border-border outline-ring/50;
     box-sizing: border-box;
@@ -186,7 +229,7 @@
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--fyro-gray-dark);
-    background: var(--fyro-white);
+    background: var(--fyro-panel);
     border: 1px solid var(--fyro-border);
     border-radius: 100px;
     padding: 0.3rem 0.85rem;

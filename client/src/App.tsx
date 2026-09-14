@@ -13,15 +13,19 @@ import Article from "./pages/Article";
 import HowItWorks from "./pages/HowItWorks";
 import Speaking from "./pages/Speaking";
 import Insights from "./pages/Insights";
+import Building from "./pages/Building";
+import Founder from "./pages/Founder";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/founder" component={Founder} />
       <Route path="/services" component={Services} />
       <Route path="/how-it-works" component={HowItWorks} />
       <Route path="/speaking" component={Speaking} />
+      <Route path="/building" component={Building} />
       <Route path="/insights" component={Insights} />
       <Route path="/insights/:slug" component={Article} />
       <Route path="/contact" component={Contact} />

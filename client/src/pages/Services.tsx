@@ -194,7 +194,7 @@ export default function Services() {
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "1rem",
                     fontWeight: 600,
-                    color: "var(--fyro-red)",
+                    color: "var(--fyro-orange)",
                     marginBottom: "1.25rem",
                   }}
                 >
@@ -237,9 +237,9 @@ export default function Services() {
                         display: "inline-flex", alignItems: "center", gap: "0.5rem",
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.7rem", fontWeight: 600,
-                        color: "var(--fyro-red)", letterSpacing: "0.06em",
+                        color: "var(--fyro-orange)", letterSpacing: "0.06em",
                         textDecoration: "none",
-                        borderBottom: "1px solid rgba(200,16,46,0.3)",
+                        borderBottom: "1px solid rgba(248,121,4,0.3)",
                         paddingBottom: "0.1rem",
                       }}
                     >
@@ -280,7 +280,7 @@ export default function Services() {
                           width: 6,
                           height: 6,
                           borderRadius: "50%",
-                          background: "var(--fyro-red)",
+                          background: "var(--fyro-orange)",
                           flexShrink: 0,
                           marginTop: "0.45rem",
                         }}

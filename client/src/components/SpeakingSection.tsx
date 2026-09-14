@@ -29,7 +29,7 @@ export default function SpeakingSection() {
       id="speaking"
       ref={sectionRef}
       style={{
-        background: "#111114",
+        background: "var(--fyro-bg-section)",
         padding: "7rem 0",
         borderTop: "1px solid rgba(255,255,255,0.05)",
       }}
@@ -53,7 +53,7 @@ export default function SpeakingSection() {
             }}
           >
             Trusted by Leading{" "}
-            <span style={{ color: "#E03030" }}>Institutions</span>
+            <span style={{ color: "var(--fyro-orange)" }}>Institutions</span>
           </h2>
         </div>
 
@@ -65,7 +65,7 @@ export default function SpeakingSection() {
             style={{
               borderRadius: "8px",
               border: "1px solid rgba(255,255,255,0.07)",
-              background: "#0A0A0C",
+              background: "var(--fyro-bg)",
             }}
           >
             <div className="relative overflow-hidden" style={{ height: "320px" }}>
@@ -90,7 +90,7 @@ export default function SpeakingSection() {
               <p
                 style={{
                   fontSize: "0.68rem",
-                  color: "#E03030",
+                  color: "var(--fyro-orange)",
                   fontFamily: "'Space Mono', monospace",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
@@ -131,7 +131,7 @@ export default function SpeakingSection() {
             style={{
               borderRadius: "8px",
               border: "1px solid rgba(255,255,255,0.07)",
-              background: "#0A0A0C",
+              background: "var(--fyro-bg)",
               transitionDelay: "100ms",
             }}
           >
@@ -157,7 +157,7 @@ export default function SpeakingSection() {
               <p
                 style={{
                   fontSize: "0.68rem",
-                  color: "#E03030",
+                  color: "var(--fyro-orange)",
                   fontFamily: "'Space Mono', monospace",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
