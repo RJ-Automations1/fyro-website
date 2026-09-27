@@ -16,6 +16,7 @@ import Speaking from "./pages/Speaking";
 import Insights from "./pages/Insights";
 import Building from "./pages/Building";
 import Founder from "./pages/Founder";
+import Privacy from "./pages/Privacy";
 
 function Router() {
   return (
@@ -31,6 +32,7 @@ function Router() {
       <Route path="/insights/:slug" component={Article} />
       <Route path="/contact" component={Contact} />
       <Route path="/rfp-agent" component={RFPAgent} />
+      <Route path="/privacy" component={Privacy} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
