@@ -4,7 +4,6 @@
  */
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -30,7 +29,7 @@ export default function Services() {
 
   const services = [
     {
-      tag: "FOR ANY BUSINESS THAT LIVES ON LEADS",
+      tag: "For any business that lives on leads",
       title: "Speed-to-Lead Call Agent",
       sub: "Every new lead gets a phone call in seconds — not hours.",
       body: "The moment someone fills out a form, clicks an ad, or requests a quote, an AI voice agent calls them back. It qualifies them with your questions, answers the basics, and books the appointment straight onto your calendar — nights and weekends included. The lead talks to you before they talk to your competitor.",
@@ -44,7 +43,7 @@ export default function Services() {
       client: null,
     },
     {
-      tag: "FOR TEAMS OUTGROWING SPREADSHEETS",
+      tag: "For teams outgrowing spreadsheets",
       title: "Custom CRMs",
       sub: "A CRM built around how your team actually works.",
       body: "Off-the-shelf CRMs make you change your process to fit their software. We build the CRM around your process instead — your pipeline stages, your fields, your job types — with agents that create follow-ups, reminders, and work orders on their own. Fyro has built CRMs that generate inspection schedules and work orders automatically.",
@@ -58,7 +57,7 @@ export default function Services() {
       client: null,
     },
     {
-      tag: "FOR GOVERNMENT CONTRACTORS & SERVICE FIRMS",
+      tag: "For government contractors & service firms",
       title: "RFP Response Agent",
       sub: "Cut RFP response time from days to hours.",
       body: "The RFP Response Agent reads incoming requests for proposals, extracts all key requirements, compliance criteria, and evaluation factors, then drafts a structured, tailored response aligned to your firm's capabilities and past performance. Built for government contractors, professional services firms, and any company that wins business through formal proposal processes.",
@@ -72,7 +71,7 @@ export default function Services() {
       client: null,
     },
     {
-      tag: "FOR FIRMS WHOSE GROWTH DEPENDS ON THROUGHPUT",
+      tag: "For firms whose growth depends on throughput",
       title: "Custom Workflows",
       sub: "The busywork around the job, done automatically — 24/7.",
       body: "We map your most time-consuming manual workflows — client intake, reporting, follow-up, scheduling, document processing — and replace them with intelligent automations integrated directly into your existing tools. No new software to learn. No process overhaul. Just the same work, done automatically.",
@@ -86,7 +85,7 @@ export default function Services() {
       client: null,
     },
     {
-      tag: "FOR FIRMS WHOSE GROWTH DEPENDS ON INTELLIGENCE",
+      tag: "For firms whose growth depends on intelligence",
       title: "Custom AI Agents",
       sub: "AI agents built specifically for your business — not a generic tool.",
       body: "Generic AI tools solve generic problems. Fyro builds AI agents trained on your data, integrated with your systems, and designed to handle the specific work your team shouldn't be doing manually. Every agent is custom-architected around your workflows, your terminology, and your decision-making process.",
@@ -100,7 +99,7 @@ export default function Services() {
       client: null,
     },
     {
-      tag: "FOR FIRMS WHOSE GROWTH DEPENDS ON STRATEGY",
+      tag: "For firms whose growth depends on strategy",
       title: "AI Strategy Consulting",
       sub: "Know exactly what to build before you build it.",
       body: "Not sure where AI fits in your operation? Fyro audits your current workflows, identifies the highest-leverage automation opportunities, and delivers a prioritized roadmap with clear ROI projections for each initiative. No generic frameworks — a specific plan built around your business.",
@@ -114,7 +113,7 @@ export default function Services() {
       client: null,
     },
     {
-      tag: "FOR FIRMS WHOSE GROWTH DEPENDS ON RESPONSIVENESS",
+      tag: "For firms whose growth depends on responsiveness",
       title: "Voice & Conversational Agents",
       sub: "Handle inbound inquiries and qualify leads without a human on the other end.",
       body: "Deploy intelligent voice and chat agents that handle inbound calls, qualify leads, answer common questions, and route conversations to the right person — 24 hours a day, 7 days a week. Built around your company's specific products, services, and qualification criteria.",
@@ -142,7 +141,7 @@ export default function Services() {
           <h1
             className="fade-up"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
               fontWeight: 800,
               color: "var(--fyro-near-black)",
@@ -157,7 +156,7 @@ export default function Services() {
           <p
             className="fade-up"
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "1.25rem",
               color: "var(--fyro-gray-mid)",
               lineHeight: 1.65,
@@ -170,8 +169,7 @@ export default function Services() {
           </p>
           <div className="fade-up">
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a Free Demo
-              <ArrowRight size={15} />
+              Book a free demo
             </Link>
           </div>
         </div>
@@ -179,7 +177,7 @@ export default function Services() {
 
       {/* ── SERVICE LISTINGS ── */}
       {services.map((service, i) => (
-        <section
+        <section className={i % 2 === 0 ? "surface-light" : undefined}
           key={service.title}
           style={{
             padding: "5rem 0",
@@ -206,7 +204,7 @@ export default function Services() {
                 <h2
                   className="fade-up"
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
                     fontWeight: 800,
                     color: "var(--fyro-near-black)",
@@ -219,10 +217,10 @@ export default function Services() {
                 <p
                   className="fade-up"
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "1.25rem",
                     fontWeight: 600,
-                    color: "var(--fyro-orange)",
+                    color: "var(--fyro-accent-text)",
                     marginBottom: "1.25rem",
                   }}
                 >
@@ -231,7 +229,7 @@ export default function Services() {
                 <p
                   className="fade-up"
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "1.1rem",
                     color: "var(--fyro-gray-mid)",
                     lineHeight: 1.75,
@@ -244,11 +242,10 @@ export default function Services() {
                   <div className="fade-up">
                     <div
                       style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: "0.65rem",
-                        letterSpacing: "0.15em",
+                        fontFamily: "var(--fyro-font)",
+                        fontSize: "0.85rem",
+                        letterSpacing: "0",
                         color: "var(--fyro-gray-mid)",
-                        textTransform: "uppercase",
                         marginBottom: "0.5rem",
                       }}
                     >
@@ -263,15 +260,15 @@ export default function Services() {
                       href="/rfp-agent"
                       style={{
                         display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: "0.7rem", fontWeight: 600,
-                        color: "var(--fyro-orange)", letterSpacing: "0.06em",
+                        fontFamily: "var(--fyro-font)",
+                        fontSize: "0.85rem", fontWeight: 600,
+                        color: "var(--fyro-accent-text)", letterSpacing: "0",
                         textDecoration: "none",
                         borderBottom: "1px solid rgba(248,121,4,0.3)",
                         paddingBottom: "0.1rem",
                       }}
                     >
-                      SEE LIVE WALKTHROUGH <ArrowRight size={12} />
+                      See the live walkthrough
                     </Link>
                   </div>
                 )}
@@ -281,11 +278,10 @@ export default function Services() {
               <div className="fade-up">
                 <div
                   style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.15em",
+                    fontFamily: "var(--fyro-font)",
+                    fontSize: "0.85rem",
+                    letterSpacing: "0",
                     color: "var(--fyro-gray-mid)",
-                    textTransform: "uppercase",
                     marginBottom: "1.25rem",
                   }}
                 >
@@ -315,7 +311,7 @@ export default function Services() {
                       />
                       <span
                         style={{
-                          fontFamily: "'DM Sans', sans-serif",
+                          fontFamily: "var(--fyro-font)",
                           fontSize: "1.08rem",
                           color: "var(--fyro-near-black)",
                           lineHeight: 1.6,
@@ -346,7 +342,7 @@ export default function Services() {
             </div>
             <h2
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
                 fontWeight: 800,
                 color: "var(--fyro-near-black)",
@@ -358,7 +354,7 @@ export default function Services() {
             </h2>
             <p
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "1rem",
                 color: "var(--fyro-gray-mid)",
                 lineHeight: 1.75,
@@ -370,8 +366,7 @@ export default function Services() {
               exactly what we'd build — and what it would do for your business.
             </p>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a Free Demo
-              <ArrowRight size={15} />
+              Book a free demo
             </Link>
           </div>
         </div>

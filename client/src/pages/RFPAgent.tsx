@@ -7,7 +7,7 @@
  */
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Pause, Play } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Clock, Pause, Play } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -147,7 +147,7 @@ export default function RFPAgent() {
       {/* HEADER */}
       <section style={{ paddingTop: 64, background: "var(--fyro-bg)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "4rem 2.5rem 2rem" }}>
-          <Link href="/services" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.1em", color: "var(--fyro-gray-mid)", textDecoration: "none", marginBottom: "2.5rem", transition: "color 0.18s ease" }}
+          <Link href="/services" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-gray-mid)", textDecoration: "none", marginBottom: "2.5rem", transition: "color 0.18s ease" }}
             onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "var(--fyro-near-black)")}
             onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "var(--fyro-gray-mid)")}
           >
@@ -156,19 +156,19 @@ export default function RFPAgent() {
           <div style={{ marginBottom: "0.75rem" }}>
             <span className="fyro-section-label">Live deployment</span>
           </div>
-          <h1 style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, color: "var(--fyro-near-black)", letterSpacing: "-0.025em", maxWidth: 720, marginBottom: "1rem" }}>
+          <h1 style={{ fontFamily: "var(--fyro-font)", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, color: "var(--fyro-near-black)", letterSpacing: "-0.025em", maxWidth: 720, marginBottom: "1rem" }}>
             RFP Response Agent — live walkthrough.
           </h1>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "var(--fyro-gray-mid)", lineHeight: 1.75, maxWidth: 600, marginBottom: "1.5rem" }}>
+          <p style={{ fontFamily: "var(--fyro-font)", fontSize: "1rem", color: "var(--fyro-gray-mid)", lineHeight: 1.75, maxWidth: 600, marginBottom: "1.5rem" }}>
             Six stations. Eight minutes from discovery to submission-ready proposal — with a human approval gate at the go/no-go decision.
           </p>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "var(--fyro-panel)", border: "1px solid var(--fyro-border)", borderRadius: "999px", padding: "0.5rem 1rem", fontFamily: "'DM Mono', monospace" }}>
-            <Clock size={12} style={{ color: "var(--fyro-orange)" }} />
-            <span style={{ fontSize: "0.65rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.08em" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "var(--fyro-panel)", border: "1px solid var(--fyro-border)", borderRadius: "999px", padding: "0.5rem 1rem", fontFamily: "var(--fyro-font)" }}>
+            <Clock size={12} style={{ color: "var(--fyro-accent-text)" }} />
+            <span style={{ fontSize: "0.85rem", color: "var(--fyro-gray-mid)", letterSpacing: "0" }}>
               TOTAL RUNTIME: <strong style={{ color: "var(--fyro-near-black)" }}>8 MINUTES 04 SECONDS</strong>
             </span>
-            <span style={{ fontSize: "0.65rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.06em", marginLeft: "0.5rem" }}>
-              vs. <strong style={{ color: "var(--fyro-orange)" }}>3 WEEKS MANUAL</strong>
+            <span style={{ fontSize: "0.85rem", color: "var(--fyro-gray-mid)", letterSpacing: "0", marginLeft: "0.5rem" }}>
+              vs. <strong style={{ color: "var(--fyro-accent-text)" }}>3 WEEKS MANUAL</strong>
             </span>
           </div>
         </div>
@@ -182,14 +182,14 @@ export default function RFPAgent() {
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "3.5rem", flexWrap: "wrap" }}>
             {STATIONS.map((s, i) => (
               <button key={s.id} onClick={() => handleGoTo(i)}
-                style={{ display: "flex", alignItems: "center", gap: "0.45rem", padding: "0.4rem 0.9rem", borderRadius: "999px", border: `1px solid ${i === activeIdx ? "var(--fyro-near-black)" : "var(--fyro-border)"}`, background: i === activeIdx ? "var(--fyro-near-black)" : "transparent", color: i === activeIdx ? "#fff" : "var(--fyro-gray-mid)", fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.1em", cursor: "pointer", transition: "all 0.2s ease" }}
+                style={{ display: "flex", alignItems: "center", gap: "0.45rem", padding: "0.4rem 0.9rem", borderRadius: "999px", border: `1px solid ${i === activeIdx ? "var(--fyro-near-black)" : "var(--fyro-border)"}`, background: i === activeIdx ? "var(--fyro-near-black)" : "transparent", color: i === activeIdx ? "#fff" : "var(--fyro-gray-mid)", fontFamily: "var(--fyro-font)", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0", cursor: "pointer", transition: "all 0.2s ease" }}
               >
                 <span style={{ width: 6, height: 6, borderRadius: "50%", background: i === activeIdx ? "#fff" : i < activeIdx ? "var(--fyro-orange)" : "var(--fyro-border)", flexShrink: 0, transition: "background 0.2s ease" }} />
                 {s.phase}
               </button>
             ))}
             <button onClick={() => setPaused((p) => !p)}
-              style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "0.4rem", padding: "0.4rem 0.9rem", borderRadius: "999px", border: "1px solid var(--fyro-border)", background: "transparent", color: "var(--fyro-gray-mid)", fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.1em", cursor: "pointer" }}
+              style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "0.4rem", padding: "0.4rem 0.9rem", borderRadius: "999px", border: "1px solid var(--fyro-border)", background: "transparent", color: "var(--fyro-gray-mid)", fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", cursor: "pointer" }}
             >
               {paused ? <Play size={10} /> : <Pause size={10} />}
               {paused ? "PLAY" : "PAUSE"}
@@ -201,56 +201,56 @@ export default function RFPAgent() {
 
             {/* LEFT: Copy */}
             <div key={`left-${animKey}`} style={{ animation: "slide-in-left 0.4s cubic-bezier(0.23,1,0.32,1)" }}>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "var(--fyro-orange)", textTransform: "uppercase", marginBottom: "1.25rem" }}>
+              <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", fontWeight: 700, letterSpacing: "0", color: "var(--fyro-accent-text)", marginBottom: "1.25rem" }}>
                 STATION {station.id} / {station.phase}
               </div>
-              <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 800, color: "var(--fyro-near-black)", letterSpacing: "-0.025em", lineHeight: 1.1, marginBottom: "1.25rem" }}>
+              <h2 style={{ fontFamily: "var(--fyro-font)", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 800, color: "var(--fyro-near-black)", letterSpacing: "-0.025em", lineHeight: 1.1, marginBottom: "1.25rem" }}>
                 {station.headline}
               </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "var(--fyro-gray-mid)", lineHeight: 1.8, marginBottom: "2rem", maxWidth: 460 }}>
+              <p style={{ fontFamily: "var(--fyro-font)", fontSize: "1rem", color: "var(--fyro-gray-mid)", lineHeight: 1.8, marginBottom: "2rem", maxWidth: 460 }}>
                 {station.body}
               </p>
               {station.isGate && (
-                <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.25)", borderRadius: "8px", padding: "0.75rem 1rem", fontFamily: "'DM Mono', monospace", marginBottom: "2rem" }}>
-                  <span style={{ fontSize: "0.6rem", color: "#f59e0b", fontWeight: 700, letterSpacing: "0.1em" }}>⚠ HUMAN APPROVAL GATE</span>
-                  <span style={{ fontSize: "0.6rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.04em" }}>— Agent pauses until decision is made</span>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.25)", borderRadius: "8px", padding: "0.75rem 1rem", fontFamily: "var(--fyro-font)", marginBottom: "2rem" }}>
+                  <span style={{ fontSize: "0.85rem", color: "#f59e0b", fontWeight: 700, letterSpacing: "0" }}>⚠ HUMAN APPROVAL GATE</span>
+                  <span style={{ fontSize: "0.85rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.04em" }}>— Agent pauses until decision is made</span>
                 </div>
               )}
               <div style={{ background: "var(--fyro-panel)", borderRadius: "8px", padding: "1rem 1.25rem", display: "flex", alignItems: "flex-start", gap: "0.6rem", marginBottom: "2.5rem" }}>
-                <CheckCircle2 size={14} style={{ color: "var(--fyro-orange)", flexShrink: 0, marginTop: "0.1rem" }} />
-                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.7rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{station.highlight}</span>
+                <CheckCircle2 size={14} style={{ color: "var(--fyro-accent-text)", flexShrink: 0, marginTop: "0.1rem" }} />
+                <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.6 }}>{station.highlight}</span>
               </div>
               <div style={{ display: "flex", gap: "0.75rem" }}>
                 <button onClick={() => handleGoTo((activeIdx - 1 + STATIONS.length) % STATIONS.length)}
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.08em", color: "var(--fyro-gray-mid)", background: "none", border: "1px solid var(--fyro-border)", borderRadius: "6px", padding: "0.5rem 1rem", cursor: "pointer", transition: "all 0.18s ease" }}
+                  style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-gray-mid)", background: "none", border: "1px solid var(--fyro-border)", borderRadius: "6px", padding: "0.5rem 1rem", cursor: "pointer", transition: "all 0.18s ease" }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--fyro-near-black)"; (e.currentTarget as HTMLElement).style.color = "var(--fyro-near-black)"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--fyro-border)"; (e.currentTarget as HTMLElement).style.color = "var(--fyro-gray-mid)"; }}
                 >
                   <ArrowLeft size={12} /> PREV
                 </button>
                 <button onClick={() => handleGoTo((activeIdx + 1) % STATIONS.length)}
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.08em", color: "var(--fyro-gray-mid)", background: "none", border: "1px solid var(--fyro-border)", borderRadius: "6px", padding: "0.5rem 1rem", cursor: "pointer", transition: "all 0.18s ease" }}
+                  style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-gray-mid)", background: "none", border: "1px solid var(--fyro-border)", borderRadius: "6px", padding: "0.5rem 1rem", cursor: "pointer", transition: "all 0.18s ease" }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--fyro-near-black)"; (e.currentTarget as HTMLElement).style.color = "var(--fyro-near-black)"; }}
                   onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--fyro-border)"; (e.currentTarget as HTMLElement).style.color = "var(--fyro-gray-mid)"; }}
                 >
-                  NEXT <ArrowRight size={12} />
+                  NEXT
                 </button>
               </div>
             </div>
 
             {/* RIGHT: Agent UI Card */}
             <div key={`right-${animKey}`} style={{ animation: "slide-in-right 0.4s cubic-bezier(0.23,1,0.32,1)" }}>
-              <div style={{ background: "var(--fyro-bg)", border: "1px solid var(--fyro-border)", borderRadius: "12px", padding: "1.75rem", boxShadow: "0 4px 32px rgba(0,0,0,0.06)", fontFamily: "'DM Mono', monospace" }}>
+              <div style={{ background: "var(--fyro-bg)", border: "1px solid var(--fyro-border)", borderRadius: "12px", padding: "1.75rem", boxShadow: "0 4px 32px rgba(0,0,0,0.06)", fontFamily: "var(--fyro-font)" }}>
                 {/* Card header */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", background: `${station.statusColor}15`, border: `1px solid ${station.statusColor}40`, borderRadius: "999px", padding: "0.2rem 0.75rem", fontSize: "0.6rem", fontWeight: 600, color: station.statusColor, letterSpacing: "0.1em" }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", background: `${station.statusColor}15`, border: `1px solid ${station.statusColor}40`, borderRadius: "999px", padding: "0.2rem 0.75rem", fontSize: "0.85rem", fontWeight: 600, color: station.statusColor, letterSpacing: "0" }}>
                       <span style={{ width: 5, height: 5, borderRadius: "50%", background: station.statusColor, display: "inline-block", animation: "rfp-dot-pulse 1.5s infinite" }} />
                       {station.status}
                     </span>
-                    <span style={{ fontSize: "0.65rem", color: "var(--fyro-gray-light)" }}>RFP Agent · <strong style={{ color: "var(--fyro-near-black)" }}>Station {station.id}</strong></span>
+                    <span style={{ fontSize: "0.85rem", color: "var(--fyro-gray-light)" }}>RFP Agent · <strong style={{ color: "var(--fyro-near-black)" }}>Station {station.id}</strong></span>
                   </div>
-                  <span style={{ fontSize: "0.6rem", color: "var(--fyro-gray-light)", letterSpacing: "0.04em" }}>{station.time}</span>
+                  <span style={{ fontSize: "0.85rem", color: "var(--fyro-gray-light)", letterSpacing: "0.04em" }}>{station.time}</span>
                 </div>
 
                 {/* Pipeline nodes */}
@@ -275,7 +275,7 @@ export default function RFPAgent() {
                 <div style={{ borderTop: "1px solid #F0F0EC", paddingTop: "1.25rem", marginBottom: "1rem" }}>
                   {station.fields.map((field) => (
                     <div key={field.label} style={{ display: "flex", gap: "1rem", padding: "0.55rem 0", borderBottom: "1px solid #F8F8F6" }}>
-                      <span style={{ fontSize: "0.55rem", color: "var(--fyro-gray-light)", letterSpacing: "0.12em", textTransform: "uppercase", minWidth: 110, flexShrink: 0, paddingTop: "0.1rem" }}>{field.label}</span>
+                      <span style={{ fontSize: "0.55rem", color: "var(--fyro-gray-light)", letterSpacing: "0", minWidth: 110, flexShrink: 0, paddingTop: "0.1rem" }}>{field.label}</span>
                       <span style={{ fontSize: "0.68rem", color: "var(--fyro-near-black)", lineHeight: 1.5 }}>{field.value}</span>
                     </div>
                   ))}
@@ -287,7 +287,7 @@ export default function RFPAgent() {
                     <div style={{ height: "100%", width: `${progress}%`, background: station.statusColor, borderRadius: 2, transition: paused ? "none" : "width 0.05s linear" }} />
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", marginTop: "0.5rem" }}>
-                    <span style={{ fontSize: "0.55rem", color: "var(--fyro-gray-light)", letterSpacing: "0.08em" }}>{station.stepLabel}</span>
+                    <span style={{ fontSize: "0.55rem", color: "var(--fyro-gray-light)", letterSpacing: "0" }}>{station.stepLabel}</span>
                     <span style={{ fontSize: "0.55rem", color: "var(--fyro-gray-light)", letterSpacing: "0.04em" }}>{station.time}</span>
                   </div>
                 </div>
@@ -298,13 +298,13 @@ export default function RFPAgent() {
           {/* CTA */}
           <div style={{ borderTop: "1px solid var(--fyro-border)", marginTop: "5rem", paddingTop: "4rem", paddingBottom: "2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "2rem" }}>
             <div>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.15em", color: "var(--fyro-orange)", marginBottom: "0.75rem" }}>WANT THIS FOR YOUR COMPANY?</div>
-              <h3 style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 800, color: "var(--fyro-near-black)", letterSpacing: "-0.025em", maxWidth: 520 }}>
+              <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", fontWeight: 700, letterSpacing: "0", color: "var(--fyro-accent-text)", marginBottom: "0.75rem" }}>WANT THIS FOR YOUR COMPANY?</div>
+              <h3 style={{ fontFamily: "var(--fyro-font)", fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 800, color: "var(--fyro-near-black)", letterSpacing: "-0.025em", maxWidth: 520 }}>
                 We build this for government contractors and service firms. Book a call to see what it looks like for your operation.
               </h3>
             </div>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", flexShrink: 0 }}>
-              Book a Free Demo <ArrowRight size={15} />
+              Book a free demo
             </Link>
           </div>
         </div>

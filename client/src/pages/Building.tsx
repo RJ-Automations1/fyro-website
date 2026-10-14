@@ -25,10 +25,9 @@ function StatusChip({ status }: { status: WorkItem["status"] }) {
         display: "inline-flex",
         alignItems: "center",
         gap: 6,
-        fontFamily: "'DM Mono', monospace",
+        fontFamily: "var(--fyro-font)",
         fontSize: 10,
-        letterSpacing: "0.12em",
-        textTransform: "uppercase",
+        letterSpacing: "0",
         padding: "4px 9px",
         border: `1px solid ${live ? "rgba(248,121,4,0.35)" : "var(--fyro-border)"}`,
         color: live ? "var(--fyro-orange)" : "var(--fyro-gray-light)",
@@ -65,7 +64,7 @@ export default function Building() {
           <span className="fyro-category-pill">Building</span>
           <h1
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
               fontWeight: 800,
               color: "var(--fyro-near-black)",
@@ -79,7 +78,7 @@ export default function Building() {
           </h1>
           <p
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "1.05rem",
               color: "var(--fyro-gray-mid)",
               lineHeight: 1.75,
@@ -100,7 +99,7 @@ export default function Building() {
               <div key={s.l}>
                 <div
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "2rem",
                     fontWeight: 800,
                     color: "var(--fyro-near-black)",
@@ -112,10 +111,9 @@ export default function Building() {
                 </div>
                 <div
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: 11,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
+                    letterSpacing: "0",
                     color: "var(--fyro-gray-light)",
                     marginTop: 4,
                   }}
@@ -148,10 +146,9 @@ export default function Building() {
                   <div style={{ display: "flex", alignItems: "center", gap: 12, justifyContent: "space-between", marginBottom: 14 }}>
                     <p
                       style={{
-                        fontFamily: "'DM Mono', monospace",
+                        fontFamily: "var(--fyro-font)",
                         fontSize: 10,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
+                        letterSpacing: "0",
                         color: "var(--fyro-gray-light)",
                       }}
                     >
@@ -162,7 +159,7 @@ export default function Building() {
 
                   <h2
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "1.3rem",
                       fontWeight: 700,
                       color: "var(--fyro-near-black)",
@@ -175,7 +172,7 @@ export default function Building() {
 
                   <p
                     style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "0.95rem",
                       color: "var(--fyro-gray-dark)",
                       lineHeight: 1.7,
@@ -188,12 +185,12 @@ export default function Building() {
                   <ul style={{ listStyle: "none", padding: 0, margin: "0 0 16px", display: "flex", flexDirection: "column", gap: 8 }}>
                     {w.facts.map((f) => (
                       <li key={f} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                        <span aria-hidden="true" style={{ color: "var(--fyro-orange)", fontSize: 13, lineHeight: 1.6, flexShrink: 0 }}>
+                        <span aria-hidden="true" style={{ color: "var(--fyro-accent-text)", fontSize: 13, lineHeight: 1.6, flexShrink: 0 }}>
                           →
                         </span>
                         <span
                           style={{
-                            fontFamily: "'DM Sans', sans-serif",
+                            fontFamily: "var(--fyro-font)",
                             fontSize: "0.875rem",
                             color: "var(--fyro-gray-mid)",
                             lineHeight: 1.6,
@@ -207,10 +204,9 @@ export default function Building() {
 
                   <p
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: 10,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
+                      letterSpacing: "0",
                       color: "var(--fyro-gray-light)",
                       borderTop: "1px solid var(--fyro-border)",
                       paddingTop: 14,
@@ -230,7 +226,7 @@ export default function Building() {
         <div style={section}>
           <h2
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
               fontWeight: 800,
               color: "#fff",
@@ -241,11 +237,11 @@ export default function Building() {
           >
             Want one of these running in your business?
           </h2>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 460, marginBottom: 28 }}>
+          <p style={{ fontFamily: "var(--fyro-font)", fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 460, marginBottom: 28 }}>
             Book a free 15-minute call. We&rsquo;ll walk through your operation and tell you exactly what we&rsquo;d build.
           </p>
           <Link href="/contact" className="fyro-btn-primary">
-            Book a Free Demo →
+            Book a free demo
           </Link>
         </div>
       </section>

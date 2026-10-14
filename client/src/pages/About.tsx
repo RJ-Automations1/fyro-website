@@ -6,7 +6,6 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FyroLogo from "@/components/FyroLogo";
@@ -64,7 +63,7 @@ const FAQS = [
 ];
 
 const h2Style = {
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "var(--fyro-font)",
   fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
   fontWeight: 800,
   color: "var(--fyro-near-black)",
@@ -73,7 +72,7 @@ const h2Style = {
 };
 
 const bodyText = {
-  fontFamily: "'DM Sans', sans-serif",
+  fontFamily: "var(--fyro-font)",
   fontSize: "1.1rem",
   color: "var(--fyro-gray-mid)",
   lineHeight: 1.8,
@@ -119,7 +118,7 @@ export default function About() {
             <h1
               className="fade-up"
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "clamp(2.5rem, 5vw, 4.25rem)",
                 fontWeight: 800,
                 color: "var(--fyro-near-black)",
@@ -129,7 +128,7 @@ export default function About() {
               }}
             >
               An AI consulting firm that{" "}
-              <span style={{ color: "var(--fyro-orange)" }}>builds, not advises.</span>
+              builds, not advises.
             </h1>
 
             <p className="fade-up" style={{ ...bodyText, fontSize: "1.25rem", lineHeight: 1.65, maxWidth: 560, marginBottom: "2rem" }}>
@@ -139,8 +138,7 @@ export default function About() {
 
             <div className="fade-up" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
               <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "1rem", padding: "0.9rem 1.9rem" }}>
-                Book a Free Demo
-                <ArrowRight size={16} />
+                Book a free demo
               </Link>
               <Link href="/founder" className="fyro-btn-outline" style={{ fontSize: "1rem", padding: "0.9rem 1.6rem" }}>
                 Meet the founder
@@ -158,7 +156,7 @@ export default function About() {
               />
               <figcaption style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "4rem 1.5rem 1.4rem", background: "linear-gradient(transparent, rgba(0,0,0,0.88))" }}>
                 <span className="fyro-section-label">Founder &amp; Owner</span>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.6rem", fontWeight: 800, color: "#fff", marginTop: "0.3rem", letterSpacing: "-0.02em" }}>
+                <p style={{ fontFamily: "var(--fyro-font)", fontSize: "1.6rem", fontWeight: 800, color: "#fff", marginTop: "0.3rem", letterSpacing: "-0.02em" }}>
                   Robert Robinson Jr.
                 </p>
               </figcaption>
@@ -174,7 +172,7 @@ export default function About() {
       </section>
 
       {/* ── MEET THE FOUNDER ── */}
-      <section style={{ padding: "6rem 0", background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
+      <section className="surface-light" style={{ padding: "6rem 0", background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={sectionStyle}>
           <div className="fade-up" id="meet-grid" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: "4rem", alignItems: "start" }}>
             <div>
@@ -191,8 +189,8 @@ export default function About() {
                   { place: "AfroTech 2025", sub: "Houston · Selected & featured" },
                 ].map((c) => (
                   <div key={c.place} style={{ borderLeft: "2px solid var(--fyro-orange)", paddingLeft: "0.85rem" }}>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 700, color: "var(--fyro-near-black)" }}>{c.place}</p>
-                    <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.72rem", letterSpacing: "0.06em", color: "var(--fyro-gray-light)", marginTop: 3 }}>{c.sub}</p>
+                    <p style={{ fontFamily: "var(--fyro-font)", fontSize: "1rem", fontWeight: 700, color: "var(--fyro-near-black)" }}>{c.place}</p>
+                    <p style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-gray-light)", marginTop: 3 }}>{c.sub}</p>
                   </div>
                 ))}
               </div>
@@ -209,12 +207,12 @@ export default function About() {
                   "Stays with it until the system is live and working",
                 ].map((b) => (
                   <li key={b} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", fontSize: "1.1rem", color: "var(--fyro-gray-dark)", lineHeight: 1.55 }}>
-                    <span style={{ color: "var(--fyro-orange)", fontWeight: 800 }}>→</span> {b}
+                    <span style={{ color: "var(--fyro-accent-text)", fontWeight: 800 }}>→</span> {b}
                   </li>
                 ))}
               </ul>
               <Link href="/founder" className="fyro-link" style={{ fontSize: "1rem" }}>
-                Read RJ&rsquo;s story <ArrowRight size={15} />
+                Read RJ&rsquo;s story
               </Link>
             </div>
           </div>
@@ -277,7 +275,7 @@ export default function About() {
       </section>
 
       {/* ── WHO WE SERVE ── */}
-      <section style={{ padding: "6rem 0", background: "var(--fyro-bg)", borderTop: "1px solid var(--fyro-border)" }}>
+      <section className="surface-light" style={{ padding: "6rem 0", background: "var(--fyro-bg)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={sectionStyle}>
           <div className="fade-up" id="serve-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
             <div>
@@ -325,7 +323,7 @@ export default function About() {
               <div key={p.title} style={{ paddingTop: "1.5rem", borderTop: "2px solid var(--fyro-orange)" }}>
                 <h3
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "1.2rem",
                     fontWeight: 700,
                     color: "var(--fyro-near-black)",
@@ -351,7 +349,7 @@ export default function About() {
       </section>
 
       {/* ── FAQ ── */}
-      <section style={{ padding: "6rem 0", background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
+      <section className="surface-light" style={{ padding: "6rem 0", background: "var(--fyro-bg-section)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={sectionStyle}>
           <div className="fade-up" style={{ marginBottom: "0.75rem" }}>
             <span className="fyro-section-label">FAQ</span>
@@ -379,7 +377,7 @@ export default function About() {
                 >
                   <span
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "0.95rem",
                       fontWeight: 600,
                       color: "var(--fyro-near-black)",
@@ -390,7 +388,7 @@ export default function About() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "1.1rem",
                       color: "var(--fyro-gray-mid)",
                       flexShrink: 0,
@@ -429,7 +427,6 @@ export default function About() {
             </p>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
               Pick a time
-              <ArrowRight size={15} />
             </Link>
           </div>
         </div>

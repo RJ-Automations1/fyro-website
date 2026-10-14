@@ -191,11 +191,11 @@ export default function Article() {
       <div style={{ background: "var(--fyro-bg)", minHeight: "100vh" }}>
         <Navbar />
         <div style={{ maxWidth: 800, margin: "0 auto", padding: "10rem 2rem", textAlign: "center" }}>
-          <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "2rem", fontWeight: 800, color: "var(--fyro-near-black)", marginBottom: "1rem" }}>
+          <h1 style={{ fontFamily: "var(--fyro-font)", fontSize: "2rem", fontWeight: 800, color: "var(--fyro-near-black)", marginBottom: "1rem" }}>
             Article not found
           </h1>
           <Link href="/insights">
-            <span style={{ color: "var(--fyro-orange)", fontFamily: "'DM Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.08em", cursor: "pointer" }}>
+            <span style={{ color: "var(--fyro-accent-text)", fontFamily: "var(--fyro-font)", fontSize: "0.75rem", letterSpacing: "0", cursor: "pointer" }}>
               ← Back to Insights
             </span>
           </Link>
@@ -220,9 +220,9 @@ export default function Article() {
           <span
             style={{
               display: "inline-flex", alignItems: "center", gap: "0.4rem",
-              fontSize: "0.7rem", color: "var(--fyro-gray-light)", letterSpacing: "0.08em",
-              textTransform: "uppercase", cursor: "pointer", marginBottom: "2.5rem",
-              fontFamily: "'DM Mono', monospace",
+              fontSize: "0.85rem", color: "var(--fyro-gray-light)", letterSpacing: "0",
+              cursor: "pointer", marginBottom: "2.5rem",
+              fontFamily: "var(--fyro-font)",
             }}
           >
             <ArrowLeft size={11} /> Back to Insights
@@ -232,25 +232,25 @@ export default function Article() {
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
           <span
             style={{
-              fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", fontWeight: 700,
-              letterSpacing: "0.12em", color: "var(--fyro-orange)",
+              fontFamily: "var(--fyro-font)", fontSize: "0.85rem", fontWeight: 700,
+              letterSpacing: "0", color: "var(--fyro-accent-text)",
             }}
           >
             {article.category}
           </span>
           <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fyro-border)", display: "inline-block" }} />
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", color: "var(--fyro-gray-light)", letterSpacing: "0.06em" }}>
+          <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "var(--fyro-gray-light)", letterSpacing: "0" }}>
             {article.date}
           </span>
           <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fyro-border)", display: "inline-block" }} />
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", color: "var(--fyro-gray-light)", letterSpacing: "0.06em" }}>
+          <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "var(--fyro-gray-light)", letterSpacing: "0" }}>
             {article.read}
           </span>
         </div>
 
         <h1
           style={{
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "var(--fyro-font)",
             fontSize: "clamp(2rem, 4vw, 3rem)",
             fontWeight: 800,
             color: "var(--fyro-near-black)",
@@ -264,7 +264,7 @@ export default function Article() {
 
         <p
           style={{
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "var(--fyro-font)",
             fontSize: "1.15rem",
             color: "var(--fyro-gray-mid)",
             lineHeight: 1.7,
@@ -287,7 +287,7 @@ export default function Article() {
               <p
                 key={i}
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "var(--fyro-font)",
                   fontSize: "1.05rem",
                   color: "var(--fyro-near-black)",
                   lineHeight: 1.85,
@@ -303,7 +303,7 @@ export default function Article() {
               <h2
                 key={i}
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "var(--fyro-font)",
                   fontSize: "1.4rem",
                   fontWeight: 800,
                   color: "var(--fyro-near-black)",
@@ -321,7 +321,7 @@ export default function Article() {
               <h3
                 key={i}
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "var(--fyro-font)",
                   fontSize: "1.1rem",
                   fontWeight: 700,
                   color: "var(--fyro-near-black)",
@@ -342,7 +342,7 @@ export default function Article() {
                   borderLeft: "3px solid var(--fyro-orange)",
                   paddingLeft: "1.5rem",
                   margin: "2.5rem 0",
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "var(--fyro-font)",
                   fontSize: "1.15rem",
                   fontStyle: "italic",
                   color: "var(--fyro-near-black)",
@@ -360,7 +360,7 @@ export default function Article() {
                   <li
                     key={j}
                     style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "1.05rem",
                       color: "var(--fyro-near-black)",
                       lineHeight: 1.7,
@@ -399,15 +399,15 @@ export default function Article() {
               flexShrink: 0,
             }}
           >
-            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.7rem", fontWeight: 700, color: "#fff", letterSpacing: "0.04em" }}>RJ</span>
+            <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", fontWeight: 700, color: "#fff", letterSpacing: "0.04em" }}>RJ</span>
           </div>
           <div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", fontWeight: 700, color: "var(--fyro-near-black)" }}>
+            <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.875rem", fontWeight: 700, color: "var(--fyro-near-black)" }}>
               Written by{" "}
               <Link href="/founder" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>RJ</Link>
               {" "}— Founder, Fyro
             </div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "var(--fyro-gray-light)", marginTop: "0.15rem" }}>
+            <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.8rem", color: "var(--fyro-gray-light)", marginTop: "0.15rem" }}>
               AI consultant for service companies. Featured speaker at IBM New York and Morehouse College DreamMakers Summit.
             </div>
           </div>
@@ -424,14 +424,14 @@ export default function Article() {
               borderRadius: "8px",
             }}
           >
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", color: "var(--fyro-gray-light)", letterSpacing: "0.12em", marginBottom: "0.75rem" }}>
+            <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "var(--fyro-gray-light)", letterSpacing: "0", marginBottom: "0.75rem" }}>
               NEXT ARTICLE
             </div>
             <Link href={`/insights/${nextArticle.slug}`}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer" }}>
                 <h3
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "1.05rem",
                     fontWeight: 700,
                     color: "var(--fyro-near-black)",
@@ -463,10 +463,10 @@ export default function Article() {
           }}
         >
           <div>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>
+            <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0", marginBottom: "0.5rem" }}>
               READY TO BUILD?
             </div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: "#fff", lineHeight: 1.4, maxWidth: 360 }}>
+            <p style={{ fontFamily: "var(--fyro-font)", fontSize: "1rem", fontWeight: 600, color: "#fff", lineHeight: 1.4, maxWidth: 360 }}>
               Book a free demo and we'll show you what this looks like for your operation.
             </p>
           </div>
@@ -477,10 +477,10 @@ export default function Article() {
                 background: "var(--fyro-orange)", color: "#fff",
                 padding: "0.875rem 1.75rem", borderRadius: "6px",
                 fontSize: "0.875rem", fontWeight: 600, cursor: "pointer",
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "var(--fyro-font)",
               }}
             >
-              Book a Free Demo <ArrowRight size={14} />
+              Book a free demo
             </span>
           </Link>
         </div>

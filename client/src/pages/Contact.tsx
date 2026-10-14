@@ -7,7 +7,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ArrowRight, Calendar, Clock, CheckCircle2, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { Calendar, Clock, CheckCircle2, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 
 // ── Types ───────────────────────────────────────────────────────────────────
 type AvailSlot = { label: string; startISO: string; available: boolean };
@@ -52,7 +52,7 @@ function MiniCalendar({ selected, onSelect }: { selected: Date; onSelect: (d: Da
         >
           <ChevronLeft size={16} />
         </button>
-        <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "var(--fyro-near-black)" }}>
+        <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-near-black)" }}>
           {monthNames[month]} {year}
         </span>
         <button
@@ -64,7 +64,7 @@ function MiniCalendar({ selected, onSelect }: { selected: Date; onSelect: (d: Da
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "2px", marginBottom: "4px" }}>
         {dayNames.map((d) => (
-          <div key={d} style={{ textAlign: "center" as const, fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", color: "var(--fyro-gray-light)", padding: "2px 0" }}>{d}</div>
+          <div key={d} style={{ textAlign: "center" as const, fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "var(--fyro-gray-light)", padding: "2px 0" }}>{d}</div>
         ))}
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "2px" }}>
@@ -80,7 +80,7 @@ function MiniCalendar({ selected, onSelect }: { selected: Date; onSelect: (d: Da
               disabled={isPast || isWeekend}
               onClick={() => !isPast && !isWeekend && onSelect(day)}
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "0.78rem",
                 width: "100%",
                 aspectRatio: "1",
@@ -160,20 +160,20 @@ function BookingSidebar({
       <div style={{ padding: "1.25rem 1.5rem", borderBottom: "1px solid var(--fyro-border)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
           <Calendar size={14} color="var(--fyro-orange)" />
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase" as const, color: "var(--fyro-orange)", fontWeight: 500 }}>
+          <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-accent-text)", fontWeight: 500 }}>
             Pick a Time
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
           <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e" }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "var(--fyro-gray-mid)" }}>Accepting calls</span>
+          <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.75rem", color: "var(--fyro-gray-mid)" }}>Accepting calls</span>
         </div>
       </div>
 
       {/* Duration */}
       <div style={{ padding: "0.9rem 1.5rem", borderBottom: "1px solid var(--fyro-border)", display: "flex", alignItems: "center", gap: "0.5rem", background: "var(--fyro-bg)" }}>
         <Clock size={13} color="var(--fyro-gray-mid)" />
-        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "var(--fyro-gray-mid)" }}>
+        <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.82rem", color: "var(--fyro-gray-mid)" }}>
           15-minute free demo · Eastern Time
         </span>
       </div>
@@ -185,25 +185,25 @@ function BookingSidebar({
 
       {/* Slots */}
       <div style={{ padding: "1.25rem 1.5rem", minHeight: 120 }}>
-        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "var(--fyro-gray-dark)", marginBottom: "0.85rem" }}>
+        <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.62rem", letterSpacing: "0", color: "var(--fyro-gray-dark)", marginBottom: "0.85rem" }}>
           {formatDateLong(selectedDate)}
         </div>
 
         {loading && (
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "var(--fyro-gray-mid)" }}>
             <Loader2 size={14} style={{ animation: "spin 1s linear infinite" }} />
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem" }}>Loading availability…</span>
+            <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.82rem" }}>Loading availability…</span>
           </div>
         )}
 
         {error && !loading && (
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "var(--fyro-orange)" }}>{error}</p>
+          <p style={{ fontFamily: "var(--fyro-font)", fontSize: "0.82rem", color: "var(--fyro-accent-text)" }}>{error}</p>
         )}
 
         {!loading && !error && slots.length > 0 && (
           <>
             {availableSlots.length === 0 ? (
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "var(--fyro-gray-mid)" }}>
+              <p style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "var(--fyro-gray-mid)" }}>
                 No available slots on this day. Please select another date.
               </p>
             ) : (
@@ -221,7 +221,7 @@ function BookingSidebar({
                         })
                       }
                       style={{
-                        fontFamily: "'DM Sans', sans-serif",
+                        fontFamily: "var(--fyro-font)",
                         fontSize: "0.78rem",
                         color: isChosen ? "#fff" : "var(--fyro-near-black)",
                         background: isChosen ? "var(--fyro-orange)" : "var(--fyro-bg)",
@@ -247,11 +247,11 @@ function BookingSidebar({
         <div style={{ padding: "1rem 1.5rem", borderTop: "1px solid var(--fyro-border)", background: "rgba(34,197,94,0.10)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <CheckCircle2 size={14} color="#16a34a" />
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#4ADE80", fontWeight: 500 }}>
+            <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.82rem", color: "#4ADE80", fontWeight: 500 }}>
               {selectedSlot.label} · {selectedSlot.date}
             </span>
           </div>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: "#16a34a", margin: "0.25rem 0 0", opacity: 0.8 }}>
+          <p style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "#16a34a", margin: "0.25rem 0 0", opacity: 0.8 }}>
             Slot selected — fill out the form and submit to confirm.
           </p>
         </div>
@@ -259,7 +259,7 @@ function BookingSidebar({
 
       {/* Footer */}
       <div style={{ padding: "1rem 1.5rem", borderTop: "1px solid var(--fyro-border)", background: "var(--fyro-bg)" }}>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "var(--fyro-gray-light)", margin: 0 }}>
+        <p style={{ fontFamily: "var(--fyro-font)", fontSize: "0.75rem", color: "var(--fyro-gray-light)", margin: 0 }}>
           Times shown in Eastern Time (ET). Selecting a slot books it directly on our calendar.
         </p>
       </div>
@@ -339,7 +339,7 @@ export default function Contact() {
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
-    fontFamily: "'DM Sans', sans-serif",
+    fontFamily: "var(--fyro-font)",
     fontSize: "0.9rem",
     color: "var(--fyro-near-black)",
     background: "var(--fyro-panel)",
@@ -354,11 +354,10 @@ export default function Contact() {
 
   const labelStyle: React.CSSProperties = {
     display: "block",
-    fontFamily: "'DM Mono', monospace",
-    fontSize: "0.65rem",
+    fontFamily: "var(--fyro-font)",
+    fontSize: "0.85rem",
     fontWeight: 500,
-    letterSpacing: "0.12em",
-    textTransform: "uppercase" as const,
+    letterSpacing: "0",
     color: "var(--fyro-gray-dark)",
     marginBottom: "0.5rem",
   };
@@ -371,12 +370,12 @@ export default function Contact() {
       <section style={{ paddingTop: 64, background: "var(--fyro-bg)" }}>
         <div style={{ ...sectionStyle, padding: "5rem 2.5rem 4rem" }}>
           <div className="fade-up" style={{ marginBottom: "1.75rem" }}>
-            <span className="fyro-category-pill">Book a Free Demo</span>
+            <span className="fyro-category-pill">Book a free demo</span>
           </div>
           <h1
             className="fade-up"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "clamp(2.25rem, 5vw, 4rem)",
               fontWeight: 800,
               color: "var(--fyro-near-black)",
@@ -391,7 +390,7 @@ export default function Contact() {
           <p
             className="fade-up"
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "1.05rem",
               color: "var(--fyro-gray-mid)",
               lineHeight: 1.75,
@@ -450,7 +449,7 @@ export default function Contact() {
                 </div>
                 <h2
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "1.6rem",
                     fontWeight: 700,
                     color: "var(--fyro-near-black)",
@@ -462,7 +461,7 @@ export default function Contact() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "0.95rem",
                     color: "var(--fyro-gray-mid)",
                     lineHeight: 1.7,
@@ -477,7 +476,7 @@ export default function Contact() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "0.85rem",
                     color: "var(--fyro-gray-light)",
                     marginBottom: "2rem",
@@ -506,7 +505,7 @@ export default function Contact() {
                     }}
                   >
                     <CheckCircle2 size={16} color="#16a34a" />
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#4ADE80", fontWeight: 500 }}>
+                    <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.88rem", color: "#4ADE80", fontWeight: 500 }}>
                       {selectedSlot.label} · {selectedSlot.date} (ET)
                     </span>
                   </div>
@@ -523,7 +522,7 @@ export default function Contact() {
                     }}
                   >
                     <Calendar size={15} color="var(--fyro-gray-mid)" />
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "var(--fyro-gray-mid)" }}>
+                    <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "var(--fyro-gray-mid)" }}>
                       Select a time slot from the calendar →
                     </span>
                   </div>
@@ -637,7 +636,7 @@ export default function Contact() {
                       background: "rgba(244,63,94,0.10)",
                       border: "1px solid #fecdd3",
                       borderRadius: "6px",
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "0.85rem",
                       color: "#FB7185",
                     }}
@@ -670,13 +669,12 @@ export default function Contact() {
                     ) : (
                       <>
                         Book my free demo
-                        <ArrowRight size={15} />
                       </>
                     )}
                   </button>
                   <p
                     style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "0.78rem",
                       color: "var(--fyro-gray-light)",
                       marginTop: "0.85rem",
@@ -713,11 +711,10 @@ export default function Contact() {
               >
                 <div
                   style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.15em",
-                    color: "var(--fyro-orange)",
-                    textTransform: "uppercase",
+                    fontFamily: "var(--fyro-font)",
+                    fontSize: "0.85rem",
+                    letterSpacing: "0",
+                    color: "var(--fyro-accent-text)",
                     marginBottom: "1.25rem",
                   }}
                 >
@@ -733,9 +730,9 @@ export default function Contact() {
                     <div key={s.step} style={{ display: "flex", gap: "0.85rem" }}>
                       <span
                         style={{
-                          fontFamily: "'DM Mono', monospace",
-                          fontSize: "0.7rem",
-                          color: "var(--fyro-orange)",
+                          fontFamily: "var(--fyro-font)",
+                          fontSize: "0.85rem",
+                          color: "var(--fyro-accent-text)",
                           flexShrink: 0,
                           paddingTop: "0.1rem",
                         }}
@@ -745,7 +742,7 @@ export default function Contact() {
                       <div>
                         <div
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "var(--fyro-font)",
                             fontSize: "0.85rem",
                             fontWeight: 600,
                             color: "rgba(255,255,255,0.9)",
@@ -756,7 +753,7 @@ export default function Contact() {
                         </div>
                         <div
                           style={{
-                            fontFamily: "'DM Sans', sans-serif",
+                            fontFamily: "var(--fyro-font)",
                             fontSize: "0.8rem",
                             color: "rgba(255,255,255,0.5)",
                             lineHeight: 1.6,
@@ -779,11 +776,10 @@ export default function Contact() {
               >
                 <div
                   style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.15em",
-                    color: "var(--fyro-orange)",
-                    textTransform: "uppercase",
+                    fontFamily: "var(--fyro-font)",
+                    fontSize: "0.85rem",
+                    letterSpacing: "0",
+                    color: "var(--fyro-accent-text)",
                     marginBottom: "1rem",
                   }}
                 >
@@ -798,12 +794,12 @@ export default function Contact() {
                       gap: "0.6rem",
                       color: "rgba(255,255,255,0.85)",
                       textDecoration: "none",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "0.9rem",
                       fontWeight: 500,
                     }}
                   >
-                    <span style={{ color: "var(--fyro-orange)", fontSize: "1rem" }}>📞</span>
+                    <span style={{ color: "var(--fyro-accent-text)", fontSize: "1rem" }}>📞</span>
                     (832) 269-7511
                   </a>
                   <a
@@ -814,12 +810,12 @@ export default function Contact() {
                       gap: "0.6rem",
                       color: "rgba(255,255,255,0.85)",
                       textDecoration: "none",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "0.9rem",
                       fontWeight: 500,
                     }}
                   >
-                    <span style={{ color: "var(--fyro-orange)", fontSize: "1rem" }}>✉️</span>
+                    <span style={{ color: "var(--fyro-accent-text)", fontSize: "1rem" }}>✉️</span>
                     rj@fyroagents.com
                   </a>
                 </div>

@@ -6,7 +6,7 @@
  */
 import { useEffect, useRef } from "react";
 import { Link } from "wouter";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -25,14 +25,14 @@ const PHOTOS = [
 ];
 
 const bodyText = {
-  fontFamily: "'DM Sans', sans-serif",
+  fontFamily: "var(--fyro-font)",
   fontSize: "0.95rem",
   color: "var(--fyro-gray-mid)",
   lineHeight: 1.8,
 };
 
 const h2Style = {
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "var(--fyro-font)",
   fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
   fontWeight: 800,
   color: "var(--fyro-near-black)",
@@ -85,7 +85,7 @@ export default function Founder() {
               <h1
                 className="fade-up"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "var(--fyro-font)",
                   fontSize: "clamp(2.25rem, 4.5vw, 4rem)",
                   fontWeight: 800,
                   color: "var(--fyro-near-black)",
@@ -94,7 +94,7 @@ export default function Founder() {
                   marginBottom: "1rem",
                 }}
               >
-                Robert Robinson <span style={{ color: "var(--fyro-orange)" }}>Jr.</span>
+                Robert Robinson Jr.
               </h1>
               <p className="fade-up" style={{ ...bodyText, fontSize: "1.05rem", maxWidth: 480, marginBottom: "2rem" }}>
                 Founder and owner of Fyro. AI consultant and custom agent architect for
@@ -107,16 +107,15 @@ export default function Founder() {
               >
                 {CREDENTIALS.map((c) => (
                   <div key={c.place}>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 700, color: "var(--fyro-near-black)" }}>{c.place}</p>
-                    <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.66rem", letterSpacing: "0.08em", color: "var(--fyro-gray-light)", marginTop: 3 }}>{c.sub}</p>
+                    <p style={{ fontFamily: "var(--fyro-font)", fontSize: "0.8rem", fontWeight: 700, color: "var(--fyro-near-black)" }}>{c.place}</p>
+                    <p style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-gray-light)", marginTop: 3 }}>{c.sub}</p>
                   </div>
                 ))}
               </div>
 
               <div className="fade-up" style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
                 <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                  Book a Free Demo
-                  <ArrowRight size={15} />
+                  Book a free demo
                 </Link>
                 <a href="https://www.linkedin.com/company/143087532/" target="_blank" rel="noopener noreferrer" className="fyro-link">
                   Fyro on LinkedIn <ArrowUpRight size={14} />
@@ -134,7 +133,7 @@ export default function Founder() {
       </section>
 
       {/* ── STORY ── */}
-      <section style={{ padding: "6rem 0", background: "var(--fyro-bg)" }}>
+      <section className="surface-light" style={{ padding: "6rem 0", background: "var(--fyro-bg)" }}>
         <div style={{ ...sectionStyle, maxWidth: 820 }}>
           <div className="fade-up" style={{ marginBottom: "0.75rem" }}>
             <span className="fyro-section-label">The story</span>
@@ -175,7 +174,6 @@ export default function Founder() {
             </div>
             <Link href="/speaking" className="fyro-btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
               All engagements
-              <ArrowRight size={15} />
             </Link>
           </div>
 
@@ -194,7 +192,7 @@ export default function Founder() {
       </section>
 
       {/* ── BACK TO THE COMPANY ── */}
-      <section style={{ padding: "6rem 0", background: "var(--fyro-bg)", borderTop: "1px solid var(--fyro-border)" }}>
+      <section className="surface-light" style={{ padding: "6rem 0", background: "var(--fyro-bg)", borderTop: "1px solid var(--fyro-border)" }}>
         <div style={sectionStyle} className="fade-up">
           <div style={{ marginBottom: "0.75rem" }}>
             <span className="fyro-section-label">Work with Fyro</span>
@@ -206,7 +204,6 @@ export default function Founder() {
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/building" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
               See the work
-              <ArrowRight size={15} />
             </Link>
             <Link href="/about" className="fyro-btn-outline">About Fyro</Link>
           </div>

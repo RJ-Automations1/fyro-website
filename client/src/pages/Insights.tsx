@@ -56,7 +56,7 @@ export default function Insights() {
           <h1
             className="fade-up"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
               fontWeight: 800,
               color: "var(--fyro-near-black)",
@@ -71,7 +71,7 @@ export default function Insights() {
           <p
             className="fade-up"
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "1.05rem",
               color: "var(--fyro-gray-mid)",
               lineHeight: 1.75,
@@ -105,10 +105,10 @@ export default function Insights() {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: "0.65rem",
+                  fontFamily: "var(--fyro-font)",
+                  fontSize: "0.85rem",
                   fontWeight: 600,
-                  letterSpacing: "0.1em",
+                  letterSpacing: "0",
                   padding: "0.4rem 0.9rem",
                   borderRadius: "999px",
                   border: `1px solid ${activeCategory === cat ? "var(--fyro-near-black)" : "var(--fyro-border)"}`,
@@ -174,13 +174,13 @@ export default function Insights() {
                 >
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.75rem" }}>
-                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.12em", color: "var(--fyro-orange)" }}>{article.category}</span>
-                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", color: "var(--fyro-gray-mid)", letterSpacing: "0.06em" }}>{article.date}</span>
-                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: "var(--fyro-gray-mid)" }}>{article.read}</span>
+                      <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0", color: "var(--fyro-accent-text)" }}>{article.category}</span>
+                      <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", color: "var(--fyro-gray-mid)", letterSpacing: "0" }}>{article.date}</span>
+                      <span style={{ fontFamily: "var(--fyro-font)", fontSize: "0.75rem", color: "var(--fyro-gray-mid)" }}>{article.read}</span>
                     </div>
                     <h2
                       style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "var(--fyro-font)",
                         fontSize: "1.15rem",
                         fontWeight: 700,
                         color: "var(--fyro-near-black)",
@@ -191,7 +191,7 @@ export default function Insights() {
                     >
                       {article.title}
                     </h2>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "var(--fyro-gray-mid)", lineHeight: 1.65, maxWidth: 620 }}>
+                    <p style={{ fontFamily: "var(--fyro-font)", fontSize: "0.875rem", color: "var(--fyro-gray-mid)", lineHeight: 1.65, maxWidth: 620 }}>
                       {article.subtitle}
                     </p>
                   </div>

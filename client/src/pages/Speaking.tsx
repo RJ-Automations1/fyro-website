@@ -5,7 +5,6 @@
  */
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -89,7 +88,7 @@ export default function Speaking() {
           <h1
             className="fade-up"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
               fontWeight: 800,
               color: "var(--fyro-near-black)",
@@ -104,7 +103,7 @@ export default function Speaking() {
           <p
             className="fade-up"
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "1.05rem",
               color: "var(--fyro-gray-mid)",
               lineHeight: 1.75,
@@ -144,7 +143,7 @@ export default function Speaking() {
                 <h2
                   className="fade-up"
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                     fontWeight: 800,
                     color: "var(--fyro-near-black)",
@@ -158,7 +157,7 @@ export default function Speaking() {
                 <p
                   className="fade-up"
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "1rem",
                     color: "var(--fyro-gray-mid)",
                     lineHeight: 1.8,
@@ -169,12 +168,12 @@ export default function Speaking() {
                 </p>
                 <div className="fade-up" style={{ display: "flex", gap: "2rem" }}>
                   <div>
-                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.12em", color: "var(--fyro-gray-mid)", textTransform: "uppercase", marginBottom: "0.25rem" }}>Year</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600, color: "var(--fyro-near-black)" }}>{eng.year}</div>
+                    <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-gray-mid)", marginBottom: "0.25rem" }}>Year</div>
+                    <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.9rem", fontWeight: 600, color: "var(--fyro-near-black)" }}>{eng.year}</div>
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.12em", color: "var(--fyro-gray-mid)", textTransform: "uppercase", marginBottom: "0.25rem" }}>Format</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600, color: "var(--fyro-near-black)" }}>{eng.type}</div>
+                    <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-gray-mid)", marginBottom: "0.25rem" }}>Format</div>
+                    <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.9rem", fontWeight: 600, color: "var(--fyro-near-black)" }}>{eng.type}</div>
                   </div>
                 </div>
               </div>
@@ -197,8 +196,8 @@ export default function Speaking() {
                     />
                   ) : (
                     <div style={{ width: "100%", height: "100%", minHeight: 280, background: "var(--fyro-bg)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.25rem", padding: "2.5rem", textAlign: "center" as const }}>
-                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.18em", color: "var(--fyro-orange)", textTransform: "uppercase" as const }}>AfroTech 2025 · Houston</div>
-                      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", fontWeight: 800, color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.02em" }}>Selected. Competed. Featured.</div>
+                      <div style={{ fontFamily: "var(--fyro-font)", fontSize: "0.85rem", letterSpacing: "0", color: "var(--fyro-accent-text)", }}>AfroTech 2025 · Houston</div>
+                      <div style={{ fontFamily: "var(--fyro-font)", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", fontWeight: 800, color: "#FFFFFF", lineHeight: 1.15, letterSpacing: "-0.02em" }}>Selected. Competed. Featured.</div>
                       <div style={{ width: 40, height: 2, background: "var(--fyro-orange)" }} />
                     </div>
                   )}
@@ -222,7 +221,7 @@ export default function Speaking() {
             <span className="fyro-section-label">DreamMakers Summit 2026</span>
             <h2
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
                 fontWeight: 800,
                 color: "var(--fyro-near-black)",
@@ -273,7 +272,7 @@ export default function Speaking() {
             </div>
             <h2
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                 fontWeight: 800,
                 color: "var(--fyro-near-black)",
@@ -285,7 +284,7 @@ export default function Speaking() {
             </h2>
             <p
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "1rem",
                 color: "var(--fyro-gray-mid)",
                 lineHeight: 1.75,
@@ -299,7 +298,6 @@ export default function Speaking() {
             </p>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
               Get in touch
-              <ArrowRight size={15} />
             </Link>
           </div>
         </div>

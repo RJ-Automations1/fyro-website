@@ -120,3 +120,7 @@ token.json
 
 # Wrangler local state
 .wrangler/
+
+# Google service account key for demo booking (never commit)
+google-service-account.json
+render-env.txt

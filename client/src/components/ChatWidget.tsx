@@ -381,7 +381,7 @@ const CSS = `
 }
 .fyro-chat-teaser-text {
   background: none; border: none; color: var(--fyro-near-black); cursor: pointer; text-align: left;
-  font-family: 'DM Sans', system-ui, sans-serif; font-size: .875rem; padding: 6px 4px 6px 12px;
+  font-family: var(--fyro-font); font-size: .875rem; padding: 6px 4px 6px 12px;
 }
 .fyro-chat-teaser-close {
   background: none; border: none; color: var(--fyro-gray-mid); cursor: pointer;
@@ -395,7 +395,7 @@ const CSS = `
   display: flex; flex-direction: column; overflow: hidden;
   background: var(--fyro-bg); border: 1px solid var(--fyro-border); border-radius: 16px;
   box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-  font-family: 'DM Sans', system-ui, sans-serif; color: var(--fyro-near-black);
+  font-family: var(--fyro-font); color: var(--fyro-near-black);
   animation: fyro-chat-in .2s ease-out;
 }
 @keyframes fyro-chat-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
@@ -406,7 +406,7 @@ const CSS = `
 }
 .fyro-chat-mark { height: 22px; width: auto; }
 .fyro-chat-title { display: flex; flex-direction: column; line-height: 1.2; flex: 1; min-width: 0; }
-.fyro-chat-title > span:first-child { font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: .95rem; }
+.fyro-chat-title > span:first-child { font-family: var(--fyro-font); font-weight: 700; font-size: .95rem; }
 .fyro-chat-status { display: flex; align-items: center; gap: 5px; font-size: .72rem; color: var(--fyro-gray-mid); }
 .fyro-chat-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 6px rgba(34,197,94,.7); }
 .fyro-chat-close {
@@ -444,7 +444,7 @@ const CSS = `
 .fyro-chat-chip {
   background: transparent; color: var(--fyro-near-black); cursor: pointer;
   border: 1px solid var(--fyro-border); border-radius: 999px; padding: 7px 12px;
-  font-family: 'DM Sans', system-ui, sans-serif; font-size: .8rem; transition: border-color .15s, color .15s;
+  font-family: var(--fyro-font); font-size: .8rem; transition: border-color .15s, color .15s;
 }
 .fyro-chat-chip:hover, .fyro-chat-chip:focus-visible { border-color: var(--fyro-orange); color: var(--fyro-orange); }
 
@@ -465,7 +465,7 @@ const CSS = `
   flex: 1; resize: none; min-height: 40px; max-height: 120px;
   background: var(--fyro-bg); color: var(--fyro-near-black);
   border: 1px solid var(--fyro-border); border-radius: 10px; padding: 9px 12px;
-  font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; line-height: 1.35;
+  font-family: var(--fyro-font); font-size: 16px; line-height: 1.35;
 }
 .fyro-chat-input:disabled { opacity: .6; }
 .fyro-chat-send {

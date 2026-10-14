@@ -42,18 +42,27 @@ function Shell({ title, meta, children, footer }: { title: string; meta?: string
   return (
     <div
       style={{
-        background: "rgba(14,14,17,0.88)",
-        border: "1px solid var(--fyro-border)",
-        borderRadius: 12,
+        // Consoles are always dark, even on a light section: pin the role tokens
+        // so text inside never inherits the light palette.
+        ["--fyro-border" as string]: "#262A32",
+        ["--fyro-panel" as string]: "#171A20",
+        ["--fyro-gray-dark" as string]: "#D5D8DE",
+        ["--fyro-gray-mid" as string]: "#A3A9B3",
+        ["--fyro-gray-light" as string]: "#767D88",
+        ["--fyro-near-black" as string]: "#F4F5F7",
+        color: "#F4F5F7",
+        background: "rgba(18,21,26,0.92)",
+        border: "1px solid #262A32",
+        borderRadius: 14,
         overflow: "hidden",
-        boxShadow: "0 20px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(248,121,4,0.04)",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
         backdropFilter: "blur(10px)",
       }}
     >
       <div style={{ padding: "12px 16px", borderBottom: "1px solid var(--fyro-border)", display: "flex", alignItems: "center", gap: 8 }}>
         <LiveDot />
-        <span style={{ fontFamily: mono, fontSize: 11, color: "var(--fyro-orange)", letterSpacing: "0.1em" }}>{title}</span>
-        {meta && <span style={{ marginLeft: "auto", fontFamily: mono, fontSize: 10, color: "var(--fyro-gray-light)" }}>{meta}</span>}
+        <span style={{ fontSize: 14, fontWeight: 600 }}>{title}</span>
+        {meta && <span style={{ marginLeft: "auto", fontSize: 12, color: "var(--fyro-gray-mid)" }}>{meta}</span>}
       </div>
       {children}
       {footer && (
@@ -68,19 +77,19 @@ function Shell({ title, meta, children, footer }: { title: string; meta?: string
 
 /* ── HERO: several agents working at once ─────────────────────────────── */
 const FEED = [
-  { icon: Phone, agent: "Speed-to-Lead Agent", steps: ["New lead · website form", "Calling lead back…", "Qualified · demo booked"] },
-  { icon: Radar, agent: "RFP Agent", steps: ["Scanning procurement portals", "Solicitation matched · scoring fit", "Draft response ready for review"] },
+  { icon: Phone, agent: "Speed-to-Lead Agent", steps: ["New lead from website form", "Calling lead back…", "Qualified and demo booked"] },
+  { icon: Radar, agent: "RFP Agent", steps: ["Scanning procurement portals", "Solicitation matched, scoring fit", "Draft response ready for review"] },
   { icon: LayoutGrid, agent: "CRM Agent", steps: ["Inspection due in 30 days", "Work order created", "Customer notice queued"] },
-  { icon: Workflow, agent: "Workflow Agent", steps: ["Job marked complete", "Invoice generated", "Invoice sent · follow-up scheduled"] },
+  { icon: Workflow, agent: "Workflow Agent", steps: ["Job marked complete", "Invoice generated", "Invoice sent, follow-up scheduled"] },
 ];
 
 export function AgentFeed() {
   const tick = useTick(1400, 12);
   return (
-    <Shell title="AGENTS · RUNNING" meta="24/7" footer={
+    <Shell title="Agents running" meta="Live" footer={
       <>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "var(--fyro-gray-mid)" }}>4 agents active</span>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "#22c55e" }}>● all systems live</span>
+        <span style={{ fontSize: 12, color: "var(--fyro-gray-mid)" }}>4 agents active</span>
+        <span style={{ fontSize: 12, color: "#22c55e" }}>All systems live</span>
       </>
     }>
       <div style={{ padding: "6px 0" }}>
@@ -128,17 +137,17 @@ export function AgentFeed() {
 const CALL_STEPS = [
   { t: "0:00", label: "Lead submits form", sub: "“Need a quote for next week”" },
   { t: "0:04", label: "Agent calls the lead back", sub: "Ringing…" },
-  { t: "0:31", label: "Qualifies with your questions", sub: "Service area ✓ · Timeline ✓ · Budget ✓" },
+  { t: "0:31", label: "Qualifies with your questions", sub: "Service area, timeline, budget confirmed" },
   { t: "1:52", label: "Appointment booked", sub: "Added to your calendar + CRM" },
 ];
 
 export function SpeedToLeadCard() {
   const step = useTick(1600, CALL_STEPS.length + 1);
   return (
-    <Shell title="SPEED-TO-LEAD AGENT · LIVE" meta="calling" footer={
+    <Shell title="Speed-to-lead agent" meta="On a call" footer={
       <>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "var(--fyro-gray-mid)" }}>every lead gets a call</span>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "#22c55e" }}>✓ nights & weekends</span>
+        <span style={{ fontSize: 12, color: "var(--fyro-gray-mid)" }}>Every lead gets a call</span>
+        <span style={{ fontSize: 12, color: "#22c55e" }}>Nights and weekends</span>
       </>
     }>
       <div style={{ padding: "18px 18px 8px" }}>
@@ -189,10 +198,10 @@ const PIPE = [
 export function CRMCard() {
   const active = useTick(1500, PIPE.length);
   return (
-    <Shell title="CUSTOM CRM · LIVE" meta="this week" footer={
+    <Shell title="Custom CRM" meta="This week" footer={
       <>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "var(--fyro-gray-mid)" }}>follow-ups sent automatically</span>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "#22c55e" }}>✓ 0 leads dropped</span>
+        <span style={{ fontSize: 12, color: "var(--fyro-gray-mid)" }}>Follow-ups sent automatically</span>
+        <span style={{ fontSize: 12, color: "#22c55e" }}>No leads dropped</span>
       </>
     }>
       <div style={{ padding: 18 }}>
@@ -210,7 +219,7 @@ export function CRMCard() {
                   transition: "all .45s ease",
                 }}
               />
-              <span style={{ fontFamily: mono, fontSize: 10, color: active === i ? "#fff" : "var(--fyro-gray-light)" }}>{p.label}</span>
+              <span style={{ fontSize: 12, color: active === i ? "#fff" : "var(--fyro-gray-light)" }}>{p.label}</span>
             </div>
           ))}
         </div>
@@ -228,10 +237,10 @@ const FLOW = ["Job marked complete", "Photos + report filed", "Invoice created",
 export function WorkflowCard() {
   const step = useTick(1200, FLOW.length + 1);
   return (
-    <Shell title="WORKFLOW AGENT · LIVE" meta="job #4821" footer={
+    <Shell title="Workflow agent" meta="Job 4821" footer={
       <>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "var(--fyro-gray-mid)" }}>no one touched a keyboard</span>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "#22c55e" }}>✓ runs 24/7</span>
+        <span style={{ fontSize: 12, color: "var(--fyro-gray-mid)" }}>No one touched a keyboard</span>
+        <span style={{ fontSize: 12, color: "#22c55e" }}>Runs around the clock</span>
       </>
     }>
       <div style={{ padding: "14px 18px" }}>
@@ -239,10 +248,10 @@ export function WorkflowCard() {
           const state = i < step ? "done" : i === step ? "active" : "pending";
           return (
             <div key={f} style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 0", borderBottom: i < FLOW.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
-              <span style={{ fontFamily: mono, fontSize: 10, color: "var(--fyro-gray-light)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
+              <span style={{ fontSize: 12, color: "var(--fyro-gray-light)", width: 18 }}>{String(i + 1).padStart(2, "0")}</span>
               <span style={{ fontSize: 14, color: state === "pending" ? "var(--fyro-gray-light)" : "#fff", flex: 1, transition: "color .3s" }}>{f}</span>
               {state === "done" && <Check size={15} color="#22c55e" />}
-              {state === "active" && <span style={{ fontFamily: mono, fontSize: 10, color: "var(--fyro-orange)", background: "rgba(248,121,4,0.12)", padding: "2px 8px", borderRadius: 4 }}>RUNNING</span>}
+              {state === "active" && <span style={{ fontSize: 12, color: "var(--fyro-orange)", background: "rgba(248,121,4,0.12)", padding: "2px 8px", borderRadius: 4 }}>RUNNING</span>}
             </div>
           );
         })}
@@ -257,10 +266,10 @@ const RFP = ["Scan portals", "Read solicitation", "Score fit", "Draft response",
 export function RFPCard() {
   const phase = useTick(1500, RFP.length);
   return (
-    <Shell title="RFP AGENT · LIVE" meta="gov contracting" footer={
+    <Shell title="RFP agent" meta="Scanning" footer={
       <>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "var(--fyro-gray-mid)" }}>only bids worth pursuing</span>
-        <span style={{ fontFamily: mono, fontSize: 10, color: "#22c55e" }}>✓ always scanning</span>
+        <span style={{ fontSize: 12, color: "var(--fyro-gray-mid)" }}>Only bids worth pursuing</span>
+        <span style={{ fontSize: 12, color: "#22c55e" }}>Always scanning</span>
       </>
     }>
       <div style={{ padding: 18 }}>

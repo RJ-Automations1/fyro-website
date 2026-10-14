@@ -4,10 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * FYRO DESIGN SYSTEM — Hendricks.ai-inspired
- * Dark ground, white text, brand orange accent (#F87904)
- * Fonts: Inter (bold headlines), DM Sans (body), DM Mono (labels/mono)
- * Extreme whitespace, left-aligned, minimal decoration
+ * FYRO DESIGN SYSTEM
+ * Graphite dark surfaces alternating with cool light surfaces (.surface-light),
+ * one brand orange from the logo, used sparingly for action and agent activity.
+ * Type: Archivo throughout — headlines in its semi-expanded width to echo the
+ * wide FYRO wordmark, body at normal width. DM Mono only inside agent consoles.
+ * Motion is reserved for the hero's agent network; sections do not animate in.
  */
 
 @theme inline {
@@ -63,22 +65,25 @@
      values here re-themes those call sites correctly with no edit.          */
 
   --fyro-orange: #F87904;        /* brand accent — sampled from the logo */
-  --fyro-orange-bright: #FF8A00; /* hover / active */
-  --fyro-orange-deep: #A94903;   /* the logo gradient's shadow; the only orange
-                                    that passes contrast ON light grounds     */
+  --fyro-orange-bright: #FF8A1F; /* hover / active */
+  --fyro-orange-deep: #A94903;   /* the logo gradient's shadow */
+  --fyro-accent-text: #FF9A3D;   /* orange used AS TEXT; flips darker on light surfaces */
+  --fyro-on-accent: #0C0D10;     /* text on an orange fill: dark reads crisper than white */
 
-  --fyro-black: #050505;
-  --fyro-bg: #0A0A0A;            /* page ground */
-  --fyro-bg-section: #121214;    /* alternating band */
-  --fyro-panel: #16161A;         /* cards */
-  --fyro-border: #26262B;
+  --fyro-black: #07080A;
+  --fyro-bg: #0C0D10;            /* graphite ground, cool so the orange reads warm */
+  --fyro-bg-section: #121419;    /* alternating band */
+  --fyro-panel: #171A20;         /* cards */
+  --fyro-border: #262A32;
 
   --fyro-white: #FFFFFF;
-  --fyro-near-black: #FFFFFF;    /* role: primary heading/text — now white */
-  --fyro-gray-dark: #D8D8D2;     /* role: strong body */
-  --fyro-gray-mid: #A8A8A2;      /* role: secondary body */
-  --fyro-gray-light: #77776F;    /* role: faint / captions */
+  --fyro-near-black: #F4F5F7;    /* role: primary heading/text */
+  --fyro-gray-dark: #D5D8DE;     /* role: strong body */
+  --fyro-gray-mid: #A3A9B3;      /* role: secondary body */
+  --fyro-gray-light: #767D88;    /* role: faint / captions */
 
+  --fyro-font: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --fyro-mono: 'DM Mono', ui-monospace, monospace; /* agent console readouts only */
   /* Legacy aliases so any missed call site lands on brand rather than a stale
      red. Prefer --fyro-orange in new code. */
   --fyro-red: var(--fyro-orange);
@@ -119,10 +124,23 @@
   --sidebar-ring: oklch(0.70 0.19 45);
 }
 
+/* Light surface: re-points the same role tokens, so any section (and any
+   component inside it that uses the tokens) flips to the light palette. */
+.surface-light {
+  --fyro-bg: #F3F4F7;
+  --fyro-bg-section: #E9ECF1;
+  --fyro-panel: #FFFFFF;
+  --fyro-border: #D9DDE4;
+  --fyro-near-black: #111318;
+  --fyro-gray-dark: #2B3039;
+  --fyro-gray-mid: #535A66;
+  --fyro-gray-light: #717884;
+  --fyro-accent-text: #A84C00;
+  background-color: var(--fyro-bg);
+  color: var(--fyro-near-black);
+}
+
 @layer base {
-  /* Form controls. The UA default is a white box, which was invisible on the
-     old light ground and glaring on this one. Styled globally so no page has
-     to remember. */
   input, textarea, select {
     background-color: var(--fyro-panel);
     color: var(--fyro-near-black);
@@ -130,10 +148,6 @@
   }
   input::placeholder, textarea::placeholder {
     color: var(--fyro-gray-light);
-  }
-  input:focus-visible, textarea:focus-visible, select:focus-visible {
-    outline: 2px solid var(--fyro-orange);
-    outline-offset: 1px;
   }
   /* Chrome paints its own pale-yellow fill on autofilled inputs. */
   input:-webkit-autofill,
@@ -153,9 +167,15 @@
   body {
     background-color: var(--fyro-bg);
     color: var(--fyro-near-black);
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: var(--fyro-font);
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  :focus-visible {
+    outline: 2px solid var(--fyro-orange);
+    outline-offset: 3px;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -166,11 +186,18 @@
     cursor: pointer;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--fyro-font);
+    font-stretch: 112%;
     font-weight: 700;
     color: var(--fyro-near-black);
-    letter-spacing: -0.025em;
-    line-height: 1.1;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   }
 }
 
@@ -195,133 +222,123 @@
     min-width: 0;
   }
 
-  /* Section label — small ALL CAPS, letter-spaced, muted */
+  /* Section label — a quiet sentence-case kicker, used only where it names
+     what follows. Pages that still pass uppercase strings get them softened. */
   .fyro-section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--fyro-red);
+    font-family: var(--fyro-font);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--fyro-accent-text);
   }
 
-  /* Pill tag — light bordered */
   .fyro-pill {
     display: inline-block;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--fyro-gray-dark);
-    background: transparent;
-    border: 1.5px solid var(--fyro-border);
-    border-radius: 4px;
-    padding: 0.35rem 0.85rem;
-  }
-
-  /* Category pill — small dot + label */
-  .fyro-category-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
+    font-family: var(--fyro-font);
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--fyro-gray-dark);
     background: var(--fyro-panel);
     border: 1px solid var(--fyro-border);
-    border-radius: 100px;
-    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    padding: 0.4rem 0.95rem;
+  }
+
+  .fyro-category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--fyro-font);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--fyro-gray-dark);
+    background: var(--fyro-panel);
+    border: 1px solid var(--fyro-border);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
   }
   .fyro-category-pill::before {
     content: '';
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--fyro-red);
+    background: var(--fyro-orange);
     flex-shrink: 0;
   }
 
-  /* Primary CTA button — red filled */
+  /* Primary action — the one place orange fills a shape. */
   .fyro-btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
+    gap: 0.5rem;
+    font-family: var(--fyro-font);
+    font-size: 1rem;
     font-weight: 600;
-    color: #fff;
-    background: var(--fyro-red);
+    color: var(--fyro-on-accent);
+    background: var(--fyro-orange);
     border: none;
-    border-radius: 4px;
-    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    padding: 0.85rem 1.5rem;
     cursor: pointer;
-    transition: background 0.18s ease, transform 0.12s ease;
+    transition: background 0.18s ease;
     text-decoration: none;
     white-space: nowrap;
   }
   .fyro-btn-primary:hover {
-    background: var(--fyro-red-dark);
-  }
-  .fyro-btn-primary:active {
-    transform: scale(0.97);
+    background: var(--fyro-orange-bright);
   }
 
-  /* Secondary/outline button */
   .fyro-btn-outline {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
+    gap: 0.5rem;
+    font-family: var(--fyro-font);
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--fyro-near-black);
     background: transparent;
-    border: 1.5px solid var(--fyro-border);
-    border-radius: 4px;
-    padding: 0.75rem 1.75rem;
+    border: 1px solid var(--fyro-border);
+    border-radius: 8px;
+    padding: 0.85rem 1.4rem;
     cursor: pointer;
-    transition: border-color 0.18s ease, color 0.18s ease;
+    transition: border-color 0.18s ease, background 0.18s ease;
     text-decoration: none;
     white-space: nowrap;
   }
   .fyro-btn-outline:hover {
-    border-color: var(--fyro-near-black);
-    color: var(--fyro-near-black);
+    border-color: var(--fyro-gray-mid);
   }
 
-  /* Text link with arrow */
   .fyro-link {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-family: var(--fyro-font);
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--fyro-near-black);
-    text-decoration: none;
-    transition: color 0.18s ease;
+    text-decoration: underline;
+    text-decoration-color: var(--fyro-orange);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
   }
   .fyro-link:hover {
-    color: var(--fyro-red);
+    color: var(--fyro-accent-text);
   }
 
-  /* Section divider */
   .fyro-divider {
     width: 100%;
     height: 1px;
     background: var(--fyro-border);
   }
 
-  /* Fade-up animation */
+  /* Sections no longer animate in on scroll: content is simply there.
+     The class stays so existing markup keeps working. */
   .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

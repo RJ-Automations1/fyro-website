@@ -5,7 +5,6 @@
  */
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -85,7 +84,7 @@ export default function HowItWorks() {
           <h1
             className="fade-up"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
               fontWeight: 800,
               color: "var(--fyro-near-black)",
@@ -100,7 +99,7 @@ export default function HowItWorks() {
           <p
             className="fade-up"
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "var(--fyro-font)",
               fontSize: "1.05rem",
               color: "var(--fyro-gray-mid)",
               lineHeight: 1.75,
@@ -114,8 +113,7 @@ export default function HowItWorks() {
           </p>
           <div className="fade-up" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a Free Demo
-              <ArrowRight size={15} />
+              Book a free demo
             </Link>
             <Link href="/services" className="fyro-btn-outline">
               See what we build
@@ -149,7 +147,7 @@ export default function HowItWorks() {
                 <div className="fade-up" style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.75rem" }}>
                   <span
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "3rem",
                       fontWeight: 500,
                       color: "var(--fyro-border)",
@@ -160,13 +158,12 @@ export default function HowItWorks() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: "0.65rem",
+                      fontFamily: "var(--fyro-font)",
+                      fontSize: "0.85rem",
                       fontWeight: 700,
-                      letterSpacing: "0.15em",
-                      color: "var(--fyro-orange)",
-                      textTransform: "uppercase",
-                    }}
+                      letterSpacing: "0",
+                      color: "var(--fyro-accent-text)",
+                      }}
                   >
                     {step.phase}
                   </span>
@@ -174,7 +171,7 @@ export default function HowItWorks() {
                 <h2
                   className="fade-up"
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                     fontWeight: 800,
                     color: "var(--fyro-near-black)",
@@ -188,7 +185,7 @@ export default function HowItWorks() {
                 <p
                   className="fade-up"
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "var(--fyro-font)",
                     fontSize: "1rem",
                     color: "var(--fyro-gray-mid)",
                     lineHeight: 1.8,
@@ -210,11 +207,10 @@ export default function HowItWorks() {
                 >
                   <div
                     style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: "0.6rem",
-                      letterSpacing: "0.15em",
+                      fontFamily: "var(--fyro-font)",
+                      fontSize: "0.85rem",
+                      letterSpacing: "0",
                       color: "var(--fyro-gray-mid)",
-                      textTransform: "uppercase",
                       marginBottom: "1rem",
                     }}
                   >
@@ -222,7 +218,7 @@ export default function HowItWorks() {
                   </div>
                   <p
                     style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "var(--fyro-font)",
                       fontSize: "0.9rem",
                       color: "var(--fyro-near-black)",
                       lineHeight: 1.8,
@@ -253,8 +249,8 @@ export default function HowItWorks() {
                     />
                     <span
                       style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: "0.7rem",
+                        fontFamily: "var(--fyro-font)",
+                        fontSize: "0.85rem",
                         color: "rgba(255,255,255,0.75)",
                         lineHeight: 1.6,
                         letterSpacing: "0.03em",
@@ -284,7 +280,7 @@ export default function HowItWorks() {
             </div>
             <h2
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                 fontWeight: 800,
                 color: "var(--fyro-near-black)",
@@ -296,7 +292,7 @@ export default function HowItWorks() {
             </h2>
             <p
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "var(--fyro-font)",
                 fontSize: "1rem",
                 color: "var(--fyro-gray-mid)",
                 lineHeight: 1.75,
@@ -308,8 +304,7 @@ export default function HowItWorks() {
               for your specific operation.
             </p>
             <Link href="/contact" className="fyro-btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Book a Free Demo
-              <ArrowRight size={15} />
+              Book a free demo
             </Link>
           </div>
         </div>
