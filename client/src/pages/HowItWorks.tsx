@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 const STEPS = [
   {
     num: "01",
-    phase: "CONSULT",
+    phase: "Consult",
     title: "We meet with you.",
     body: "We start with leadership — understanding your business goals, revenue drivers, and the biggest bottlenecks standing between where you are and where you want to be. No templates, no generic frameworks. Just an honest conversation about your company.",
     detail: "This session typically runs 60–90 minutes. We cover: current revenue model, top operational pain points, existing tech stack, team structure, and your biggest growth constraint. We leave with a clear picture of where AI can move the needle fastest.",
@@ -19,7 +19,7 @@ const STEPS = [
   },
   {
     num: "02",
-    phase: "DISCOVER",
+    phase: "Discover",
     title: "We meet with your team.",
     body: "We go deeper with the people doing the work — your frontline staff, managers, and operators — to understand the real day-to-day workflows and pain points. Managers often have an idealized view of how things work. The people in the trenches know where the shortcuts are.",
     detail: "We conduct structured interviews with 3–8 team members across different roles. We ask them to walk us through a typical day, narrate what they're doing and why, and tell us what takes longer than it should. This is where the real automation opportunities surface.",
@@ -27,7 +27,7 @@ const STEPS = [
   },
   {
     num: "03",
-    phase: "ANALYZE",
+    phase: "Analyze",
     title: "We go inside your operations.",
     body: "We visit your facility, shadow your team, and map every process — identifying exactly where AI creates the highest leverage for your specific business, tools, and data. We're looking for the intersection of high time-cost, high repetition, and structured decision-making.",
     detail: "We produce a full workflow map with every decision point, exception case, and integration touchpoint documented. We then score each automation opportunity by: time savings, error reduction, implementation complexity, and ROI. You get a prioritized roadmap with clear projections for each initiative.",
@@ -35,7 +35,7 @@ const STEPS = [
   },
   {
     num: "04",
-    phase: "BUILD & DEPLOY",
+    phase: "Build and deploy",
     title: "We build and deploy.",
     body: "We build your custom agents and automations, review them with you, and launch them live — fully integrated into your existing tools and workflows. No new software to learn. No process overhaul. Your team keeps working the way they work.",
     detail: "Every system is built with a human-in-the-loop review gate at the critical decision points. We run parallel testing alongside your existing process before full deployment. We train your team on how to use, monitor, and override the system. Go-live is a controlled handoff, not a big bang.",
@@ -43,7 +43,7 @@ const STEPS = [
   },
   {
     num: "05",
-    phase: "OPTIMIZE",
+    phase: "Optimize",
     title: "We monitor and optimize.",
     body: "We don't hand off and disappear. We continuously monitor your systems, update them as your company grows, and optimize performance so your AI stays ahead of your operation. The system gets smarter the longer it runs.",
     detail: "Monthly performance reviews cover: task completion rates, error flags, edge cases encountered, and user feedback. We push updates as your workflows evolve, your team grows, or new automation opportunities emerge. You have a direct line to us — not a support ticket queue.",
@@ -126,6 +126,7 @@ export default function HowItWorks() {
       {STEPS.map((step, i) => (
         <section
           key={step.num}
+          className={i % 2 === 0 ? "surface-light" : undefined}
           style={{
             padding: "6rem 0",
             background: i % 2 === 0 ? "var(--fyro-bg-section)" : "var(--fyro-bg)",
@@ -251,12 +252,11 @@ export default function HowItWorks() {
                       style={{
                         fontFamily: "var(--fyro-font)",
                         fontSize: "0.85rem",
-                        color: "rgba(255,255,255,0.75)",
+                        color: "var(--fyro-gray-dark)",
                         lineHeight: 1.6,
-                        letterSpacing: "0.03em",
                       }}
                     >
-                      OUTCOME: {step.outcome}
+                      Outcome: {step.outcome}
                     </span>
                   </div>
                 </div>

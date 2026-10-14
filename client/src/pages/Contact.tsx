@@ -401,6 +401,7 @@ export default function Contact() {
             directly on our calendar — no back-and-forth, no waiting.
           </p>
         </div>
+
       </section>
 
       {/* ── FORM + SIDEBAR ── */}
@@ -701,6 +702,24 @@ export default function Contact() {
               {/* Calendar slot picker */}
               <BookingSidebar onSlotSelected={setSelectedSlot} selectedSlot={selectedSlot} />
 
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+          @media (max-width: 900px) {
+            #contact-cards { grid-template-columns: 1fr !important; }
+            #contact-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+            #contact-sidebar { order: -1; }
+          }
+          @media (max-width: 560px) {
+            #form-row-1, #form-row-2, #form-row-3 { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
+        {/* The two support cards sit under the form, full width, so the page
+            does not end on a column of empty space. */}
+        <div style={{ ...sectionStyle, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.75rem", marginTop: "3rem" }} id="contact-cards">
               {/* What happens next */}
               <div
                 style={{
@@ -820,20 +839,7 @@ export default function Contact() {
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
         </div>
-
-        <style>{`
-          @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-          @media (max-width: 900px) {
-            #contact-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-            #contact-sidebar { order: -1; }
-          }
-          @media (max-width: 560px) {
-            #form-row-1, #form-row-2, #form-row-3 { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
       </section>
 
       <Footer />
