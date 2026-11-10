@@ -5,6 +5,9 @@ export interface GoogleEnv {
   GOOGLE_SA_EMAIL?: string; // service account email
   GOOGLE_SA_PRIVATE_KEY?: string; // PEM, with literal \n or real newlines
   CALENDAR_ID?: string; // calendar shared with the service account
+  // Optional Workspace user to act as (needs domain-wide delegation). When
+  // set, events are created by this user, so attendees get real invites.
+  GOOGLE_IMPERSONATE_USER?: string;
   ET_OFFSET_HOURS?: string; // unused: the ET offset is now computed automatically
 }
 
@@ -39,9 +42,29 @@ export async function getAccessToken(env: GoogleEnv, scope: string): Promise<str
   const now = Math.floor(Date.now() / 1000);
   if (cachedToken && cachedToken.exp - 60 > now) return cachedToken.token;
 
+  const subject = env.GOOGLE_IMPERSONATE_USER?.trim();
+  if (subject) {
+    try {
+      return await requestToken(env, scope, now, subject);
+    } catch (err) {
+      // Delegation not granted (or revoked): keep booking working as the
+      // service account itself, just without attendee invites.
+      console.error("[google] impersonation failed, falling back to service account", err);
+    }
+  }
+  return requestToken(env, scope, now);
+}
+
+async function requestToken(
+  env: GoogleEnv,
+  scope: string,
+  now: number,
+  subject?: string,
+): Promise<string> {
   const header = { alg: "RS256", typ: "JWT" };
   const claim = {
     iss: env.GOOGLE_SA_EMAIL,
+    ...(subject ? { sub: subject } : {}),
     scope,
     aud: "https://oauth2.googleapis.com/token",
     iat: now,

@@ -22,6 +22,10 @@ services:
         sync: false
       - key: CALENDAR_ID
         sync: false
+      # Workspace user the service account acts as (domain-wide delegation),
+      # so bookers get a real calendar invite. Optional.
+      - key: GOOGLE_IMPERSONATE_USER
+        sync: false
       # AI chat assistant (/api/chat). Set the key in the Render dashboard.
       # Without it the chat widget shows a friendly error and the rest of the
       # site works normally.
