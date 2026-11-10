@@ -5,7 +5,7 @@ export interface GoogleEnv {
   GOOGLE_SA_EMAIL?: string; // service account email
   GOOGLE_SA_PRIVATE_KEY?: string; // PEM, with literal \n or real newlines
   CALENDAR_ID?: string; // calendar shared with the service account
-  ET_OFFSET_HOURS?: string; // optional, default -4 (EDT)
+  ET_OFFSET_HOURS?: string; // unused: the ET offset is now computed automatically
 }
 
 function base64url(input: ArrayBuffer | string): string {

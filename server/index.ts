@@ -11,8 +11,25 @@ const __dirname = path.dirname(__filename);
 const env = process.env as GoogleEnv;
 const CAL_SCOPE = "https://www.googleapis.com/auth/calendar";
 
-function offsetHours(): number {
-  return env.ET_OFFSET_HOURS ? Number(env.ET_OFFSET_HOURS) : -4;
+/**
+ * Eastern Time's UTC offset in hours (-4 in daylight time, -5 in standard
+ * time) at the given instant. It is computed from the IANA zone, so it follows
+ * the DST switch on its own instead of relying on a fixed setting.
+ */
+function etOffsetAt(ms: number): number {
+  const name = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    timeZoneName: "shortOffset",
+  })
+    .formatToParts(new Date(ms))
+    .find((p) => p.type === "timeZoneName")?.value; // e.g. "GMT-5"
+  const m = name?.match(/GMT([+-]\d+)/);
+  return m ? Number(m[1]) : -5;
+}
+
+/** ET offset that applies on a calendar day (YYYY-MM-DD), checked at noon UTC. */
+function offsetHours(date?: string): number {
+  return etOffsetAt(date ? new Date(`${date}T12:00:00Z`).getTime() : Date.now());
 }
 
 export function calendarConfigured(): boolean {
@@ -46,7 +63,7 @@ export interface AvailabilityResult {
 
 /** YYYY-MM-DD of an instant, in ET (using the configured fixed offset). */
 function etDateOf(ms: number): string {
-  return new Date(ms + offsetHours() * 3600_000).toISOString().slice(0, 10);
+  return new Date(ms + etOffsetAt(ms) * 3600_000).toISOString().slice(0, 10);
 }
 
 export async function getAvailability(date: string): Promise<AvailabilityResult> {
@@ -57,7 +74,7 @@ export async function getAvailability(date: string): Promise<AvailabilityResult>
     throw new BookingError(500, "Calendar not configured.");
   }
 
-  const slots = generateSlotTimes(date, offsetHours());
+  const slots = generateSlotTimes(date, offsetHours(date));
   if (slots.length === 0) return { date, slots: [] };
   const timeMin = slots[0].startISO;
   const timeMax = slots[slots.length - 1].endISO;
@@ -148,7 +165,7 @@ export async function createBooking(input: BookingInput): Promise<BookingResult>
   if (weekday === 0 || weekday === 6) {
     throw new BookingError(400, "Demos are available Monday through Friday.");
   }
-  const matched = generateSlotTimes(date, offsetHours()).find(
+  const matched = generateSlotTimes(date, offsetHours(date)).find(
     (s) => new Date(s.startISO).getTime() === startMs,
   );
   if (!matched) {
